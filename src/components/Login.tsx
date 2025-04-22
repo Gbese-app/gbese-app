@@ -3,7 +3,7 @@ import React from "react";
 const Login: React.FC = () => {
   return (
     <div className="flex min-h-screen font-sans">
-      {/* Left Side - Logo */}
+      
       <div className="bg-[#0038FF] w-1/3 flex items-start px-8 pt-8">
         <div className="flex items-center space-x-2">
           <img src="/icons/Gbeselogo.png" alt="Gbese Logo" className="h-10" />
@@ -11,7 +11,7 @@ const Login: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Side - Form */}
+      
       <div className="w-2/3 flex items-center justify-center bg-[#F9FAFB] px-8 py-12">
         <div className="max-w-md w-full">
           <h2 className="text-2xl font-semibold mb-2">Login to your account</h2>
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
             <a href="#" className="text-blue-600 underline">Sign up</a>
           </p>
 
-          {/* Social Buttons */}
+          
           <button className="flex items-center justify-center w-full border border-gray-300 py-2 px-4 mb-2 rounded-md gap-2">
             <img src="/icons/Google-icon.png" alt="Google" className="h-5" />
             Continue with Google
