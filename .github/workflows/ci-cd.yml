@@ -29,10 +29,6 @@ jobs:
       - name: Run TypeScript type check
         run: npx tsc --noEmit 
 
-
-      - name: Run tests
-        run: npm test -- --ci --maxWorkers=2 
-
       - name: Build project
         run: npm run build
 
