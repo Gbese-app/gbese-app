@@ -37,7 +37,7 @@ jobs:
 
       # This block uploads the dist file to the GitHub Actions artifacts so it can be used in the deploy job.
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: ./dist
@@ -52,7 +52,7 @@ jobs:
 
       # This block downloads the dist file from the GitHub Actions artifacts.
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact
         with:
           name: dist
           path: ./dist
