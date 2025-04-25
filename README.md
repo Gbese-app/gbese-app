@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# Gbese
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Gbese is a revolutionary peer-to-peer credit transfer platform that enables users to redistribute financial obligations through consent-based debt transfers. It’s designed for people to share or relieve debts in a fair, friendly, and legally sound way.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prequisite 
+Ensure you have the following installed on your system:
+-	Node.js (v16+ recommended)
+-	npm or yarn
+-	Git
 
-## Expanding the ESLint configuration
+## Startup
+1. git clone git@github.com:TraceyShammah/gbese-app.git
+2. npm install
+3. npm run start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🏗️ Project Structure
+
+```yaml
+  src/
+  │
+  ├── components/       # Reusable UI components
+  ├── pages/            # Route-based components
+  ├── services/         # API calls and data fetching
+  ├── utils/            # Helper functions
+  ├── context/          # Global state (e.g., auth, user profile)
+  ├── assets/           # Images, icons, illustrations
+  └── styles/           # Global and modular CSS
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Design Philosophy
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Gbese’s frontend is designed to be:
+-	Empathetic UI: Uses calm visuals and friendly language to handle the topic of debt.
+-	Clean and intuitive: Focus on reducing friction and cognitive load.
+-	Secure by design: Progressive disclosure and clear consent flows for each action.
+-	Gamified motivation: Visual elements like “Debt Thermometer” and “Wealth Redistribution Index” to engage users.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+
+## 🧪 Key Features & Screens
+-	Onboarding & KYC
+-	User Dashboard — See balance, credit, obligations
+-	Send/Receive Debt — Attach debt to a transfer
+-	Debt Transfer Center — Discover & accept others’ debt
+-	Notifications — Alerts, approvals, insights
+-	Gamification UI — Wealth Redistribution visuals
+-	DAO Governance — Participate in platform decisions
+
+
+## 🛠️ Tech Stack
+-	React.js (Vite )
+-	Tailwind CSS for styling
+-	React Query or Axios for API handling
+-	Redux for state management 
+-	Framer Motion for animations
+-	ESLint + Prettier for consistent code style
+
+
+## 🧩 Future Improvements
+-	Integrate Web3 wallet connection (for Debt NFTs)
+-	Add unit & integration tests using Jest + Testing Library
+-	Mobile-first optimizations & accessibility audits
+-	Internationalization (i18n) support
+
+
+
+## 🤝 Contributing
+
+> Pull requests are welcome! Please open an issue first to discuss what you would like to change.
+
+⸻
+
+## 📄 License
+
+MIT
