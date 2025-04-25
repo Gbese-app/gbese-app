@@ -3,7 +3,7 @@ name: React TypeScript CI/CD to Netlify
 on:
   push:
     branches:
-      - main  
+      - main, setup  
   pull_request:
     branches:
       - main 
@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -27,10 +27,20 @@ jobs:
         run: npm install 
 
       - name: Run TypeScript type check
-        run: npx tsc --noEmit 
+        run: npx tsc --noEmit
+        
+      - name: Lint codebase and fix errors using prettier
+        run: npm run lint:fix
 
       - name: Build project
         run: npm run build
+
+      # This block uploads the dist file to the GitHub Actions artifacts so it can be used in the deploy job.
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist
 
   deploy:
     runs-on: ubuntu-latest  
@@ -38,12 +48,22 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      # This block downloads the dist file from the GitHub Actions artifacts.
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+      - name: List contents after download
+        run: ls -R
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
-          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
-          dir: ./dist 
+          publish-dir: ./dist
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
