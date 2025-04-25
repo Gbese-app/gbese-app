@@ -53,12 +53,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
+      
+      - name: List contents after download
+        run: ls -R
 
-      - name: Unzip artifact to dist
-        run: |
-          mkdir dist
-          unzip dist.zip -d dist
-          
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
