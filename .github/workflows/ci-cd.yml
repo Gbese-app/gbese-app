@@ -29,14 +29,15 @@ jobs:
       - name: Run TypeScript type check
         run: npx tsc --noEmit
         
-      - name: Run linting
+      - name: Lint codebase and fix errors using prettier
         run: npm run lint:fix
 
       - name: Build project
         run: npm run build
 
+      # This block uploads the dist file to the GitHub Actions artifacts so it can be used in the deploy job.
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: ./dist
@@ -49,8 +50,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # This block downloads the dist file from the GitHub Actions artifacts.
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: ./dist
