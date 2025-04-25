@@ -11,7 +11,7 @@ Ensure you have the following installed on your system:
 -	Git
 
 ## Startup
-1. git clone git@github.com:TraceyShammah/gbese-app.git
+1. git clone [repo](git@github.com:TraceyShammah/gbese-app.git)
 2. npm install
 3. npm run start
 
@@ -70,8 +70,6 @@ Ensure you have the following installed on your system:
 ## 🤝 Contributing
 
 > Pull requests are welcome! Please open an issue first to discuss what you would like to change.
-
-⸻
 
 ## 📄 License
 
