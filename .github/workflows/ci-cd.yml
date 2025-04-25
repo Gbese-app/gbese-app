@@ -3,7 +3,7 @@ name: React TypeScript CI/CD to Netlify
 on:
   push:
     branches:
-      - main  
+      - main, setup  
   pull_request:
     branches:
       - main 
