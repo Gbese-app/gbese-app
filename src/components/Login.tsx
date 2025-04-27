@@ -1,67 +1,49 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Login: React.FC = () => {
+const Login = () => {
   return (
-    <div className="flex min-h-screen font-sans">
-      <div className="bg-[#0038FF] w-1/3 flex items-start px-8 pt-8">
+    <div className="min-h-screen flex">
+      <aside className="w-1/4 bg-blue-700 text-white p-6">
         <div className="flex items-center space-x-2">
-          <img src="/icons/Gbeselogo.png" alt="Gbese Logo" className="h-10" />
-          <h1 className="text-white text-2xl font-bold">Gbese</h1>
+          <img src="/icons/Gbeselogo.png" alt="Logo" className="h-8" />
+          <h1 className="text-xl font-bold">Gbese</h1>
         </div>
-      </div>
-
-      <div className="w-2/3 flex items-center justify-center bg-[#F9FAFB] px-8 py-12">
-        <div className="max-w-md w-full">
-          <h2 className="text-2xl font-semibold mb-2">Login to your account</h2>
-          <p className="text-sm text-gray-600 mb-4">
-            Don’t have an account?{' '}
-            <a href="#" className="text-blue-600 underline">
-              Sign up
-            </a>
+      </aside>
+  <div className="flex-1 flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <h1 className="text-2xl font-Sora text-black-400 mb-4">Login to your account</h1>
+          <p className="text-sm mb-4">
+            Don'have an account? <Link to="/signup" className="text-blue-600">Sign up</Link>
           </p>
 
-          <button className="flex items-center justify-center w-full border border-gray-300 py-2 px-4 mb-2 rounded-md gap-2">
-            <img src="/icons/Google-icon.png" alt="Google" className="h-5" />
+          <button className="w-full bg-white border border-gray-300 flex items-center justify-center py-2 mb-2 rounded">
+            <img src="/icons/Google-icon.png" alt="Google" className="h-5 mr-2" />
             Continue with Google
           </button>
-          <button className="flex items-center justify-center w-full border border-gray-300 py-2 px-4 mb-4 rounded-md gap-2">
-            <img src="/icons/apple-icon.png" alt="Apple" className="h-5" />
+          <button className="w-full bg-white border border-gray-300 flex items-center justify-center py-2 mb-4 rounded">
+            <img src="/icons/apple-icon.png" alt="Apple" className="h-5 mr-2" />
             Continue with Apple
           </button>
 
           <div className="text-center text-gray-500 mb-4">OR</div>
 
           <form className="space-y-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Create password"
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-              required
-            />
+          
+            <label htmlFor="email" className="block text-sm font-labels text-gray-400 mb-1">Email</label>
+            <input type="email" placeholder="Email" className="w-full border p-2 rounded" />
+            <label htmlFor="password" className="block text-sm font-labels text-gray-400 mb-1">Password</label>
+            <input type="password" placeholder="Password" className="w-full border p-2 rounded" />
 
-            <div className="text-right text-sm">
-              <a href="#" className="text-blue-600 underline">
-                Forgot password?
-              </a>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-[#0038FF] text-white font-semibold py-2 rounded-md mt-2"
-            >
-              Sign in
-            </button>
+            <p className="text-xs text-gray-500">
+               <a href="#" className="text-blue-600">Forget Password?</a>
+            </p>
+            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded">Sign Up</button>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
