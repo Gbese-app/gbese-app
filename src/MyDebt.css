@@ -1,0 +1,264 @@
+:root {
+    --primary-color: #1c2964; /* Deep navy for titles and highlights */
+    --secondary-color: #555; /* Dull gray for body text */
+    --accent-color: #1c77f2; /* Blue for the button */
+    --accent-hover: #135cbf; /* Darker blue for the hover effect */
+    --bg-light: #f9fbff; /* Light gray background */
+    --bg-muted: #f5f7fa; /* Lighter muted gray */
+    --font-family: 'Open Sans', sans-serif; /* Modern sans-serif font */
+    --card-bg: #ffffff; /* Background color for cards */
+    --background-color: #f5f7fa; /* Light background color for grid items */
+    --radius: 8px; /* Border radius for rounded corners */
+}
+.icon-blue {
+    color: #007bff;
+  }
+  
+  .icon-green {
+    color: #28a745;
+  }
+  
+  .icon-yellow {
+    color: #ffc107;
+  }
+  
+  .icon-teal {
+    color: #17a2b8;
+  }
+
+body {
+    overflow: hidden;
+    margin: 0;
+    background-color: var(--bg-light); /* Pure white or very light gray */
+    color: var(--secondary-color);
+    font-family: var(--font-family);
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.app-container {
+    padding: 40px 20px; /* Space around the container */
+    background-color: #e8edf7; /* Light background color */
+    box-shadow: none; /* No shadow around the container */
+    overflow: hidden; /* Prevent content from spilling outside */
+    max-width: 100%; /* Ensure the container takes up full width */
+}
+
+.app-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(24px, 5vw, 40px);
+    background-color: transparent;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.app-title-section-text {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.app-title-section h1 {
+    color: var(--primary-color);
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 700; /* Bold title */
+    margin-bottom: 6px;
+}
+
+.app-title-section p {
+    color: var(--primary-color); /* Title and subtext color */
+    font-size: 16px;
+    margin: 0;
+}
+
+.join-button {
+    background-color: var(--primary-color); /* Blue button */
+    color: white;
+    padding: 14px 28px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.join-button:hover {
+    background-color: var(--accent-hover); /* Darker blue on hover */
+}
+
+.join-button:focus {
+    border-color: #0f9f4b;
+    box-shadow: 0 0 0 3px rgba(23, 201, 100, 0.3);
+}
+
+.app-navigation {
+    display: flex;
+    padding: 0 40px;
+    border-bottom: 1px solid #dcdfe6;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    padding: 14px 24px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-item.active {
+    color: var(--primary-color); /* Blue active tab */
+    font-weight: 700; /* Bold active tab text */
+    border-bottom: 3px solid var(--primary-color); /* Blue underline */
+}
+
+.nav-item:hover {
+    color: var(--primary-color);
+}
+
+/* Section-Specific Styling for .how-it-works */
+.how-it-works {
+    background-color: #ffffff; /* Ensure a clean white background */
+    padding: 32px; /* Adequate padding for the section */
+    border-radius: 8px; /* Soft corners for the section */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for a floating effect */
+    margin-bottom: 32px; /* Space below the section */
+    background: var(--card-bg); /* Using custom card background if needed */
+}
+
+.how-it-works,
+.your-statistics {
+    margin-bottom: 30px;
+    padding: clamp(24px, 5vw, 40px);
+}
+
+.how-it-works h2 {
+    background: var(--card-bg);
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.your-statistics h2 {
+    background-color: #e8edf7;
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.how-it-works p {
+    color: var(--secondary-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px;
+}
+
+.features-grid > div {
+    display: flex;
+    align-items: flex-start;
+    background: var(--background-color); /* Light background color for grid items */
+    padding: 16px;
+    border-radius: var(--radius); /* Rounded corners for grid items */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.feature-icon {
+    font-size: 28px;
+    color: #4f46e5; /* Colored icons (purple/blue) */
+    margin-right: 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    width: 32px;
+    height: 32px;
+}   
+
+.feature-details h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.feature-details p {
+    color: var(--secondary-color);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Statistics Section Styling */
+.your-statistics {
+    background-color: #e8edf7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.statistic-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.statistic-card h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.statistic-card p {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+}
+.statistic-card .net-impact-value {
+    color: #28a745;
+  }
+  
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .app-title-section {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+    }
+
+    .join-button {
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    /* Adjust grid layout for smaller screens */
+    .features-grid {
+        grid-template-columns: 1fr; /* 1-column grid for smaller screens */
+    }
+
+    .statistics-grid {
+        grid-template-columns: 1fr 1fr; /* 2-column grid for smaller screens */
+    }
+}
