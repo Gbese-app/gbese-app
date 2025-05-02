@@ -1,0 +1,142 @@
+.select-debt-page {
+    padding: 30px;
+    background-color: #f5f7ff;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.select-debt-header {
+    position: relative;
+}
+
+.select-debt-header h1 {
+    color: #1c2964;
+    font-size: 26px;
+}
+
+.select-debt-header p {
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.join-debt-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #17c964;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.select-debt-tabs {
+    margin-top: 40px;
+    display: flex;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    color: #666;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: #1c2964;
+    font-weight: 600;
+    border-bottom: 3px solid #1c2964;
+}
+
+.select-title {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #1c2964;
+}
+
+.debt-card-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 20px;
+}
+
+.debt-card {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px #e4e4e4;
+    position: relative;
+}
+
+.debt-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #222;
+}
+
+.debt-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0;
+}
+
+.due-date {
+    font-size: 13px;
+    color: #888;
+    margin: 4px 0 8px;
+}
+
+.mpr-tag {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.shuffle-btn {
+    margin-top: 25px;
+    background-color: #d3d3d3;
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.shuffle-btn:hover {
+    background-color: #b0b0b0;
+}
+
+.shuffle-btn:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.shuffle-btn svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.title-and-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.select-title {
+    margin-top: 0;
+}
