@@ -5,7 +5,7 @@ import image from "../assets/A6043158-845C-4B3A-99D8-C497A2789229_1_105_c.jpeg"
 
 const Layout = () => {
   return (
-    <div className="flex h-screen flex-col md:flex-row">
+    <div className="flex  flex-col md:flex-row">
         <aside className="w-full md:w-64 bg-blue-800 text-white">
             <SideBar />
         </aside>
