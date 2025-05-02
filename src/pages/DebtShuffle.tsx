@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUpRight, ArrowDownRight, CalendarDays } from 'lucide-react';
 import '../DebtShuffle.css';
 
