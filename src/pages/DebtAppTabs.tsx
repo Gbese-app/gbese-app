@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../MyDebt.css';
 import MyDebts from './MyDebts';
 import SelectDebt from './SelectDebt'; 
