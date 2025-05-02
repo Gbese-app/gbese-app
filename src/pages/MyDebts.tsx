@@ -1,4 +1,3 @@
-import React from 'react';
 import '../MyDebt.css';
 
 function MyDebts() {
