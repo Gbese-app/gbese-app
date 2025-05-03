@@ -16,13 +16,16 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.9.4",
     "gbeseapp": "file:",
+    "lucide-react": "^0.503.0",
     "next-themes": "^0.4.6",
     "npm": "^11.3.0",
     "react": "^18.2.0",
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.5.3",
+    "recharts": "^2.15.3",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "vue3-toastify": "^0.2.8"

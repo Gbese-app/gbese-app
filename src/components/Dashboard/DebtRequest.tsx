@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../ui/Button"
-import { getFirstWordInUpper } from "../../utils/NameFilter";
+import { getFirstWordInUpper } from "../../lib/NameFilter";
 
 export const DebtTransfer = ({name, bill}: {name: string, bill: string}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,13 +12,13 @@ export const DebtTransfer = ({name, bill}: {name: string, bill: string}) => {
                 <h1 className="name">{name}</h1>
                 <p className="bill">{bill}</p>
             </div>
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between my-1">
                 <Button title="Accept" style="bg-[#34A67B] text-white text-xs my-1 px-4 py-1"/>
                 <Button title="Decline" style="bg-[#FAD1D1] text-red-500 text-xs my-1 px-4 py-1"/>
                 <div>
                     <button 
                         onClick={() => setIsOpen(true)} 
-                        className="bg-gray-300 text-black items-center rounded-lg text-xs px-0 py-0  my-1 px-2 py-2">
+                        className="bg-gray-300 text-black items-center rounded-lg text-xs px-0 py-0  my-1 px-2 py-1">
                             ...
                     </button>
 

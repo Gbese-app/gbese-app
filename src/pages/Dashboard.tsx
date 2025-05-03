@@ -1,11 +1,11 @@
 import BarChartComponent from "../components/Dashboard/BarChartComponent";
 import { Block } from "../components/Dashboard/Blocks";
-import { DebtTransfer } from "../components/Dashboard/debtRequest";
+import { DebtTransfer } from "../components/Dashboard/DebtRequest";
 import Spinthewheel from "../components/Dashboard/Spinthewheel";
 import FixedTable from "../components/Dashboard/Table";
-import { AwardBadgeIcon } from "../components/svg/Icons";
+import { AwardBadgeIcon, WalletIcon } from "../components/svg/Icons";
 import { DashboardData, DashboardTH } from "../hook/dumy-data";
-import { WalletIcon } from "../utils/svg";
+
 
 export const Dashboard = () => {
     return (
@@ -84,9 +84,7 @@ export const Dashboard = () => {
                                 </select>
                             </div>
                             <div className="w-full">
-                                <Suspense fallback={<p>Loading...</p>}>
                                     {/* <BarChartComponent /> */}
-                                </Suspense>
 
                                 {/* <BarChart width={70} height={50} data={BarChartData}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -132,14 +130,3 @@ export const Dashboard = () => {
         </div>
     );
 }
-
-import { ReactNode, Suspense } from "react";
-
-function GridItem({ title, children }: { title: string; children: ReactNode }) {
-    return (
-      <div className="flex flex-col items-center justify-center p-4 border border-slate-900 bg-slate-900/50 rounded-xl h-[400px]">
-        <h3 className="text-2xl font-semibold text-white mb-4">{title}</h3>
-        {children}
-      </div>
-    );
-  }

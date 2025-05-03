@@ -1,0 +1,48 @@
+/* src/styles/table.css */
+
+/* Table container styling */
+.table-container {
+  background-color: #f7fafc;
+  padding: 24px;
+}
+
+.table-header {
+  background-color: #f3f4f6;
+  font-size: 12px;
+  font-weight: medium;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.table-header th {
+  padding: 16px;
+  text-align: left;
+}
+
+.table-row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-cell {
+  padding: 16px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.table-cell.amount {
+  font-weight: medium;
+}
+
+.table-cell.negative {
+  color: #ef4444; /* Red for negative impact */
+}
+
+.table-cell.positive {
+  color: #10b981; /* Green for positive impact */
+}
+
+.table-footer {
+  padding: 16px;
+  background-color: #ffffff;
+}
