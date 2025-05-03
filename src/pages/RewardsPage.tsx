@@ -39,22 +39,18 @@ const nftList = [
     bid: "8.24 ETH",
     image: "/images/space-ape.png",
   },
-
   {
     name: "Chill Ape",
     creator: "Martinez Joe",
     bid: "8.24 ETH",
     image: "/images/chill-ape.png",
   },
-
-
   {
     name: "Rabel Ape",
     creator: "Jordan Blake",
     bid: "8.24 ETH",
     image: "/images/rabal-ape.png",
   },
-
   {
     name: "Battle Ape",
     creator: "Chris Njoku",
@@ -64,8 +60,18 @@ const nftList = [
 ];
 
 const RewardsPage = () => {
-  const [activeTab, setActiveTab] = useState<"marketplace" | "collection">("marketplace");
+  const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">("marketplace");
+  const [spinning, setSpinning] = useState(false);
   const navigate = useNavigate();
+
+  const handleSpin = () => {
+    setSpinning(true);
+
+    setTimeout(() => {
+      setSpinning(false);
+      alert("Wheel Spinning Completed!");
+    }, 4000); 
+  };
 
   return (
     <div className="flex">
@@ -97,10 +103,12 @@ const RewardsPage = () => {
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow">
-          <div className="flex mb-6 bg-[#E4E8F6] p-2 rounded-lg">
+          <div className="flex mb-6 bg-[#E4EAFD] p-2 rounded-lg">
             <button
               className={`px-4 py-2 rounded-lg text-xl font-semibold ${
-                activeTab === "marketplace" ? "bg-white shadow text-black" : "text-gray-500"
+                activeTab === "marketplace"
+                  ? "bg-white shadow text-black"
+                  : "text-gray-500"
               }`}
               onClick={() => setActiveTab("marketplace")}
             >
@@ -108,45 +116,62 @@ const RewardsPage = () => {
             </button>
             <button
               className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
-                activeTab === "collection" ? "bg-white shadow text-black" : "text-gray-500"
+                activeTab === "collection"
+                  ? "bg-white shadow text-black"
+                  : "text-gray-500"
               }`}
               onClick={() => setActiveTab("collection")}
             >
               Your Collection
             </button>
+            <button
+              className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
+                activeTab === "LuckyWheel"
+                  ? "bg-white shadow text-[#031A69]"
+                  : "text-gray-500 hover:text-[#031A69]"
+              }`}
+              onClick={() => setActiveTab("LuckyWheel")}
+            >
+              Lucky Wheel
+            </button>
           </div>
-          {activeTab === "marketplace" ? (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-15 justify-items-center">
-    {nftList.map((nft, index) => (
-      <div
-        key={index}
-        className="bg-[#021246] p-5 rounded-xl shadow flex flex-col w-full sm:w-[90%] lg:w-[95%] max-w-[360px] gap-x-10"
-      >
-        <img
-          src={nft.image}
-          alt={nft.name}
-          className="w-full h-48 object-cover rounded mb-2"
-        />
-        <h2 className="text-[#F9FAFB] text-xl font-semibold mb-1">{nft.name}</h2>
-        <p className="text-sm text-[#CFD0D1] mb-1">By {nft.creator}</p>
-        <div className="flex justify-between items-center w-full mb-0">
-          <div>
-            <p className="text-xl text-[#CFD0D1] mb-1">Current Bid</p>
-            <p className="text-md font-semibold flex items-center gap-1 text-white">
-              <img src="/images/mdi-ethereum-icon.png" alt="ETH" className="w-6 h-6" />
-              {nft.bid}
-            </p>
-          </div>
-          <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-md font-medium px-3 py-2 rounded">
-            Purchase NFT
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-) : (
 
+          {activeTab === "marketplace" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-15 justify-items-center">
+              {nftList.map((nft, index) => (
+                <div
+                  key={index}
+                  className="bg-[#E4EAFD] p-5 rounded-xl shadow flex flex-col w-full sm:w-[90%] lg:w-[95%] max-w-[360px] gap-x-10"
+                >
+                  <img
+                    src={nft.image}
+                    alt={nft.name}
+                    className="w-full h-48 object-cover rounded mb-2"
+                  />
+                  <h2 className="text-[#111111] text-xl font-semibold mb-1">{nft.name}</h2>
+                  <p className="text-sm text-[#111111] mb-1">By {nft.creator}</p>
+                  <div className="flex justify-between items-center w-full mb-0">
+                    <div>
+                      <p className="text-xl text-[#111111] mb-1">Current Bid</p>
+                      <p className="text-md font-semibold flex items-center gap-1 text-[#111111]">
+                        <img
+                          src="/images/mdi-ethereum-icon.png"
+                          alt="ETH"
+                          className="w-6 h-6"
+                        />
+                        {nft.bid}
+                      </p>
+                    </div>
+                    <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-md font-medium px-3 py-2 rounded">
+                      Purchase NFT
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
+          {activeTab === "collection" && (
             <div className="flex flex-col items-center justify-center py-16">
               <img
                 src="/images/ethereum-logo.png"
@@ -164,6 +189,37 @@ const RewardsPage = () => {
               >
                 Connect Wallet
               </button>
+            </div>
+          )}
+
+          {activeTab === "LuckyWheel" && (
+            <div className="flex flex-col py-10 px-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#031A69] mb-2 ">
+                Spin Wheel and earn Points
+              </h2>
+              <p className="text-gray-600 mb-8 ">
+                Spin, earn, collect. Trade your XP for cool NFT drops!
+              </p>
+
+              <div className="flex flex-col items-center">
+                <div className="relative scale-[1.3]">
+                  <img
+                    src="/images/spinnin-wheel.png"
+                    alt="Spin Wheel"
+                    className={`w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-contain transition-transform duration-4000 ${
+                      spinning ? "rotate-[360deg]" : ""
+                    }`}
+                  />
+                  <div className="flex justify-center mb-6">
+                    <button
+                      onClick={handleSpin}
+                      className="w-70 h-10 bg-[#041B6C] text-white text-center font-semibold px-6 py-3 hover:bg-[#021246]"
+                    >
+                      Spin
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
