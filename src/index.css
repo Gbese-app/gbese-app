@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.parent-container {
+     width: 220px;
+     height: 220px;
+
+     > div {
+          height: 100%;
+          width: 100%;
+          max-height: unset;
+          max-width: unset;
+     }
+}
