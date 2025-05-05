@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import king from "../assets/images/king-ape.png";
+import Spinthewheel from "../components/Dashboard/Spinthewheel";
 
 const nftList = [
   {
@@ -75,35 +77,34 @@ const RewardsPage = () => {
 
   return (
     <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-10 bg-[#F1F5FF] min-h-screen">
+      <div className="flex-1 p-9 bg-[#F1F5FF] min-h-screen">
         <h1 className="text-3xl font-bold mb-1 text-[#031A69]">Rewards</h1>
         <p>Earn points and redeem reward</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-6 mt-10">
           <div
-            onClick={() => navigate("/points-details")}
-            className="bg-white p-6 rounded-xl shadow cursor-pointer transition hover:shadow-lg"
+            onClick={() => navigate("/rewards/points-details")}
+            className="bg-white px-3 py-5 rounded-xl shadow cursor-pointer transition hover:shadow-lg"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-3xl font-semibold">Your Points</h2>
+              <h2 className="text-xl font-semibold">Your Points</h2>
               <img src="images/Framelogo-1.png" alt="" />
             </div>
-            <p className="text-3xl font-bold mb-2">120 XP</p>
+            <p className="text-xl font-bold mb-2">120 XP</p>
             <p className="text-grey mb-4">Earn more by helping others</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-3xl font-semibold">Gbese Tokens</h2>
+          <div className="bg-white px-3 py-5 rounded-xl shadow flex flex-col">
+            <div className="flex items-center justify-between ">
+              <h2 className="text-xl font-semibold">Gbese Tokens</h2>
               <img src="images/Framelogo2.png" alt="" />
             </div>
-            <p className="text-3xl font-bold mt-7">75 GBESE</p>
+            <p className="text-xl font-bold mt-7">75 GBESE</p>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow">
-          <div className="flex mb-6 bg-[#E4EAFD] p-2 rounded-lg">
+        <div className="">
+          <div className="flex mb-6 rounded-lg">
             <button
               className={`px-4 py-2 rounded-lg text-xl font-semibold ${
                 activeTab === "marketplace"
@@ -141,7 +142,7 @@ const RewardsPage = () => {
               {nftList.map((nft, index) => (
                 <div
                   key={index}
-                  className="bg-[#E4EAFD] p-5 rounded-xl shadow flex flex-col w-full sm:w-[90%] lg:w-[95%] max-w-[360px] gap-x-10"
+                  className="bg-[#E4EAFD] p-2 rounded-xl shadow flex flex-col w-full sm:w-[90%] lg:w-[95%] max-w-[360px] gap-x-10"
                 >
                   <img
                     src={nft.image}
@@ -149,20 +150,18 @@ const RewardsPage = () => {
                     className="w-full h-48 object-cover rounded mb-2"
                   />
                   <h2 className="text-[#111111] text-xl font-semibold mb-1">{nft.name}</h2>
-                  <p className="text-sm text-[#111111] mb-1">By {nft.creator}</p>
+                  <p className="text-xs text-[#111111] mb-3">By {nft.creator}</p>
                   <div className="flex justify-between items-center w-full mb-0">
-                    <div>
-                      <p className="text-xl text-[#111111] mb-1">Current Bid</p>
-                      <p className="text-md font-semibold flex items-center gap-1 text-[#111111]">
-                        <img
-                          src="/images/mdi-ethereum-icon.png"
-                          alt="ETH"
-                          className="w-6 h-6"
-                        />
+                    <div className="">
+                      <p className="text-xs text-[#111111] mb-1">Current Bid</p>
+                      <p className="text-xs font-semibold flex items-center gap-1 text-[#111111]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                          <path fill="021346" d="M12 0L4.63 12.22L12 16.574l7.37-4.354zm0 24L4.63 13.617L12 18l7.37-4.383z" />
+                        </svg>
                         {nft.bid}
                       </p>
                     </div>
-                    <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-md font-medium px-3 py-2 rounded">
+                    <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded">
                       Purchase NFT
                     </button>
                   </div>
@@ -201,24 +200,8 @@ const RewardsPage = () => {
                 Spin, earn, collect. Trade your XP for cool NFT drops!
               </p>
 
-              <div className="flex flex-col items-center">
-                <div className="relative scale-[1.3]">
-                  <img
-                    src="/images/spinnin-wheel.png"
-                    alt="Spin Wheel"
-                    className={`w-[280px] h-[280px] md:w-[320px] md:h-[320px] object-contain transition-transform duration-4000 ${
-                      spinning ? "rotate-[360deg]" : ""
-                    }`}
-                  />
-                  <div className="flex justify-center mb-6">
-                    <button
-                      onClick={handleSpin}
-                      className="w-70 h-10 bg-[#041B6C] text-white text-center font-semibold px-6 py-3 hover:bg-[#021246]"
-                    >
-                      Spin
-                    </button>
-                  </div>
-                </div>
+              <div className="flex flex-col items-center text-center">
+                <Spinthewheel activate={true} />
               </div>
             </div>
           )}

@@ -1,14 +1,11 @@
-import image from '../assets/Vector-2.png'
+import { AwardBadgeIcon } from './svg/Icons'
 import { NavButton } from './ui/Navbutton'
 
 const Sidebar = () => {
   return (
     <div className="size-full flex flex-col px-4 py-6">
       <div className="flex flex-row items-center">
-        <img src={image} alt="gbese" className="p-1.5 bg-white rounded-md" />
-        <span className="font-sora font-bold text-[20px] leading-[100%] tracking-[0%] px-2">
-          Gbese
-        </span>
+        <img src="/LogoDarkBG.png" alt="gbese" className="h-12 w-30" />
       </div>
       <div className="flex flex-col py-6">
         <NavButton
@@ -89,6 +86,16 @@ const Sidebar = () => {
               />
             </svg>
           }
+        />
+        <NavButton
+          text="Rewards"
+          page="/rewards"
+          icon={<AwardBadgeIcon />}
+        />
+        <NavButton
+          text="Transaction History"
+          page="/transaction"
+          icon={<AwardBadgeIcon />}
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ export type DashboardEntry = {
 }
 
 export const DashboardTH = [
-  { key: 'name', label: 'Name', width: '200px' },
+  { key: 'name', label: 'Name', width: '300px' },
   { key: 'date', label: 'Date', width: '300px' },
   { key: 'Amount', label: 'Amount', width: '300px' },
   { key: 'Status', label: 'Status', width: '300px' },

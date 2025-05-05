@@ -7,6 +7,9 @@ import DebtAppTabs from './pages/DebtAppTabs'
 import MyDebt from './pages/MyDebt'
 import TransferDebtPage from './pages/TransferDebtPage'
 import DebtTransferSuccess from './pages/DebtTransferSuccess'
+import RewardsPage from './pages/RewardsPage'
+import { Transaction } from './pages/Transaction'
+import PointsDetailsPage from './pages/PointsDetailsPage'
 
 function App() {
   return (
@@ -22,6 +25,12 @@ function App() {
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
           <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+          
+          <Route path="/rewards" element={<RewardsPage />} />
+          <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
+    
+          <Route path="/transaction" element={<Transaction />} />
+          
 
           {/* <Route path="/contact" element={<ContactPage />} /> */}
           {/* <Route path="/services" element={<ServicesPage />} /> */}
