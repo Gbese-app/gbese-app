@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   BarChart,
@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from 'recharts'
 
 const salesData = [
   {
@@ -42,7 +42,7 @@ const salesData = [
     revenue: 3800,
     profit: 2390,
   },
-];
+]
 
 const BarChartComponent = () => {
   return (
@@ -64,10 +64,10 @@ const BarChartComponent = () => {
         <Bar dataKey="profit" fill="#8b5cf6" />
       </BarChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
-export default BarChartComponent;
+export default BarChartComponent
 
 // const CustomTooltip = ({ active, payload, label }: {active: boolean, payload: any, label: string}) => {
 //   if (active && payload && payload.length) {

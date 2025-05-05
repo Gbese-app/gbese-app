@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 export default function ModalExample() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -37,5 +37,5 @@ export default function ModalExample() {
         </div>
       )}
     </div>
-  );
+  )
 }

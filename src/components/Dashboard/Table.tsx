@@ -1,15 +1,15 @@
-import { DashboardEntry } from "../../hook/dumy-data";
+import { DashboardEntry } from '../../hook/dumy-data'
 
 type Column = {
-  key: string;
-  label: string;
-  width?: string;
-};
+  key: string
+  label: string
+  width?: string
+}
 
 export type FixedTableProps = {
-  columns: Column[];
-  data: DashboardEntry[];
-};
+  columns: Column[]
+  data: DashboardEntry[]
+}
 
 function FixedTable({ columns, data }: FixedTableProps) {
   return (
@@ -22,7 +22,7 @@ function FixedTable({ columns, data }: FixedTableProps) {
                 <th
                   key={index}
                   className="text-left px-4 py-2 font-medium border-b border-gray-300"
-                  style={{ width: col.width || "auto" }}
+                  style={{ width: col.width || 'auto' }}
                 >
                   {col.label}
                 </th>
@@ -31,41 +31,41 @@ function FixedTable({ columns, data }: FixedTableProps) {
           </thead>
           <tbody>
             {data.map((row, i) => (
-                <tr key={i} className="even:bg-gray-50 hover:bg-gray-100">
+              <tr key={i} className="even:bg-gray-50 hover:bg-gray-100">
                 {columns.map((col, j) => {
-                    const value = row[col.key as keyof DashboardEntry];
-                    let cellClass = "px-4 py-2 border-none";
+                  const value = row[col.key as keyof DashboardEntry]
+                  let cellClass = 'px-4 py-2 border-none'
 
-                    // Conditional styling for 'Status'
-                    if (col.key === "Status") {
+                  // Conditional styling for 'Status'
+                  if (col.key === 'Status') {
                     switch (value) {
-                        case "Completed":
-                        cellClass += " text-green-600 font-medium";
-                        break;
-                        case "Pending":
-                        cellClass += " text-yellow-600 font-medium";
-                        break;
-                        case "Failed":
-                        cellClass += " text-red-600 font-medium";
-                        break;
-                        default:
-                        cellClass += " text-gray-600";
+                      case 'Completed':
+                        cellClass += ' text-green-600 font-medium'
+                        break
+                      case 'Pending':
+                        cellClass += ' text-yellow-600 font-medium'
+                        break
+                      case 'Failed':
+                        cellClass += ' text-red-600 font-medium'
+                        break
+                      default:
+                        cellClass += ' text-gray-600'
                     }
-                    }
+                  }
 
-                    return (
+                  return (
                     <td key={j} className={cellClass}>
-                        {value}
+                      {value}
                     </td>
-                    );
+                  )
                 })}
-                </tr>
+              </tr>
             ))}
-            </tbody>
+          </tbody>
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default FixedTable;
+export default FixedTable
