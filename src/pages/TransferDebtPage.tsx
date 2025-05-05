@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function TransferDebtPage() {
   return (
@@ -70,7 +70,9 @@ export default function TransferDebtPage() {
             ></textarea>
 
             <Link to="/transfer-debt">
-              <button className="bg-blue-700 text-white mt-4 px-4 py-2 rounded">Send Request</button>
+              <button className="bg-blue-700 text-white mt-4 px-4 py-2 rounded">
+                Send Request
+              </button>
             </Link>
           </div>
         </div>

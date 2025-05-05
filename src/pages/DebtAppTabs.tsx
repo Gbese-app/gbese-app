@@ -4,12 +4,11 @@ import MyDebts from './MyDebts'
 import SelectDebt from './SelectDebt'
 import DebtShuffle from './DebtShuffle'
 
-
 function DebtAppTabs() {
   const [tab, setTab] = useState('about')
 
   return (
-    <div className='min-h-screen bg-[#F1F5FF]'>
+    <div className="min-h-screen bg-[#F1F5FF]">
       <div className="flex flex-col p-9">
         <div className="app-title-section">
           <div className="app-title-section-text">
@@ -47,7 +46,6 @@ function DebtAppTabs() {
         </div>
       </div>
     </div>
-    
   )
 }
 

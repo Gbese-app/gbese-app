@@ -42,7 +42,6 @@ const ActiveDebts = () => {
   }
   return (
     <div className="bg-[#f5f9ff] min-h-screen p-6">
-
       {/* Active Debts */}
       <section>
         <h2 className="text-lg font-semibold text-gray-700 mb-2">Active Debts</h2>

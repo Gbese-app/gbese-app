@@ -12,15 +12,12 @@ export const NavButton = ({ text, icon, page, className, ...props }: NavButtonPr
   console.log(location.pathname)
   const isActive = location.pathname.startsWith(page)
 
-
   return (
     <Link
       to={page}
       className={cn(
         'mb-4 px-4 py-2 rounded-lg text-[#8C8C8C] hover:bg-white hover:text-black transition-colors duration-300',
-        isActive
-        ? 'bg-white text-black'
-        : 'text-[#8C8C8C] hover:bg-white hover:text-black',
+        isActive ? 'bg-white text-black' : 'text-[#8C8C8C] hover:bg-white hover:text-black'
       )}
     >
       <button className={cn('flex items-center gap-2 justify-start', className)} {...props}>
@@ -30,7 +27,6 @@ export const NavButton = ({ text, icon, page, className, ...props }: NavButtonPr
     </Link>
   )
 }
-
 
 // import { Link, useLocation } from 'react-router-dom'
 // import { cn } from '../../lib/utils' // if you're using a classnames helper

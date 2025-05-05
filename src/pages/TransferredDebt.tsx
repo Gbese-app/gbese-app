@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../layout/Popup.css' // Import external CSS file for the popup
 
 const Kene = () => {
