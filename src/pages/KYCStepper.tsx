@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import PersonalInfoForm from "./PersonalForm";
 import IdentityDocumentForm from "./IdentityForm";
 import ReviewInfo from "./ReviewInfo";
