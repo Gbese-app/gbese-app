@@ -9,6 +9,7 @@
     --card-bg: #ffffff; /* Background color for cards */
     --background-color: #f5f7fa; /* Light background color for grid items */
     --radius: 8px; /* Border radius for rounded corners */
+    box-sizing: border-box;
 }
 .icon-blue {
     color: #007bff;
@@ -27,27 +28,33 @@
   }
 
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
     background-color: var(--bg-light); /* Pure white or very light gray */
-    color: var(--secondary-color);
-    font-family: var(--font-family);
+    /* color: var(--secondary-color); */
+    /* font-family: var(--font-family); */
     font-size: clamp(14px, 1.5vw, 16px);
 }
 
 .app-container {
-    padding: 40px 20px; /* Space around the container */
-    background-color: #e8edf7; /* Light background color */
+    box-sizing: border-box;
+    /* padding: 40px 20px; */
+    margin: 20px 0;
+    /* background-color: #e8edf7;  */
     box-shadow: none; /* No shadow around the container */
-    overflow: hidden; /* Prevent content from spilling outside */
-    max-width: 100%; /* Ensure the container takes up full width */
+    overflow: hidden; 
+    max-width: 100%;
+    width: 100%;
 }
 
 .app-title-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(24px, 5vw, 40px);
+    padding: clamp(24px, 5vw);
+    padding-bottom: 30px;
     background-color: transparent;
     margin-bottom: 0;
     flex-wrap: wrap;
@@ -95,7 +102,7 @@ body {
 
 .app-navigation {
     display: flex;
-    padding: 0 40px;
+    /* padding: 0 40px; */
     border-bottom: 1px solid #dcdfe6;
     overflow-x: auto;
     white-space: nowrap;

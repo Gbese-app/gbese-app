@@ -1,5 +1,5 @@
-import { ArrowUpRight, ArrowDownRight, CalendarDays } from 'lucide-react';
-import '../DebtShuffle.css';
+import { ArrowUpRight, ArrowDownRight, CalendarDays } from 'lucide-react'
+import '../DebtShuffle.css'
 
 const DebtShuffle = () => {
   return (
@@ -60,7 +60,7 @@ const DebtShuffle = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default DebtShuffle;
+export default DebtShuffle
