@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 const PointsDetailsPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <div className="flex">
@@ -39,7 +39,7 @@ const PointsDetailsPage = () => {
 
         <div className="absolute bottom-10 right-10">
           <button
-            onClick={() => navigate("/rewards")}
+            onClick={() => navigate('/rewards')}
             className="bg-white text-blue-600 border border-blue-600 px-8 py-2 rounded-md hover:bg-blue-50 whitespace-nowrap"
           >
             Return to Homepage
@@ -47,7 +47,7 @@ const PointsDetailsPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PointsDetailsPage;
+export default PointsDetailsPage
