@@ -10,13 +10,27 @@ import DebtTransferSuccess from './pages/DebtTransferSuccess'
 import RewardsPage from './pages/RewardsPage'
 import { Transaction } from './pages/Transaction'
 import PointsDetailsPage from './pages/PointsDetailsPage'
+import ReviewInfo from './pages/ReviewInfo';
+import PersonalForm from './pages/PersonalForm';
+import KYCStepper from './pages/KYCStepper';
+import IdentityForm from './pages/IdentityForm';
+
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+
+        {/* KYC routes (no Layout wrapper) */}
+        <Route path="/kycstepper" element={<KYCStepper />} />
+        <Route path="/personalform" element={<PersonalForm />} />
+        <Route path="/identityform" element={<IdentityForm />} />
+        <Route path="/reviewinfo" element={<ReviewInfo />} />
+
+        {/* Main app layout routes */}
         <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
 
@@ -31,12 +45,11 @@ function App() {
 
           <Route path="/transaction" element={<Transaction />} />
 
-          {/* <Route path="/contact" element={<ContactPage />} /> */}
-          {/* <Route path="/services" element={<ServicesPage />} /> */}
+
         </Route>
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
