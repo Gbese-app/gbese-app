@@ -1,6 +1,7 @@
 
 interface Props {
   onBack: () => void;
+  onSubmit: () => void;
   data: any;
 }
 

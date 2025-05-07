@@ -14,7 +14,7 @@ const Lay = () => {
 
   const handleUpdate = (updatedData: any) => {
     console.log('Updated data:', updatedData);
-    setFormData((prevData) => ({
+    setFormData((prevData: any) => ({
       ...prevData,
       ...updatedData,
     }));
