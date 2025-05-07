@@ -12,7 +12,7 @@ import { Transaction } from './pages/Transaction'
 import PointsDetailsPage from './pages/PointsDetailsPage'
 import ReviewInfo from './pages/ReviewInfo'
 import PersonalForm from './pages/PersonalForm'
-
+import FundWallet from './pages/FundWallet'
 import IdentityForm from './pages/IdentityForm'
 import { KYCStepper } from './pages/KYCStepper'
 
@@ -89,6 +89,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
+          <Route path='fundwallet' element={<FundWallet />} />
 
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
