@@ -113,7 +113,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8"
+              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-7"
             >
               Create Account
             </button>

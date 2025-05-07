@@ -15,6 +15,7 @@ import PersonalForm from './pages/PersonalForm'
 
 import IdentityForm from './pages/IdentityForm'
 import { KYCStepper } from './pages/KYCStepper'
+import { DebtRequest } from './pages/DebtRequest'
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
           <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+          <Route path="/debt-request" element={<DebtRequest />} />
 
           <Route path="/rewards" element={<RewardsPage />} />
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
