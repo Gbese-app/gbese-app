@@ -12,10 +12,9 @@ import { Transaction } from './pages/Transaction'
 import PointsDetailsPage from './pages/PointsDetailsPage'
 import ReviewInfo from './pages/ReviewInfo'
 import PersonalForm from './pages/PersonalForm'
-import KYCStepper from './pages/KYCStepper'
-import IdentityForm from './pages/IdentityForm'
 import FundWallet from './pages/FundWallet'
-
+import IdentityForm from './pages/IdentityForm'
+import { KYCStepper } from './pages/KYCStepper'
 
 function App() {
   return (
@@ -26,10 +25,64 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* KYC routes (no Layout wrapper) */}
-        <Route path="/kycstepper" element={<KYCStepper />} />
-        <Route path="/personalform" element={<PersonalForm />} />
-        <Route path="/identityform" element={<IdentityForm />} />
-        <Route path="/reviewinfo" element={<ReviewInfo />} />
+        <Route
+          path="/kycstepper"
+          element={
+            <KYCStepper
+              onComplete={() => {
+                console.log('KYC process completed')
+              }}
+            />
+          }
+        />
+
+        <Route
+          path="/personalform"
+          element={
+            <PersonalForm
+              onNext={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              onUpdate={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              data={undefined}
+            />
+          }
+        />
+
+        <Route
+          path="/identityform"
+          element={
+            <IdentityForm
+              onNext={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              onBack={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              onUpdate={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              data={undefined}
+            />
+          }
+        />
+
+        <Route
+          path="/reviewinfo"
+          element={
+            <ReviewInfo
+              onBack={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              onSubmit={function (): void {
+                throw new Error('Function not implemented.')
+              }}
+              data={undefined}
+            />
+          }
+        />
 
         {/* Main app layout routes */}
         <Route path="/" element={<Layout />}>
@@ -46,12 +99,10 @@ function App() {
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
-
-
         </Route>
       </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
