@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 interface Props {
   onBack: () => void
   onSubmit: () => void
@@ -84,13 +86,16 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
           >
             Back
           </button>
-          <button
-            className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
-            style={{ backgroundColor: '#1c2964' }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+
+          <Link to="/dashboard">
+            <button
+              className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
+              style={{ backgroundColor: '#1c2964' }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </Link>
         </div>
       </div>
     </main>
