@@ -9,7 +9,7 @@ const Lay = () => {
   };
 
   const handleBack = () => {
-    console.log('Back clicked');
+    console.log('Back clicked'); 
   };
 
   const handleUpdate = (updatedData: any) => {
