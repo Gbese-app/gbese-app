@@ -1,25 +1,24 @@
-
 interface Props {
-  onNext: () => void;
-  onUpdate: (data: any) => void;
-  data: any; // data can be potentially undefined
+  onNext: () => void
+  onUpdate: (data: any) => void
+  data: any // data can be potentially undefined
 }
 
 const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
   const safeData = data || {
-    firstName: "",
-    lastName: "",
-    dob: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    town: "",
-    state: "",
-  };
+    firstName: '',
+    lastName: '',
+    dob: '',
+    email: '',
+    phoneNumber: '',
+    address: '',
+    town: '',
+    state: '',
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onUpdate({ [e.target.name]: e.target.value });
-  };
+    onUpdate({ [e.target.name]: e.target.value })
+  }
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
@@ -129,7 +128,7 @@ const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
         </form>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default PersonalInfoForm;
+export default PersonalInfoForm

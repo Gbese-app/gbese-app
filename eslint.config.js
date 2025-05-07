@@ -27,6 +27,8 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'prettier/prettier': 'warn', // 👈 make Prettier formatting violations show as warnings
+      '@typescript-eslint/no-explicit-any': 'warn',
+
     },
   },
 )
