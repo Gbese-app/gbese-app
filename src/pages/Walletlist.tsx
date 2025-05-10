@@ -14,9 +14,11 @@ const Walletlist = () => {
   return (
     <div className="min-h-screen bg-white p-8 flex justify-center items-start ">
       <div className="w-full max-w-2xl bg-blue-100 p-6 rounded-xl shadow-lg ">
-       <button
-  onClick={() => navigate("/rewards")}
-  className="text-blue-600 font-semibold mb-6"
+      <button
+  onClick={() => {
+    navigate("/rewards", { state: { activeTab: "collection" } });
+  }}
+  className="text-blue-800 font-semibold mb-4 hover:underline"
 >
   &larr; Back
 </button>
