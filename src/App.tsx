@@ -10,6 +10,10 @@ import DebtTransferSuccess from './pages/DebtTransferSuccess'
 import RewardsPage from './pages/RewardsPage'
 import { Transaction } from './pages/Transaction'
 import PointsDetailsPage from './pages/PointsDetailsPage'
+import WithdrawFunds from './pages/WithdrawFunds'
+import WithdrawFunds2 from './pages/WithdrawFunds2'
+import GbesePayWallet from './pages/GbesePayWallet'
+
 
 function App() {
   return (
@@ -30,6 +34,10 @@ function App() {
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
+          <Route path="/withdrawal" element={<WithdrawFunds />} />
+          <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
+          <Route path="/gbesepay-wallet" element={<GbesePayWallet />} />
+          
 
           {/* <Route path="/contact" element={<ContactPage />} /> */}
           {/* <Route path="/services" element={<ServicesPage />} /> */}
