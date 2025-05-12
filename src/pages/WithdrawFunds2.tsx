@@ -18,6 +18,34 @@ const WithdrawFunds2 =() => {
   }, [location.state]);
 
   const [method, setMethod] = useState('bank');
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // ✅ Add this to fix the error
+
+  const [formData, setFormData] = useState({
+    amount: '',
+    bankName: '',
+    accountNumber: '',
+    reason: '',
+    attachDebt: false
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+     setIsPopupOpen(true); // ✅ Show popup on submit
+  };
+  const closePopup = () => setIsPopupOpen(false);
+   useEffect(() => {
+     console.log('Popup state updated:', isPopupOpen);
+   }, [isPopupOpen]);
+  
   const navigate = useNavigate();
   const handleMethodChange = (method) => {
     setMethod(method);
@@ -62,32 +90,37 @@ const WithdrawFunds2 =() => {
         </div>
 
         {/* Withdrawal Details */}
+        <form onSubmit={handleSubmit} action="">
         <div className="bg-white rounded-xl shadow p-6 space-y-4">
           <h2 className="font-semibold text-lg">Withdrawal Details</h2>
 
           <div>
             <label className="block font-medium mb-1">Amount (₦)</label>
-            <input type="number" placeholder="Enter Amount." className="w-full px-4 py-2 border rounded-lg" />
+            <input type="number" name="amount"
+            value={formData.amount}  onChange={handleInputChange} placeholder="Enter Amount." required className="w-full px-4 py-2 border rounded-lg" />
           </div>
 
           <div>
             <label className="block font-medium mb-1">Wallet Address</label>
-            <input type="text" placeholder="Enter wallet address" className="w-full px-4 py-2 border rounded-lg" />
+            <input type="text" name="bankName"
+            value={formData.bankName}  onChange={handleInputChange} placeholder="Enter wallet address" required className="w-full px-4 py-2 border rounded-lg" />
           </div>
 
           <div>
             <label className="block font-medium mb-1">Network (ERC-20)</label>
-            <input type="text" placeholder="ERC-20" disabled className="w-full px-4 py-2 border rounded-lg" />
+            <input type="text"  onChange={handleInputChange} placeholder="ERC-20" disabled className="w-full px-4 py-2 border rounded-lg" />
           </div>
 
           <div>
             <label className="block font-medium mb-1">Reason for withdrawal (Optional)</label>
-            <input type="text" placeholder="Enter reason for withdrawal" className="w-full px-4 py-2 border rounded-lg" />
+            <input type="text" name="reason"
+            value={formData.reason}  onChange={handleInputChange} placeholder="Enter reason for withdrawal" required className="w-full px-4 py-2 border rounded-lg" />
           </div>
 
           
 
-          <button className="bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded-lg cursor-pointer">Withdraw Now</button>
+          <button type="submit" className="bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded-lg cursor-pointer">Withdraw Now</button>
+          
           {showPopup && (
             <div className="popup-overlay">
               <div className="popup-box w-90">
@@ -101,6 +134,7 @@ const WithdrawFunds2 =() => {
             {/* Actual page */}
           </div>
         </div>
+        </form>
 
         <div className="mt-10">
           <h2 className="text-lg font-semibold mb-4 text-[#1a1a1a]">Recent Withdrawals</h2>
@@ -141,6 +175,55 @@ const WithdrawFunds2 =() => {
             </table>
           </div>
         </div>
+      </div>
+
+      {/* ✅ Popup Modal */}
+      {isPopupOpen && (
+        <div className="fixed inset-0 backdrop-blur-lg bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl relative w-full max-w-md">
+            <button
+              onClick={closePopup}
+              className="absolute top-2 right-2 text-2xl font-bold text-gray-400 hover:text-gray-700"
+            >
+              &times;
+            </button>
+            <div className="text-center">
+              <div className="text-green-600 text-5xl mb-2">✅</div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Withdrawal successful</h2>
+              <div className="text-left space-y-2 text-sm">
+              <div className="flex justify-between">
+                  <span className="font-medium text-gray-600">Amount:</span>
+                  <span>₦{Number(formData.amount).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-medium text-gray-600">Wallet Address</span>
+                  <span>{formData.bankName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-medium text-gray-600">Reason:</span>
+                  <span>{formData.reason}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Recent Withdrawals Table */}
+      <div className="bg-white p-4 rounded shadow">
+        <p className="font-semibold mb-3">Recent Withdrawals</p>
+        <table className="w-full text-sm">
+          <thead className="text-left border-b">
+            <tr>
+              <th className="py-2">Name</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Method</th>
+            </tr>
+          </thead>
+          
+        </table>
       </div>
     </div>
   );
