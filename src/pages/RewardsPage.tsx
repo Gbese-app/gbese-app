@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Spinthewheel from '../components/Dashboard/Spinthewheel'
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const nftList = [
   {
@@ -60,10 +59,24 @@ const nftList = [
 ]
 
 const RewardsPage = () => {
-  const [activeTab, setActiveTab] = useState<'marketplace' | 'collection' | 'LuckyWheel'>(
-    'marketplace'
-  )
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
+    location.state?.activeTab || "marketplace"
+  );
+
+  const handlePurchase = (nftName: string) => {
+    if (nftName === "King Ape") {
+    
+      navigate(`/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
+        state: { nft: nftList.find((nft) => nft.name === nftName) },
+      });
+    } else {
+   
+      alert("Details not available for now");
+    }
+  };
 
   return (
     <div className="flex">
@@ -93,47 +106,60 @@ const RewardsPage = () => {
           </div>
         </div>
 
-        <div className="">
-          <div className="flex mb-6 rounded-lg">
+        <div className="bg-white p-6 rounded-xl shadow">
+          <div className="flex gap-x-6 border-b border-gray-300 mb-6">
             <button
-              className={`px-4 py-2 rounded-lg text-xl font-semibold ${
-                activeTab === 'marketplace' ? 'bg-white shadow text-black' : 'text-gray-500'
+              className={`text-xl xl:text-base font-bold pb-2 px-2 sm:px-4 transition border-b-2 ${
+                activeTab === "marketplace"
+                  ? "border-blue-600 text-[#031A69]"
+                  : "border-transparent text-gray-500 hover:text-[#031A69]"
               }`}
-              onClick={() => setActiveTab('marketplace')}
+              onClick={() => {
+                setActiveTab("marketplace");
+                navigate("/rewards", { state: { activeTab: "marketplace" } });
+              }}
             >
               NFT Marketplace
             </button>
             <button
-              className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
-                activeTab === 'collection' ? 'bg-white shadow text-black' : 'text-gray-500'
+              className={`text-xl xl:text-base font-bold pb-2 px-2 sm:px-4 transition border-b-2 ${
+                activeTab === "collection"
+                  ? "border-blue-600 text-[#031A69]"
+                  : "border-transparent text-gray-500 hover:text-[#031A69]"
               }`}
-              onClick={() => setActiveTab('collection')}
+              onClick={() => {
+                setActiveTab("collection");
+                navigate("/rewards", { state: { activeTab: "collection" } });
+              }}
             >
               Your Collection
             </button>
             <button
-              className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
-                activeTab === 'LuckyWheel'
-                  ? 'bg-white shadow text-[#031A69]'
-                  : 'text-gray-500 hover:text-[#031A69]'
+              className={`text-xl xl:text-base font-bold pb-2 px-2 sm:px-4 transition border-b-2 ${
+                activeTab === "LuckyWheel"
+                  ? "border-blue-600 text-[#031A69]"
+                  : "border-transparent text-gray-500 hover:text-[#031A69]"
               }`}
-              onClick={() => setActiveTab('LuckyWheel')}
+              onClick={() => {
+                setActiveTab("LuckyWheel");
+                navigate("/rewards", { state: { activeTab: "LuckyWheel" } });
+              }}
             >
               Lucky Wheel
             </button>
           </div>
 
-          {activeTab === 'marketplace' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-15 justify-items-center">
+          {activeTab === "marketplace" && (
+            <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-2">
               {nftList.map((nft, index) => (
                 <div
                   key={index}
-                  className="bg-[#E4EAFD] p-2 rounded-xl shadow flex flex-col w-full sm:w-[90%] lg:w-[95%] max-w-[360px] gap-x-10"
+                  className="bg-[#E4EAFD] p-5 rounded-xl shadow flex flex-col w-full max-w-sm"
                 >
                   <img
                     src={nft.image}
                     alt={nft.name}
-                    className="w-full h-48 object-cover rounded mb-2"
+                    className="w-full h-48 md:h-56 object-cover rounded mb-2"
                   />
                   <h2 className="text-[#111111] text-xl font-semibold mb-1">{nft.name}</h2>
                   <p className="text-xs text-[#111111] mb-3">By {nft.creator}</p>
@@ -155,7 +181,10 @@ const RewardsPage = () => {
                         {nft.bid}
                       </p>
                     </div>
-                    <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded">
+                    <button
+                      onClick={() => handlePurchase(nft.name)}
+                      className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-sm sm:text-md font-medium px-3 py-2 rounded"
+                    >
                       Purchase NFT
                     </button>
                   </div>
@@ -189,10 +218,6 @@ const RewardsPage = () => {
               <p className="text-gray-600 mb-8 ">
                 Spin, earn, collect. Trade your XP for cool NFT drops!
               </p>
-
-              <div className="flex flex-col items-center text-center">
-                <Spinthewheel activate={true} />
-              </div>
             </div>
           )}
         </div>
