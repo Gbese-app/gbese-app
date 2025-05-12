@@ -1,0 +1,51 @@
+#page-container {
+    position: relative;
+    
+    overflow: hidden;
+    font-family: sans-serif;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  /* .popup-box img{
+    margin-left: 120px;
+    margin-bottom: 20px;
+    width: 50px;
+  } */
+
+  .popup-box h2{
+    margin-left: 50px;
+  }
+  
+  .page-content {
+    /* padding: 60px; */
+    transition: filter 0.3s ease;
+  }
+  
+  .blurred {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+  }

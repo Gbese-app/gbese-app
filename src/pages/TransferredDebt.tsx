@@ -16,7 +16,7 @@ const Kene = () => {
   }
 
   return (
-    <div>
+    
       <div className="flex flex-col min-h-screen bg-background">
         <div className="min-h-screen bg-[#f4f7fe] p-6 text-[#00174B] font-sans">
           {/* Header */}
@@ -58,32 +58,7 @@ const Kene = () => {
             </div>
           </div>
 
-          {/* Debt History */}
-          {/* <div>
-            <h2 className="text-lg font-semibold mb-2">Debt History</h2>
-            <div className="bg-white p-4 rounded shadow-sm mb-2 flex justify-between items-center">
-              <div>
-                <h3 className="font-medium">Rent Balance - Lekki Apartment</h3>
-                <p className="text-sm text-gray-600">Transferred on 10th April, 2025</p>
-              </div>
-              <div className="text-right">
-                <p className="font-bold">₦200,000</p>
-                <span className="text-sm bg-gray-200 px-2 py-1 rounded">Active debt</span>
-              </div>
-            </div>
-            <div className="bg-white p-4 rounded shadow-sm flex justify-between items-center">
-              <div>
-                <h3 className="font-medium">Smart Phone Installment - Tecno</h3>
-                <p className="text-sm text-gray-600">Transferred on 10th April, 2025</p>
-              </div>
-              <div className="text-right">
-                <p className="font-bold">₦100,000</p>
-                <span className="text-sm bg-gray-200 px-2 py-1 rounded">Active debt</span>
-              </div>
-            </div>
-          </div> */}
-        </div>
-      </div>
+      
 
       {/* Debt Details Popup */}
       {isPopupOpen && (
@@ -115,9 +90,10 @@ const Kene = () => {
             </div>
           </div>
         </div>
-      )}
+        )}
+      </div>
     </div>
-  )
-}
+    );
+  }
 
-export default Kene
+export default Kene;

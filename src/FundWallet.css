@@ -1,6 +1,6 @@
 .fund-wallet-container {
-    background-color: #f1f5ff;
-    padding: 2rem;
+    background-color: hwb(224 94% 0%);
+    /* padding: 2rem; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     overflow: hidden;
