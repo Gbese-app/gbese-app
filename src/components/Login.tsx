@@ -39,7 +39,7 @@ const Login = () => {
           <h1 className="text-[40px] font-bold text-[#0B0B0B] text-center ">Welcome back!</h1>
           <p className="text-center text-sm mb-8 text-[#4B5563]">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-[#021346] font-semibold">
+            <Link to="/" className="text-[#021346] font-semibold">
               Create Account
             </Link>
           </p>

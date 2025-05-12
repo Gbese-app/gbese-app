@@ -15,6 +15,11 @@ import PersonalForm from './pages/PersonalForm'
 import FundWallet from './pages/FundWallet'
 import IdentityForm from './pages/IdentityForm'
 import { KYCStepper } from './pages/KYCStepper'
+import { DebtRequest } from './pages/DebtRequest'
+import WithdrawFunds from './pages/WithdrawFunds'
+import WithdrawFunds2 from './pages/WithdrawFunds2'
+import GbesePayWallet from './pages/GbesePayWallet'
+
 
 function App() {
   return (
@@ -94,11 +99,20 @@ function App() {
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
           <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+          <Route path="/debt-request" element={<DebtRequest />} />
 
           <Route path="/rewards" element={<RewardsPage />} />
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
+          
+          <Route path="/withdrawal" element={<WithdrawFunds />} />
+          <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
+          <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
+          
+
+          {/* <Route path="/contact" element={<ContactPage />} /> */}
+          {/* <Route path="/services" element={<ServicesPage />} /> */}
         </Route>
       </Routes>
     </Router>

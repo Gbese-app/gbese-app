@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Spinthewheel from '../components/Dashboard/Spinthewheel'
+import { useLocation, useNavigate } from "react-router-dom";
 
 const nftList = [
   {
@@ -60,10 +60,24 @@ const nftList = [
 ]
 
 const RewardsPage = () => {
-  const [activeTab, setActiveTab] = useState<'marketplace' | 'collection' | 'LuckyWheel'>(
-    'marketplace'
-  )
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
+    location.state?.activeTab || "marketplace"
+  );
+
+  const handlePurchase = (nftName: string) => {
+    if (nftName === "King Ape") {
+    
+      navigate(`/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
+        state: { nft: nftList.find((nft) => nft.name === nftName) },
+      });
+    } else {
+   
+      alert("Details not available for now");
+    }
+  };
 
   return (
     <div className="flex">
@@ -99,7 +113,10 @@ const RewardsPage = () => {
               className={`px-4 py-2 rounded-lg text-xl font-semibold ${
                 activeTab === 'marketplace' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
-              onClick={() => setActiveTab('marketplace')}
+              onClick={() => {
+                setActiveTab("marketplace");
+                navigate("/rewards", { state: { activeTab: "marketplace" } });
+              }}
             >
               NFT Marketplace
             </button>
@@ -107,7 +124,10 @@ const RewardsPage = () => {
               className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
                 activeTab === 'collection' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
-              onClick={() => setActiveTab('collection')}
+              onClick={() => {
+                setActiveTab('collection');
+                navigate("/rewards", { state: { activeTab: "collection" } });
+              }}
             >
               Your Collection
             </button>
@@ -117,7 +137,10 @@ const RewardsPage = () => {
                   ? 'bg-white shadow text-[#031A69]'
                   : 'text-gray-500 hover:text-[#031A69]'
               }`}
-              onClick={() => setActiveTab('LuckyWheel')}
+              onClick={() => {
+                setActiveTab('LuckyWheel')
+                navigate("/rewards", { state: { activeTab: "LuckyWheel" } });
+              }}
             >
               Lucky Wheel
             </button>
@@ -133,7 +156,7 @@ const RewardsPage = () => {
                   <img
                     src={nft.image}
                     alt={nft.name}
-                    className="w-full h-48 object-cover rounded mb-2"
+                    className="w-full h-48 md:h-56 object-cover rounded mb-2"
                   />
                   <h2 className="text-[#111111] text-xl font-semibold mb-1">{nft.name}</h2>
                   <p className="text-xs text-[#111111] mb-3">By {nft.creator}</p>
@@ -155,7 +178,11 @@ const RewardsPage = () => {
                         {nft.bid}
                       </p>
                     </div>
-                    <button className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded">
+                    <button
+                      onClick={() => handlePurchase(nft.name)}
+                      className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded"
+
+                    >
                       Purchase NFT
                     </button>
                   </div>
