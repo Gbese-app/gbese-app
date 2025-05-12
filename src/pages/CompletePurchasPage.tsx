@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function NFTPurchasePage() {
+export default function CompletePurchasPage() {
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
