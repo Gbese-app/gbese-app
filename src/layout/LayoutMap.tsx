@@ -1,9 +1,11 @@
 import { Link, Outlet } from 'react-router-dom'
 import SideBar from '../components/Sidebar'
 import { Toaster } from '../components/ui/sonner'
+import { useWallet } from "../contexts/WalletContext";
 import image from '../assets/A6043158-845C-4B3A-99D8-C497A2789229_1_105_c.jpeg'
 
 const Layout = () => {
+  const { userAddress } = useWallet();
   return (
     <div className="flex h-full flex-col md:flex-row">
       <aside className="fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white sticky">
@@ -15,9 +17,9 @@ const Layout = () => {
 
         <Link to="/withdrawal/gbesepay-wallet" state={{ openWalletPopup: true }}>
         <button className="rounded-lg hover:bg-[#CDD7F6] hover:text-[black] border border-[#CDD7F6] bg-[#05238C] text-[white] p-2 mx-1 pointer transition-colors duration-300 ease-in-out">
-            {' '}
-            <h1 className=''>Connect Wallet</h1>
-            {' '}
+        {userAddress
+                ? `${userAddress.slice(0, 6)}…${userAddress.slice(-4)}`
+                : "Connect Wallet"}
           </button>
         </Link>
         
