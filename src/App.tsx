@@ -28,10 +28,7 @@ function App() {
         {/* Public routes */}
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-       <Route path="/mydebt" element={<MyDebt />} />
-          <Route path="/transfer-debt" element={<TransferDebtPage />} />
-          <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
-          <Route path="/debt-request" element={<DebtRequest />} />
+       
         
 
 
@@ -103,7 +100,10 @@ function App() {
           <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
           <Route path='fundwallet' element={<FundWallet />} />
 
-          
+          <Route path="/mydebt" element={<MyDebt />} />
+          <Route path="/transfer-debt" element={<TransferDebtPage />} />
+          <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+          <Route path="/debt-request" element={<DebtRequest />} />
 
           <Route path="/rewards" element={<RewardsPage />} />
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
