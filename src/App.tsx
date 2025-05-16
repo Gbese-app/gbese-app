@@ -19,10 +19,12 @@ import { DebtRequest } from './pages/DebtRequest'
 import WithdrawFunds from './pages/WithdrawFunds'
 import WithdrawFunds2 from './pages/WithdrawFunds2'
 import GbesePayWallet from './pages/GbesePayWallet'
+import { WalletProvider } from './contexts/WalletContext';
 
 
 function App() {
   return (
+    <WalletProvider>
     <Router>
       <Routes>
         {/* Public routes */}
@@ -120,6 +122,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </WalletProvider>
   )
 }
 
