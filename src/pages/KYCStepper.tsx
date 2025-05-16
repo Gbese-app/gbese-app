@@ -1,15 +1,15 @@
-import { useState } from "react";
-import PersonalInfoForm from "./PersonalForm";
-import IdentityDocumentForm from "./IdentityForm";
-import ReviewInfo from "./ReviewInfo";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { useState } from 'react'
+import PersonalInfoForm from './PersonalForm'
+import IdentityDocumentForm from './IdentityForm'
+import ReviewInfo from './ReviewInfo'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 interface KYCStepperProps {
-  onComplete: () => void;
+  onComplete: () => void
 }
 
 export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     name: '',
     dob: '',
@@ -20,26 +20,26 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
     frontID: '',
     backID: '',
     selfie: '',
-  });
+  })
 
-  const handleNext = () => setStep((prev) => prev + 1);
-  const handleBack = () => setStep((prev) => prev - 1);
+  const handleNext = () => setStep((prev) => prev + 1)
+  const handleBack = () => setStep((prev) => prev - 1)
 
   const updateFormData = (data: any) => {
-    setFormData({ ...formData, ...data });
-  };
+    setFormData({ ...formData, ...data })
+  }
 
   const handleSubmit = () => {
-    console.log("Final KYC data submitted:", formData);
-    onComplete();
-  };
+    console.log('Final KYC data submitted:', formData)
+    onComplete()
+  }
 
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
-      {/* Further reduced sidebar width to w-1/8 */}
+      {/* Sidebar */}
       <aside className="fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white pt-6 pb-8 pl-4 pr-4 sticky">
-      <img src="./src/assets/Logo Dark BG.png" alt="gbese" className="h-12 w-25" />
-      <div className="mb-8">
+        <img src="./src/assets/Logo Dark BG.png" alt="gbese" className="h-12 w-25" />
+        <div className="mb-8">
           <h2 className="text-xl font-semibold tracking-wide">KYC Verification</h2>
         </div>
         <nav className="flex flex-col space-y-6 w-full">
@@ -55,14 +55,6 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
                   <div className="text-xs text-white font-semibold">{1}</div>
                 )}
               </div>
-              {step >= 1 && (
-                <div className="mt-2 flex flex-col items-center">
-                    <div className="text-white text-xs">|</div>
-                    <div className="text-white text-xs">|</div>
-                    <div className="text-white text-xs">|</div>
-                    <div className="text-white text-xs">|</div>
-                </div>
-              )}
             </div>
             <div>
               <span className="block text-sm text-white">Step 1</span>
@@ -83,14 +75,6 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
                   <div className="text-xs text-white font-semibold">{2}</div>
                 )}
               </div>
-              {step >= 2 && (
-                <div className="mt-2 flex flex-col items-center">
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                </div>
-              )}
             </div>
             <div>
               <span className="block text-sm text-white">Step 2</span>
@@ -121,14 +105,23 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
         </nav>
       </aside>
 
-      {/* Adjusted content width */}
-      <div className="flex-1 bg-white shadow-lg ">
-        {step === 1 && <PersonalInfoForm onNext={handleNext} onUpdate={updateFormData} data={formData} />}
-        {step === 2 && <IdentityDocumentForm onNext={handleNext} onBack={handleBack} onUpdate={updateFormData} data={formData} />}
+      {/* Content area */}
+      <div className="flex-1 bg-white shadow-lg">
+        {step === 1 && (
+          <PersonalInfoForm onNext={handleNext} onUpdate={updateFormData} data={formData} />
+        )}
+        {step === 2 && (
+          <IdentityDocumentForm
+            onNext={handleNext}
+            onBack={handleBack}
+            onUpdate={updateFormData}
+            data={formData}
+          />
+        )}
         {step === 3 && <ReviewInfo onBack={handleBack} onSubmit={handleSubmit} data={formData} />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default KYCStepper;
+export default KYCStepper

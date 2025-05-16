@@ -1,157 +1,278 @@
+/* Fund Wallet Container */
 .fund-wallet-container {
-    background-color: #f1f5ff;
-    padding: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .title {
-    color: #1a237e;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .subtitle {
-    margin-top: 0.25rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    color: #555;
-  }
-  
-  .wallet-balance-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: space-between;
+  background-color: #f1f5ff;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.title {
+  color: #1a237e;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Wallet Balance Card */
+.wallet-balance-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.balance-icon-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wallet-icon {
+  font-size: 1.8rem;
+  background-color: #CDD7F6;
+  display: block;
+  vertical-align: middle;
+  padding: 0.75rem;
+  border-radius: 50%;
+}
+
+.balance-info .balance-label {
+  color: #1a237e;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.balance-info .balance-amount {
+  font-size: 2rem;
+  margin: 0.25rem 0;
+}
+
+.balance-link {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.eye-icon {
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Details Section */
+.details-section {
+  background-color: #f8f9fb;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.input-label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.checkbox-wrapper {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fund-button {
+  background-color: #7e7e7e;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.fund-button:hover {
+  background-color: #1c2964;
+}
+
+/* Transactions Section */
+.transactions-section {
+  margin-top: 2rem;
+  background-color: #f8f9fb;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.transactions-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #0d1a4d;
+  margin-bottom: 1rem;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transactions-table th {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.pending {
+  color: orange;
+  font-weight: 500;
+}
+
+.successful {
+  color: green;
+  font-weight: 500;
+}
+
+.rejected {
+  color: red;
+  font-weight: 500;
+}
+
+/* Mobile Responsive Design */
+
+/* Small screen (max-width 768px) */
+@media (max-width: 768px) {
+  .fund-wallet-container {
     padding: 1.5rem;
-    margin-bottom: 2rem;
-    align-items: center;
   }
-  
-  .balance-icon-section {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+
+  .title {
+    font-size: 1.25rem; /* Smaller title font on mobile */
   }
-  
+
+  .subtitle {
+    font-size: 0.85rem; /* Smaller subtitle font on mobile */
+  }
+
+  .wallet-balance-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
   .wallet-icon {
-    font-size: 1.8rem;
-    background-color: #CDD7F6;
-    display: block;
-    vertical-align: middle;
-    padding: 0.75rem;
-    border-radius: 50%;
+    font-size: 1.5rem; /* Smaller wallet icon on mobile */
+    padding: 0.5rem;
   }
-  
-  .balance-info .balance-label {
-    color: #1a237e;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-  }
-  
+
   .balance-info .balance-amount {
-    font-size: 2rem;
-    margin: 0.25rem 0;
+    font-size: 1.8rem; /* Adjust balance amount font size */
   }
-  
+
   .balance-link {
-    font-size: 0.75rem;
-    color: #666;
+    font-size: 0.7rem; /* Smaller balance link font */
   }
-  
-  .eye-icon {
-    font-size: 1.2rem;
-    color: #666;
-    cursor: pointer;
-  }
-  
-  .details-section {
-    background-color: #f8f9fb;
-    padding: 2rem;
-    border-radius: 10px;
-  }
-  
-  .input-label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
-    font-weight: 600;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
-  
-  .checkbox-wrapper {
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .fund-button {
-    background-color: #7e7e7e;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .fund-button:hover {
-    background-color: #1c2964;
-  }
+
+  .details-section,
   .transactions-section {
-    margin-top: 2rem;
-    background-color: #f8f9fb;
-    padding: 2rem;
-    border-radius: 10px;
+    padding: 1.5rem;
   }
-  
+
+  .input-field {
+    font-size: 0.9rem; /* Adjust input field font size */
+  }
+
+  .fund-button {
+    padding: 0.6rem 1rem; /* Smaller padding for buttons */
+    font-size: 0.9rem;
+  }
+
   .transactions-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #0d1a4d;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
   }
-  
-  .transactions-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-  }
-  
+
   .transactions-table th,
   .transactions-table td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 0.75rem;
   }
-  
-  .transactions-table th {
-    color: #1a1a1a;
-    font-weight: 600;
+
+  .transactions-table {
+    font-size: 0.85rem;
   }
-  
-  .pending {
-    color: orange;
-    font-weight: 500;
+}
+
+/* Very Small Screen (max-width 480px) */
+@media (max-width: 480px) {
+  .fund-wallet-container {
+    padding: 1rem;
   }
-  
-  .successful {
-    color: green;
-    font-weight: 500;
+
+  .title {
+    font-size: 1.15rem; /* Further reduce font size */
   }
-  
-  .rejected {
-    color: red;
-    font-weight: 500;
+
+  .subtitle {
+    font-size: 0.75rem;
   }
-  
+
+  .wallet-balance-card {
+    padding: 0.8rem;
+  }
+
+  .wallet-icon {
+    font-size: 1.3rem; /* Further reduce wallet icon size */
+    padding: 0.5rem;
+  }
+
+  .balance-info .balance-amount {
+    font-size: 1.6rem;
+  }
+
+  .balance-link {
+    font-size: 0.65rem;
+  }
+
+  .input-field {
+    font-size: 0.85rem;
+  }
+
+  .fund-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .transactions-title {
+    font-size: 0.85rem;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .transactions-table {
+    font-size: 0.8rem;
+  }
+}
