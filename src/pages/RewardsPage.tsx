@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Spinthewheel from '../components/Dashboard/Spinthewheel'
 import { useLocation, useNavigate } from "react-router-dom";
+import { useWallet } from "../contexts/WalletContext";
+import { useGbeseBalance } from "../hook/useGbeseBalance";
 
 const nftList = [
   {
@@ -62,6 +64,83 @@ const nftList = [
 const RewardsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { userAddress } = useWallet();
+  const balance = useGbeseBalance(userAddress);
+
+  // const addGBTToWallet = async ()=> {
+  //   if (!userAddress) {
+  //     return alert('Connect your wallet first')
+  //   }
+  //   if (!window.ethereum) {
+  //     return alert("MetaMask not installed!");
+  //   }
+
+  //   const chainId: string = await window.ethereum.request({ method: "eth_chainId" });
+  //   const BASE_SEPOLIA_ID = "0x14a34"; // 84532 in hex 
+
+
+  //   if (chainId !== BASE_SEPOLIA_ID) {
+  //     try {
+  //       await window.ethereum.request({
+  //         method: "wallet_switchEthereumChain",
+  //         params: [{ chainId: BASE_SEPOLIA_ID }],
+  //       });
+  //       console.log("Switched to Base Sepolia");  
+  //     } catch(switchError: any) {
+  //       if (switchError.code === 4902) {
+  //         try {
+  //           await window.ethereum.request({
+  //             method: "wallet_addEthereumChain",
+  //             params: [
+  //               {
+  //                 chainId: BASE_SEPOLIA_ID,
+  //                 chainName: "Base Sepolia Testnet",
+  //                 rpcUrls: ["https://rpc.base-sepolia.network"],
+  //                 nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+  //                 blockExplorerUrls: ["https://sepolia.basescan.org"],
+  //               },
+  //             ],
+  //           });
+  //           console.log("🟢 Added Base Sepolia to MetaMask");
+  //         } catch (addError: any) {
+  //           console.error("Failed to add Base Sepolia:", addError);
+  //           return alert("Please add Base Sepolia network to your wallet first.");
+  //         }
+  //       } else {
+  //         console.error("Failed to switch network:", switchError);
+  //         return alert("Please switch to Base Sepolia network in MetaMask.");
+  //       }
+  //     }
+  //   } 
+
+  //   if (window.ethereum) {
+  //     try {
+  //       await window.ethereum.request({
+  //         method: "wallet_watchAsset",
+  //         params: [
+  //         {
+  //           type: "ERC20",
+  //           options: {
+  //             address: "0xC6dd34113889f23b0bf06FA77b3EBf441cB388eF",        // GBT contract address
+  //             symbol: "GBT",
+  //             decimals: 18,
+  //             image: "https://victorprofile.s3.us-east-1.amazonaws.com/gbese-icon.png" // optional icon URL
+  //           }
+  //         }
+  //       ]
+  //       });
+  //     } catch(err: any) {
+  //       console.log(err)
+  //       alert("Can't add GBT to this wallet")
+  //     }
+
+  //     // await provider.send("eth_requestAccounts", []);
+
+      
+    
+  //   }
+
+  // }
 
   const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
     location.state?.activeTab || "marketplace"
@@ -103,7 +182,12 @@ const RewardsPage = () => {
               <h2 className="text-xl font-semibold">Gbese Tokens</h2>
               <img src="images/Framelogo2.png" alt="" />
             </div>
-            <p className="text-xl font-bold mt-7">75 GBESE</p>
+            <p className="text-xl font-bold mt-7">
+              {balance !== null ? `${balance} GBT` : "--"}
+            </p>
+            <button className="mt-5 w-40 bg-[#031A69] text-white py-2 rounded-lg  hover:bg-[#031A69] cursor-pointer">
+              Verify wallet
+            </button>
           </div>
         </div>
 
@@ -203,7 +287,9 @@ const RewardsPage = () => {
                   background: 'linear-gradient(to right, #053EFF, #041B6C)',
                 }}
               >
-                Connect Wallet
+                {userAddress
+                  ? `${userAddress.slice(0,6)}…${userAddress.slice(-4)}`
+                  : "Connect Wallet"}
               </button>
             </div>
           )}

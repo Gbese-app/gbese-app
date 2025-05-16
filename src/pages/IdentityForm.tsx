@@ -70,8 +70,9 @@ const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
               onChange={handleDocumentTypeChange}
             >
               <option value="National ID">National ID</option>
-              <option value="Driver's License">Driver's License</option>
-              <option value="Passport">Passport</option>
+              <option value="drivers_license">Driver's License</option>
+              <option value="passport">Passport</option>
+              <option value="nin">NIN</option>
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
               <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">

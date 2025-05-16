@@ -2,9 +2,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   loginUser,
   registerUser,
-  UpdateUserDetails
+  UpdateUserDetails,
+  withdrawFunds
 } from "./api";
-import { FormData, KYCForm } from "../types/general";
+import { FormData, IWithdrawFunds, KYCForm } from "../types/general";
 import { toast } from "sonner";
 import { useAuthContext } from "../hook/useAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -19,17 +20,17 @@ export const useLoginMutation = () => {
     onSuccess(data) {
       const info = data?.data
 
-      console.log(info);
+      console.log(info.data.identityDocuments);
       
       if (info.data.id) {
         toast.success("Login Successful");
         login(data?.data);
         setTimeout(() => {
-          if (info.data.emailVerified && (info.data.identityDocument).lenght > 0) {
+          if (info.data.emailVerified && (info.data.identityDocuments).lenght > 0) {
             navigate("/dashboard", { replace: true });
           }
           else {
-          navigate("/kycstepper", { replace: true });
+            navigate("/kycstepper", { replace: true });
           }
         }, 1000);
       } else {
@@ -65,6 +66,16 @@ export const useLoginMutation = () => {
             toast.error(errMsg);
           });
     
+          return;
+        }
+        if (errorData.message) {
+          toast.error(errorData.message);
+          return;
+        }
+  
+        // ✅ Or if there's a specific `code`
+        if (errorData.code) {
+          toast.error(`Error: ${errorData.code}`);
           return;
         }
       }
@@ -121,6 +132,16 @@ export const useRegisterMutation = () => {
     
           return;
         }
+        if (errorData.message) {
+          toast.error(errorData.message);
+          return;
+        }
+  
+        // ✅ Or if there's a specific `code`
+        if (errorData.code) {
+          toast.error(`Error: ${errorData.code}`);
+          return;
+        }
       }
     
       // fallback error
@@ -173,6 +194,16 @@ export const useUpdateUserMutation = () => {
     
           return;
         }
+        if (errorData.message) {
+          toast.error(errorData.message);
+          return;
+        }
+  
+        // ✅ Or if there's a specific `code`
+        if (errorData.code) {
+          toast.error(`Error: ${errorData.code}`);
+          return;
+        }
       }
     
       // fallback error
@@ -181,6 +212,73 @@ export const useUpdateUserMutation = () => {
   });
 };
 
+export const useWithdrawalMutation = () => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: (data: IWithdrawFunds) => withdrawFunds(data),
+    onSuccess(data) {
+      const info = data?.data
+
+      console.log(info.response.data);
+      
+      if (info.data.id) {
+        toast.success("Withdraw was Successful");
+        setTimeout(() => {
+            navigate("/dashboard", { replace: true });
+        }, 1000);
+      } else {
+        toast.warning("Unauthorized, withdrawal Failed");
+      }
+
+    },
+    onError(error) {
+      console.log(error);
+
+      if (isAxiosError(error)) {
+        const errorData = error.response?.data;
+    
+        if (errorData?.errors) {
+          const flattenedErrors: string[] = [];
+    
+          // Loop through the errors object
+          for (const key in errorData.errors) {
+            const value = errorData.errors[key];
+            
+            // If the value is an object (e.g., nested like address.number), recurse or flatten
+            if (typeof value === 'object' && value !== null) {
+              for (const subKey in value) {
+                flattenedErrors.push(value[subKey]);
+              }
+            } else {
+              flattenedErrors.push(value);
+            }
+          }
+    
+          // Display all errors as individual toasts
+          flattenedErrors.forEach((errMsg) => {
+            toast.error(errMsg);
+          });
+    
+          return;
+        }
+        if (errorData.message) {
+          toast.error(errorData.message);
+          return;
+        }
+  
+        // ✅ Or if there's a specific `code`
+        if (errorData.code) {
+          toast.error(`Error: ${errorData.code}`);
+          return;
+        }
+      }
+    
+      // fallback error
+      toast.error("An unexpected error occurred");
+    },
+  });
+};
 // export const useCreateStoreMutation = () => {
 //   const queryClient = useQueryClient();
 //   return useMutation({

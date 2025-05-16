@@ -105,6 +105,12 @@ export interface KYCForm {
   phone: string;
   address: Address;
   dateOfBirth: string;
-  identityDocument?: File;
+  identityDocuments?: [string, string] | undefined;
   identityDocumentType: string;
+}
+
+export interface IWithdrawFunds {
+  accountNumber: string
+  bankCode: string
+  amount: number
 }

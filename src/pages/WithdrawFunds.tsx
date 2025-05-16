@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useWithdrawalMutation } from '../services/mutation';
+import { IWithdrawFunds } from '../types/general';
 
 const WithdrawFunds =() => {
   const recentWithdrawals = [
@@ -29,7 +31,14 @@ const WithdrawFunds =() => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(formData);
-    setIsPopupOpen(true); // ✅ Show popup on submit
+    
+    const info: IWithdrawFunds = {
+      amount: parseInt(formData.amount),
+      bankCode: formData.bankName,
+      accountNumber: formData.accountNumber
+    }
+    withdrawalData(info)
+    // setIsPopupOpen(true); // ✅ Show popup on submit
   };
 
   const closePopup = () => setIsPopupOpen(false);
@@ -38,6 +47,8 @@ const WithdrawFunds =() => {
     console.log('Popup state updated:', isPopupOpen);
   }, [isPopupOpen]);
   
+  const { mutate: withdrawalData } = useWithdrawalMutation()
+
   const handleMethodChange = (method: any) => {
     setMethod(method);
     if (method === 'bank') {

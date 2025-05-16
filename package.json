@@ -18,7 +18,10 @@
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/react-query": "^5.76.0",
     "axios": "^1.9.0",
+    "@walletconnect/universal-provider": "^2.20.2",
+    "@web3modal/wagmi": "^5.1.11",
     "clsx": "^2.1.1",
+    "ethers": "^6.14.0",
     "framer-motion": "^12.9.4",
     "gbeseapp": "file:",
     "lucide-react": "^0.503.0",
@@ -32,7 +35,9 @@
     "recharts": "^2.15.3",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
-    "vue3-toastify": "^0.2.8"
+    "viem": "^2.29.2",
+    "vue3-toastify": "^0.2.8",
+    "wagmi": "^2.15.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

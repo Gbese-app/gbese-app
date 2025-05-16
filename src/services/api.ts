@@ -1,6 +1,6 @@
 // This file talks to the backend server
 import axios from "axios";
-import { FormData, IRegisterUser, KYCForm, UpdateUserProfileDto, UserData } from "../types/general";
+import { FormData, IRegisterUser, IWithdrawFunds, KYCForm, UpdateUserProfileDto, UserData } from "../types/general";
 
 type FormDataNot = {
   title: string;
@@ -61,6 +61,10 @@ export const updateDebtRequest = async (data: any, debtRequestId: string) => {
 // Account
 export const peerTransfer = async () => {
   return await axiosInstanceWithToken.post(`accounts/transfer`);
+}; 
+
+export const withdrawFunds = async (data: IWithdrawFunds) => {
+  return await axiosInstanceWithToken.post(`accounts/withdraw`, data);
 };
 
 export const disableAccount = async () => {
