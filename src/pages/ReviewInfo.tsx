@@ -1,17 +1,10 @@
-import { Link } from 'react-router-dom'
-
 interface Props {
   onBack: () => void
   onSubmit: () => void
   data: any
 }
 
-const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
-  const handleSubmit = () => {
-    alert('Form submitted successfully')
-    console.log('Form Data:', data)
-  }
-
+const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
       <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-3xl w-full space-y-8">
@@ -87,15 +80,14 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
             Back
           </button>
 
-          <Link to="/dashboard">
+          
             <button
               className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
               style={{ backgroundColor: '#1c2964' }}
-              onClick={handleSubmit}
+              onClick={onSubmit}
             >
               Submit
             </button>
-          </Link>
         </div>
       </div>
     </main>

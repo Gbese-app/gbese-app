@@ -1,6 +1,39 @@
 import { Link } from 'react-router-dom'
+import { useLoginMutation } from "../services/mutation";
+import { ChangeEvent, useEffect, useState } from 'react';
+import { FormData } from '../types/general';
+
 
 const Login = () => {
+
+  const { mutate, isPending, isSuccess } = useLoginMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      
+    }
+  }, [isSuccess]);
+
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+  console.log(formData)
+
+  // Handle form change
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleUserLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(formData);
+    
+  };
+
   return (
     <div className="min-h-screen flex">
       <aside className="sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
@@ -44,7 +77,7 @@ const Login = () => {
             </Link>
           </p>
 
-          <button className="w-full border border-gray-300 rounded-lg py-3 mb-2 flex justify-center items-center font-medium">
+          <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26"
@@ -71,24 +104,16 @@ const Login = () => {
             </svg>
             Continue with Google
           </button>
-          <button className="w-full border border-gray-300 rounded-lg py-3 mb-6 flex justify-center items-center font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="27.3"
-              height="27.3"
-              viewBox="0 0 128 128"
-              className="mr-2"
-            >
-              <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137c-.138.44-2.607 8.916-8.597 17.669c-5.178 7.568-10.553 15.108-19.018 15.266c-8.318.152-10.993-4.934-20.504-4.934c-9.508 0-12.479 4.776-20.354 5.086c-8.172.31-14.395-8.185-19.616-15.724C15.822 94.961 7.669 66.8 18.616 47.791c5.438-9.44 15.158-15.417 25.707-15.571c8.024-.153 15.598 5.398 20.503 5.398c4.902 0 14.106-6.676 23.782-5.696c4.051.169 15.421 1.636 22.722 12.324c-.587.365-13.566 7.921-13.425 23.639M82.272 21.719c4.338-5.251 7.258-12.563 6.462-19.836c-6.254.251-13.816 4.167-18.301 9.416c-4.02 4.647-7.54 12.087-6.591 19.216c6.971.54 14.091-3.542 18.43-8.796" />
-            </svg>
-            Continue with Apple
-          </button>
           <div className="text-center mb-7 font-bold">OR</div>
 
-          <form className="space-y-2">
+          <form className="space-y-2" onSubmit={handleUserLogin}>
             <div>
               <label className="block text-sm font-medium text-[#6D6D6D] mb-1">Email</label>
               <input
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleFormChange}
                 type="email"
                 placeholder="Enter your email"
                 className="w-full border border-gray-300 p-3 rounded-lg"
@@ -98,20 +123,23 @@ const Login = () => {
             <div>
               <label className="block text-sm font-medium text-[#6D6D6D] mb-1">Password</label>
               <input
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleFormChange}
                 type="password"
                 placeholder="Create password"
                 className="w-full border border-gray-300 p-3 rounded-lg"
               />
             </div>
 
-            <Link to="/kycstepper">
               <button
                 type="submit"
                 className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8"
+                disabled={isPending}
               >
                 Sign in
               </button>
-            </Link>
           </form>
 
           <p className="text-xs text-center text-gray-400 mt-4">
