@@ -120,7 +120,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
 
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
-      {/* Further reduced sidebar width to w-1/8 */}
+      {/* Sidebar */}
       <aside className="fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white pt-6 pb-8 pl-4 pr-4 sticky">
         <img src="./src/assets/Logo Dark BG.png" alt="gbese" className="h-12 w-25" />
         <div className="mb-8">
@@ -169,14 +169,6 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
                   <div className="text-xs text-white font-semibold">{2}</div>
                 )}
               </div>
-              {step >= 2 && (
-                <div className="mt-2 flex flex-col items-center">
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                </div>
-              )}
             </div>
             <div>
               <span className="block text-sm text-white">Step 2</span>

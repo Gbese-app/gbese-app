@@ -1,5 +1,5 @@
-import { useState } from "react";
-import "../FundWallet.css";
+import { useState } from 'react'
+import '../FundWallet.css'
 
 const FundWallet: React.FC = () => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(false);

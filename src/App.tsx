@@ -20,15 +20,19 @@ import WithdrawFunds from './pages/WithdrawFunds'
 import WithdrawFunds2 from './pages/WithdrawFunds2'
 import GbesePayWallet from './pages/GbesePayWallet'
 import { WalletProvider } from './contexts/WalletContext';
-
+import CreditOptions from './pages/CreditOptions'
+import LoanForm from './pages/LoanForm'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
     <WalletProvider>
     <Router>
       <Routes>
+                <Route path="/" element={<LandingPage />} />
+
         {/* Public routes */}
-        <Route path="/" element={<Signup />} />
+        <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login />} />
        
         
@@ -98,9 +102,10 @@ function App() {
         {/* Main app layout routes */}
         <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
-
           <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
           <Route path='fundwallet' element={<FundWallet />} />
+          <Route path='/credit' element={<CreditOptions /> } />
+          <Route path='/loanform' element={<LoanForm />} />
 
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
