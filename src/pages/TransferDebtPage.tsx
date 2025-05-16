@@ -137,7 +137,7 @@ const TransferredDebt = () => {
             <label className="block mb-4 text-sm font-medium">Selected Debt Helper</label>
             <div className="flex h-10 w-30">
               <img src="/image 9.png" alt="" />
-            <select className="flex-1 border ml-4 sm:ml-4 px-1 py-1 rounded" >
+            <select name="receiver" className="flex-1 border ml-4 sm:ml-4 px-1 py-1 rounded" value={formData.receiver}  onChange={handleInputChange}>
               <option>CocaineAddict</option>
               <option>John Doe</option>
               <option>Jane Smith</option>
