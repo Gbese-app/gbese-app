@@ -158,7 +158,7 @@ const WithdrawFunds =() => {
       {/* ✅ Popup Modal */}
       {isPopupOpen && (
         <div className="fixed inset-0 backdrop-blur-lg bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl relative w-full max-w-md">
+          <div className="bg-white p-10 sm:p-6 rounded-lg shadow-xl relative w-full max-w-sm sm:max-w-md">
             <button
               onClick={closePopup}
               className="absolute top-2 right-2 text-2xl font-bold text-gray-400 hover:text-gray-700"
@@ -166,7 +166,9 @@ const WithdrawFunds =() => {
               &times;
             </button>
             <div className="text-center">
-              <div className="text-green-600 text-5xl mb-2">✅</div>
+               <svg className="text-green-600 text-5xl mb-2 ml-35 sm:ml-45" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 2048 2048">
+                  <path fill="#13BE41" d="M1024 0q141 0 272 36t244 104t207 160t161 207t103 245t37 272q0 141-36 272t-104 244t-160 207t-207 161t-245 103t-272 37q-141 0-272-36t-244-104t-207-160t-161-207t-103-245t-37-272q0-141 36-272t104-244t160-207t207-161T752 37t272-37m603 685l-136-136l-659 659l-275-275l-136 136l411 411z" />
+                </svg>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Withdrawal successful</h2>
               <div className="text-left space-y-2 text-sm">
                 <div className="flex justify-between">

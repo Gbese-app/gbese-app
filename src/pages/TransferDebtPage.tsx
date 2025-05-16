@@ -153,6 +153,7 @@ const TransferredDebt = () => {
                 type="text"
                 name="details"
                 placeholder="Enter Account number..."
+                required
                 className="flex-1 sm:w-full border px-3 py-2 rounded w-full" value={formData.details}  onChange={handleInputChange}
               />
               </div>
@@ -162,6 +163,7 @@ const TransferredDebt = () => {
                 type="number"
                 name="amount"
                 placeholder="Enter Amount..."
+                required
                 className="flex-1 sm:w-full border px-3 py-2 rounded w-full" value={formData.amount}  onChange={handleInputChange}
               />
               </div>
@@ -174,6 +176,7 @@ const TransferredDebt = () => {
             <textarea
             name="reason"
               placeholder="What's on your mind?"
+              required
               className="w-full mt-2 border rounded px-3 py-2" value={formData.reason}  onChange={handleInputChange}
               rows={3}
             ></textarea>
@@ -194,7 +197,7 @@ const TransferredDebt = () => {
           <div className="   p-6 w-full max-w-md text-center relative">
             
              {/* Close button */}
-            <button onClick={closePopup} className="absolute top-2 right-2 text-2xl font-bold text-gray-500 hover:text-gray-800">
+            <button onClick={closePopup} className="absolute top-8 right-12 text-2xl font-bold text-gray-500 hover:text-gray-800">
                &times; {/* Close button */}
             </button>
 
@@ -202,9 +205,9 @@ const TransferredDebt = () => {
             <div className=" flex items-center justify-center  px-4">
       <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
         <div className="flex flex-col items-center space-y-4">
-          <div className="text-green-500 text-5xl b">
-            <img src=".." alt="" />✅
-          </div>
+          <svg className="text-green-600 text-5xl mb-2 ml-5 sm:ml-5" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 2048 2048">
+                  <path fill="#13BE41" d="M1024 0q141 0 272 36t244 104t207 160t161 207t103 245t37 272q0 141-36 272t-104 244t-160 207t-207 161t-245 103t-272 37q-141 0-272-36t-244-104t-207-160t-161-207t-103-245t-37-272q0-141 36-272t104-244t160-207t207-161T752 37t272-37m603 685l-136-136l-659 659l-275-275l-136 136l411 411z" />
+                </svg>
           <h2 className="text-xl font-semibold text-gray-800">Debt transfer successful</h2>
         </div>
 
