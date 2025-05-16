@@ -99,6 +99,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
           <Route path='fundwallet' element={<FundWallet />} />
+          <Route path='/credit' element={<CreditOptions /> } />
+          <Route path='/loanform' element={<LoanForm />} />
 
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
