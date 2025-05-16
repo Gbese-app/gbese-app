@@ -5,6 +5,27 @@ import { useNavigate } from 'react-router-dom';
 const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(formData);
+     setIsPopupOpen(true); // ✅ Show popup on submit
+  };
+
+  const [formData, setFormData] = useState({
+    amount: '',
+    details: '',
+    reason: '',
+    receiver: '',
+  });
+
+  const handleInputChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
    // Function to open the popup
   const openPopup = () => {
       setIsPopupOpen(true); // Sets the state to true, opening the popup
@@ -63,47 +84,97 @@ const TransferredDebt = () => {
          {/* Section for capable helpers */}
         <div className="bg-white mt-6 p-4 rounded shadow">
           <p className="font-semibold mb-2">Capable helpers</p>
-          <div className="flex space-x-2 overflow-x-auto">
+          <div className="flex sm:w-full space-x-2 ">
              {/* Example avatars for helpers */}
-            {[...Array(8)].map((_, i) => (
               <img
-                key={i}
-                src={`/avatars/avatar${i + 1}.png`}
-                alt={`helper-${i}`}
-                className="w-12 h-12 rounded-full"
+                
+                src="/image (1).png w-50"
+                alt=""
+               
               />
-            ))}
+              <img
+                
+                src="/image 2.png "
+                alt=""
+               
+              />
+              <img
+                
+                src="/image 3.png"
+                alt=""
+               
+              />
+              <img
+                
+                src="/image 4.png"
+                alt=""
+               
+              />
+              <img
+                
+                src="/image 5.png"
+                alt=""
+               
+              />
+              <img
+                
+                src="/image 7.png"
+                alt=""
+               
+              />
+              <img
+                
+                src="/image 8.png"
+                alt=""
+               
+              />
             <span className="ml-2 text-sm text-gray-500 self-center">+15</span>
           </div>
 
            {/* Debt helper selection and form */}
           <div className="mt-6">
-            <img src="/image (1).png" alt="" />
-            <label className="block mb-1 text-sm font-medium">Selected Debt Helper</label>
-            <select className="w-40 border rounded px-3 py-2">
+            
+            <label className="block mb-4 text-sm font-medium">Selected Debt Helper</label>
+            <div className="flex h-10 w-30">
+              <img src="/image 9.png" alt="" />
+            <select className="flex-1 border ml-4 sm:ml-4 px-1 py-1 rounded" >
               <option>CocaineAddict</option>
               <option>John Doe</option>
               <option>Jane Smith</option>
             </select>
-
+            </div>
+            
+            
              {/* Input fields for account number and amount */}
-            <div className="mt-4 flex gap-4">
+            <form onSubmit={handleSubmit} className="mb-4 flex flex-col sm:flex-row gap-3 w-full">
+              <div>
+                <p className="mb-2 mt-4">Beneficiary Details</p>
               <input
                 type="text"
+                name="details"
                 placeholder="Enter Account number..."
-                className="flex-1 border px-3 py-2 rounded"
+                className="flex-1 sm:w-full border px-3 py-2 rounded w-full" value={formData.details}  onChange={handleInputChange}
               />
+              </div>
+              <div>
+                <p className="mb-2 mt-4">Amount</p>
               <input
                 type="number"
+                name="amount"
                 placeholder="Enter Amount..."
-                className="flex-1 border px-3 py-2 rounded"
+                className="flex-1 sm:w-full border px-3 py-2 rounded w-full" value={formData.amount}  onChange={handleInputChange}
               />
-            </div>
+              </div>
+              
+              
+            </form>
 
              {/* Text area for additional notes */}
+             <p>Request Description</p>
             <textarea
+            name="reason"
               placeholder="What's on your mind?"
-              className="w-full mt-4 border rounded px-3 py-2"
+              className="w-full mt-2 border rounded px-3 py-2" value={formData.reason}  onChange={handleInputChange}
               rows={3}
             ></textarea>
 
@@ -140,7 +211,7 @@ const TransferredDebt = () => {
         <div className="mt-6 text-left space-y-4">
           <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
             <span className="font-semibold text-gray-600">Debt Receiver:</span>
-            <span className="text-gray-900">CocaineAddict</span>
+            <span>{formData.receiver}</span>
           </div>
           <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
             <span className="font-semibold text-gray-600">Date:</span>
@@ -148,15 +219,17 @@ const TransferredDebt = () => {
           </div>
           <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
             <span className="font-semibold text-gray-600">Request Description:</span>
-            <span className="text-gray-900">Debt clearance</span>
+            <span>{formData.reason}</span>
+            
           </div>
           <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
-            <span className="font-semibold text-gray-600">Debtor:</span>
-            <span className="text-gray-900">Jones Charles</span>
+            <span className="font-semibold text-gray-600">Details:</span>
+            <span>{formData.details}</span>
           </div>
           <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
             <span className="font-semibold text-gray-600">Outstanding Debt:</span>
-            <span className="text-gray-900 font-bold">₦200,000</span>
+            
+            <span>₦{Number(formData.amount).toLocaleString()}</span>
           </div>
         </div>
       </div>

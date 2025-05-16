@@ -28,6 +28,10 @@ function App() {
         {/* Public routes */}
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+       
+        
+
+
 
         {/* KYC routes (no Layout wrapper) */}
         <Route
@@ -105,8 +109,8 @@ function App() {
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
-          
-          <Route path="/withdrawal" element={<WithdrawFunds />} />
+           <Route path="/withdrawal" element={<WithdrawFunds />} />
+          {/* <Route path="/withdrawal" element={<WithdrawFunds />} /> */}
           <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
           <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
           
