@@ -71,7 +71,7 @@ const FundWallet: React.FC = () => {
   };
 
   return (
-    <div className="fund-wallet-container">
+    <div className="fund-wallet-container p-9">
       <h2 className="title">Fund Your Wallet</h2>
       <p className="subtitle">
         Add money to your wallet sharp sharp; make gbese no hold you!
@@ -85,7 +85,7 @@ const FundWallet: React.FC = () => {
           <div className="balance-info">
             <p className="balance-label">Available Wallet Balance</p>
             <h1 className="balance-amount">
-              {isBalanceVisible ? `₦${balance.toLocaleString()}` : "●●●●●●"}
+              {isBalanceVisible ? `₦${balance.toLocaleString()}` : "● ● ● ● ● ●"}
             </h1>
             <small className="balance-link">Fund Wallet</small>
           </div>

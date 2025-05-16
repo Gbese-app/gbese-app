@@ -18,7 +18,7 @@ const WithdrawFunds =() => {
     attachDebt: false
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -26,7 +26,7 @@ const WithdrawFunds =() => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(formData);
     setIsPopupOpen(true); // ✅ Show popup on submit
@@ -38,17 +38,17 @@ const WithdrawFunds =() => {
     console.log('Popup state updated:', isPopupOpen);
   }, [isPopupOpen]);
   
-  const handleMethodChange = (method) => {
+  const handleMethodChange = (method: any) => {
     setMethod(method);
     if (method === 'bank') {
       navigate('/withdrawal');  // Navigate to the Bank Account page
     } else if (method === 'wallet') {
-      navigate('/gbesepay-wallet');  // Navigate to the GbesePay Wallet page
+      navigate('/withdrawal/gbesepay-wallet');  // Navigate to the GbesePay Wallet page
     }
   };
 
   return (
-    <div className="p-6 bg-blue-50 min-h-screen text-gray-800">
+    <div className="p-9 bg-blue-50 min-h-screen text-gray-800">
       <h1 className="text-2xl font-bold text-blue-900 mb-1">Withdraw Your Funds</h1>
       <p className="mb-6">Grab your cash; straight to your bank, no wahala.</p>
 
@@ -65,17 +65,17 @@ const WithdrawFunds =() => {
         <p className="text-sm text-gray-600 mb-3">Choose where you want your gbese cash to land.</p>
         <div className="flex space-x-4">
         <button
-  className={`px-4 py-2 w-100 rounded border ${method === 'bank' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-gray-600'}`}
-  onClick={() => handleMethodChange('bank')}
->
-  Bank Account
-</button>
-<button
-  className={`px-4 py-2 w-100 rounded border ${method === 'wallet' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-blue-600 hover:bg-blue-100 text-blue-700'}`}
-  onClick={() => handleMethodChange('wallet')}
->
-  GbesePay Wallet
-</button>
+        className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'bank' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-gray-600'}`}
+        onClick={() => handleMethodChange('bank')}
+      >
+        Bank Account
+      </button>
+      <button
+        className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'wallet' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-blue-600 hover:bg-blue-100 text-blue-700'}`}
+        onClick={() => handleMethodChange('wallet')}
+      >
+        GbesePay Wallet
+      </button>
 
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import PersonalInfoForm from './PersonalForm'
 import IdentityDocumentForm from './IdentityForm'
@@ -55,11 +56,21 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
                   <div className="text-xs text-white font-semibold">{1}</div>
                 )}
               </div>
+              {step >= 1 && (
+                <div className="mt-2 flex flex-col items-center">
+                  <div className="text-white text-xs">|</div>
+                  <div className="text-white text-xs">|</div>
+                  <div className="text-white text-xs">|</div>
+                  <div className="text-white text-xs">|</div>
+                </div>
+              )}
             </div>
             <div>
               <span className="block text-sm text-white">Step 1</span>
               <span className="block font-semibold text-white text-base">Personal Information</span>
-              <span className="block text-xs text-white">Enter your name, email, and phone number.</span>
+              <span className="block text-xs text-white">
+                Enter your name, email, and phone number.
+              </span>
             </div>
           </div>
 
@@ -105,8 +116,8 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
         </nav>
       </aside>
 
-      {/* Content area */}
-      <div className="flex-1 bg-white shadow-lg">
+      {/* Adjusted content width */}
+      <div className="flex-1 bg-white shadow-lg ">
         {step === 1 && (
           <PersonalInfoForm onNext={handleNext} onUpdate={updateFormData} data={formData} />
         )}

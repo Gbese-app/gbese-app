@@ -1,48 +1,57 @@
-import { useState } from 'react';
-import { FaEye, FaTimes } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import '../GbesePayWallet.css'
-import { style } from 'framer-motion/client';
-// import '../layout/Popupwallet.css'
-const GbesePayWallet =() => {
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [method, setMethod] = useState('wallet');
-    const [showModal] = useState(true); 
+import { useEffect, useState } from 'react';
+// import { FaEye } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
+import '../layout/GbesePayWallet.css'
+
+
+export default function GbesePayWallet() {
+    const location = useLocation();
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
     const [selectedWallet, setSelectedWallet] = useState(null);
 
     // Function to open the popup
     const openPopup = () => {
       setIsPopupOpen(true)
     }
+
+    useEffect(() => {
+      if (location.state?.openWalletPopup) {
+        setIsPopupOpen(true);
+      }
+    }, [location.state]);
   
     // Function to close the popup
     const closePopup = () => {
       setIsPopupOpen(false)
     }
-// Assume modal shows by default when wallet is selected
+  const [method, setMethod] = useState('wallet');
+  const [showModal] = useState(true); // Assume modal shows by default when wallet is selected
   const navigate = useNavigate();  // hook to navigate
+
   
-  const handleMethodChange = (method) => {
+  const handleMethodChange = (method: any) => {
     setMethod(method);
     if (method === 'bank') {
       navigate('/withdrawal');  // Navigate to the Bank Account page
     } else if (method === 'wallet') {
-      navigate('/gbesepay-wallet');  // Navigate to the GbesePay Wallet page
+      navigate('/withdrawal/gbesepay-wallet');  // Navigate to the GbesePay Wallet page
     }
   };
-  const handleWalletSelect =(wallet) =>{
+
+  const handleWalletSelect =(wallet: any) =>{
     setSelectedWallet(wallet);
   }
   const handleConnectWallet =() =>{
     if(selectedWallet){
-      navigate('/withdraw');
+      navigate('/withdrawal2', {state: { showPopup: true}});
     }else{
       alert('Please select a wallet before proceeding')
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f6fd] px-6 py-8 texat-gray-800">
+    <div className="min-h-screen bg-[#f3f6fd] p-9 texat-gray-800">
+      
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#131316]">Withdraw Your Funds</h1>
@@ -58,7 +67,7 @@ const GbesePayWallet =() => {
           <p className="text-3xl font-bold text-[#131316]">₦100,000</p>
           <p className="text-xs text-blue-600 mt-1">Fund Wallet</p>
         </div>
-        <FaEye className="text-gray-400 text-xl cursor-pointer" />
+        {/* <FaEye className="text-gray-400 text-xl cursor-pointer" /> */}
       </div>
 
       {/* Withdrawal Methods */}
@@ -69,13 +78,13 @@ const GbesePayWallet =() => {
         </p>
         <div className="flex justify-between space-x-4">
           <button
-            className={`px-4 py-2 w-100 rounded border ${method === 'bank' ? 'bg-[#EFF4FF] border-[#2E5BFF] text-[#2E5BFF] font-medium' : 'border-[#CED4DA] text-[#131316] hover:bg-blue-100 text-blue-700'}`}
+            className={`px-4 py-2 w-full rounded border ${method === 'bank' ? 'bg-[#EFF4FF] border-[#2E5BFF] text-[#2E5BFF] font-medium' : 'border-[#CED4DA] text-[#131316] hover:bg-blue-100 text-blue-700'}`}
             onClick={() => handleMethodChange('bank')}
           >
             Bank Account
           </button>
           <button
-            className={`px-4 py-2 w-100 rounded border ${method === 'wallet' ? 'bg-[#EFF4FF] border-[#2E5BFF] text-[#2E5BFF] font-medium' : 'border-[#CED4DA] text-[#131316]'}`}
+            className={`px-4 py-2 w-full rounded border ${method === 'wallet' ? 'bg-[#EFF4FF] border-[#2E5BFF] text-[#2E5BFF] font-medium' : 'border-[#CED4DA] text-[#131316]'}`}
             onClick={() => handleMethodChange('wallet')}
           >
             GbesePay Wallet
@@ -94,7 +103,7 @@ const GbesePayWallet =() => {
       {showModal && (
         <div className='connect'>
            
-         <img src="LogowhiteBG.png" alt="abc" className="h-14 w-30" />
+         <img src="../../public/LogowhiteBG.png" alt="abc" className="h-14 w-30" />
          <div>
             <button className="btn1">GbesePay Wallet</button>
          </div>
@@ -115,15 +124,15 @@ const GbesePayWallet =() => {
             <div className="body">
               
                 
-                <div className="wallet-button" onClick={() => handleWalletSelect('MetaMask')}><img src="/public/images/MetaMask.svg" alt="" />
+            <div className={`wallet-button ${selectedWallet === 'MetaMask' ? 'selected-wallet'  : ''}`} onClick={() => handleWalletSelect('MetaMask')}><img src="/public/images/MetaMask.svg" alt="" />
                 MetaMask</div>
               
-              <div className="wallet-button" onClick={() => handleWalletSelect('CoinBase')}><img src="/public/images/CoinBase-Wallet.svg" alt="" />CoinBase Wallet</div>
+              <div className={`wallet-button ${selectedWallet === 'CoinBase' ? 'selected-wallet' : ''}`} onClick={() => handleWalletSelect('CoinBase')}><img src="/public/images/CoinBase-Wallet.svg" alt="" />CoinBase Wallet</div>
               
-              <div className="wallet-button" onClick={() => handleWalletSelect('WalletConnect')}><img src="/public/images/Wallet-connect.svg" alt="" />Wallet connect</div>
+              <div className={`wallet-button ${selectedWallet === 'WalletConnect' ? 'selected-wallet' : ''}`} onClick={() => handleWalletSelect('WalletConnect')}><img src="/public/images/Wallet-connect.svg" alt="" />Wallet connect</div>
               
-              <div className="wallet-button" onClick={() => handleWalletSelect('Keplr')}><img src="/public/images/Keplr.svg" alt="" />Keplr</div>
-              <button className="w-100" onClick={handleConnectWallet}>
+              <div className={`wallet-button ${selectedWallet === 'Keplr' ? 'selected-wallet' : ''}`} onClick={() => handleWalletSelect('Keplr')}><img src="/public/images/Keplr.svg" alt="" />Keplr</div>
+              <button className="w-full" onClick={handleConnectWallet}>
                 <div className='connect-main-btn'>
                   Connect Wallet
                   </div>
@@ -136,5 +145,3 @@ const GbesePayWallet =() => {
     </div>
   );
 }
-
-export default GbesePayWallet;

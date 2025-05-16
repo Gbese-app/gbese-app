@@ -15,12 +15,14 @@ import PersonalForm from './pages/PersonalForm'
 import FundWallet from './pages/FundWallet'
 import IdentityForm from './pages/IdentityForm'
 import { KYCStepper } from './pages/KYCStepper'
-import GbesePayWallet from './pages/GbesePayWallet'
+import { DebtRequest } from './pages/DebtRequest'
 import WithdrawFunds from './pages/WithdrawFunds'
-import Withdraw from './pages/Withdraw'
+import WithdrawFunds2 from './pages/WithdrawFunds2'
+import GbesePayWallet from './pages/GbesePayWallet'
 import CreditOptions from './pages/CreditOptions'
 import LoanForm from './pages/LoanForm'
 import LandingPage from './pages/LandingPage'
+
 
 function App() {
   return (
@@ -96,22 +98,25 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
-
           <Route path='fundwallet' element={<FundWallet />} />
-          <Route path='gbesepay-wallet' element={<GbesePayWallet />} />
-          <Route path='withdrawal' element={<WithdrawFunds />} /> 
-          <Route path='withdraw' element={<Withdraw />} />   
-          <Route path='loanform' element={<LoanForm/>} />
-          <Route path='credit' element={<CreditOptions />} />
 
           <Route path="/mydebt" element={<MyDebt />} />
           <Route path="/transfer-debt" element={<TransferDebtPage />} />
           <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+          <Route path="/debt-request" element={<DebtRequest />} />
 
           <Route path="/rewards" element={<RewardsPage />} />
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
+          
+          <Route path="/withdrawal" element={<WithdrawFunds />} />
+          <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
+          <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
+          
+
+          {/* <Route path="/contact" element={<ContactPage />} /> */}
+          {/* <Route path="/services" element={<ServicesPage />} /> */}
         </Route>
       </Routes>
     </Router>
