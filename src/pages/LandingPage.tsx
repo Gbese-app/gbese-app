@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import "../LandingPage.css";
 
 // Importing individual sections/components
@@ -9,6 +10,12 @@ import GbeQuestions from "./GbeQuestions";
 import Footer from "./Footer";
 
 const LandingPage = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <div className="landing-page">
       {/* Navbar with anchor links */}
@@ -18,23 +25,45 @@ const LandingPage = () => {
           src="/src/assets/Logo Dark BG.png"
           alt="Gbese Logo"
         />
+        <button className="toggle-btn" onClick={toggleNav} aria-label="Toggle navigation">
+          <span className={isNavOpen ? "hamburger open" : "hamburger"}></span>
+        </button>
         <nav className="nav-links">
-          {/* Add href links to navigate to specific sections */}
-          <a href="#works-page">About Us</a>
-          <a href="#footer">Contact</a>
-          <a href="#footer">FAQ's</a>
+          <a href="#works-page" onClick={() => setIsNavOpen(false)}>About Us</a>
+          <a href="#footer" onClick={() => setIsNavOpen(false)}>Contact</a>
+          <a href="#faq" onClick={() => setIsNavOpen(false)}>FAQ's</a>
         </nav>
         <div className="auth-buttons">
+          <div className="log-btn">
+            <Link to={'/login'}>
+              <button className="login-btn">Login</button>
+            </Link>
+          </div>
+          <div className="sign">
+            <Link to={'/sign-up'}>
+              <button className="signup-btn">Sign Up</button>
+            </Link>
+          </div>
+        </div>
+        {/* Mobile menu for mobile view */}
+        <div className={`mobile-menu ${isNavOpen ? 'open' : ''}`}>
+          <nav className="nav-links">
+            <a href="#works-page" onClick={() => setIsNavOpen(false)}>About Us</a>
+            <a href="#footer" onClick={() => setIsNavOpen(false)}>Contact</a>
+            <a href="#faq" onClick={() => setIsNavOpen(false)}>FAQ's</a>
+          </nav>
+          <div className="auth-buttons">
             <div className="log-btn">
-                <Link to={'/login'}>     
-                   <button className="login-btn">Login</button>
-                </Link>
+              <Link to={'/login'}>
+                <button className="login-btn">Login</button>
+              </Link>
             </div>
             <div className="sign">
-                <Link to={'/sign-up'}>    
-                    <button className="signup-btn">Sign Up</button>
-                </Link>
+              <Link to={'/sign-up'}>
+                <button className="signup-btn">Sign Up</button>
+              </Link>
             </div>
+          </div>
         </div>
       </header>
 
@@ -46,10 +75,9 @@ const LandingPage = () => {
           terms, earn and exchange crypto rewards and breathe easy.
         </p>
         <div className="cta-wrapper">
-            <Link to={'/sign-up'}>
+          <Link to={'/sign-up'}>
             <button className="cta-button">Start Passing Debt Now</button>
-
-            </Link>
+          </Link>
           <div className="cta-glow-line"></div>
         </div>
       </section>
@@ -78,7 +106,7 @@ const LandingPage = () => {
       </section>
 
       {/* GbeQuestions Section */}
-      <section className="gbe-questions">
+      <section id="faq" className="gbe-questions">
         <GbeQuestions />
       </section>
 
