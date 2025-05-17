@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import '../WhyChoose.css';
+import { Link } from 'react-router-dom'
+import '../WhyChoose.css'
 
 const WhyChooseGbe = () => {
   return (
@@ -13,11 +13,7 @@ const WhyChooseGbe = () => {
         {/* Left Section */}
         <div className="chart-section">
           <h3 className="chart-title">How Gbese Members Are Thriving:</h3>
-          <img
-            src="/src/assets/image.png"
-            alt="Gbese Members Thriving"
-            className="chart-image"
-          />
+          <img src="/src/assets/image.png" alt="Gbese Members Thriving" className="chart-image" />
         </div>
 
         {/* Right Section */}
@@ -34,7 +30,8 @@ const WhyChooseGbe = () => {
             <div className="feature-icon">🔄</div>
             <h4 className="feature-title">Transfer Debts</h4>
             <p className="feature-description">
-              Need help paying? Let someone else cover you, with their consent. Stay accountable without the pressure.
+              Need help paying? Let someone else cover you, with their consent. Stay accountable
+              without the pressure.
             </p>
           </div>
 
@@ -42,7 +39,8 @@ const WhyChooseGbe = () => {
             <div className="feature-icon">🛡️</div>
             <h4 className="feature-title">Built for Trust</h4>
             <p className="feature-description">
-              Use cash or crypto; your choice. Smart contracts keep repayments secure on-chain when you want extra peace of mind.
+              Use cash or crypto; your choice. Smart contracts keep repayments secure on-chain when
+              you want extra peace of mind.
             </p>
           </div>
 
@@ -50,7 +48,8 @@ const WhyChooseGbe = () => {
             <div className="feature-icon">🏆</div>
             <h4 className="feature-title">Earn While You Help</h4>
             <p className="feature-description">
-              Every good gbeṣe deed earns you XP. Transfer debts, pay on time, help others, then watch your rewards rack up.
+              Every good gbeṣe deed earns you XP. Transfer debts, pay on time, help others, then
+              watch your rewards rack up.
             </p>
           </div>
 
@@ -60,7 +59,7 @@ const WhyChooseGbe = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WhyChooseGbe;
+export default WhyChooseGbe

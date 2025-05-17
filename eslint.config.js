@@ -28,7 +28,9 @@ export default tseslint.config(
       ],
       'prettier/prettier': 'warn', // 👈 make Prettier formatting violations show as warnings
       '@typescript-eslint/no-explicit-any': 'warn',
-
+      'no-irregular-whitespace': 'warn',
+      'no-case-declarations': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
 )

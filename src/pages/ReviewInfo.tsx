@@ -80,14 +80,13 @@ const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
             Back
           </button>
 
-          
-            <button
-              className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
-              style={{ backgroundColor: '#1c2964' }}
-              onClick={onSubmit}
-            >
-              Submit
-            </button>
+          <button
+            className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
+            style={{ backgroundColor: '#1c2964' }}
+            onClick={onSubmit}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </main>

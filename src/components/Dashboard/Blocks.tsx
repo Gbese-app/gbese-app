@@ -22,16 +22,15 @@ export const Block = ({
   label = 'Available Balance',
   amountClassName = '',
   amount = 'N100,000',
-  eyeColor= "#161A26",
+  eyeColor = '#161A26',
   linkText = 'Fund Wallet',
   linkHref = '#',
 }: BlockProps) => {
-
-  const [isBalanceVisible, setIsBalanceVisible] = useState(false);
+  const [isBalanceVisible, setIsBalanceVisible] = useState(false)
 
   const toggleBalanceVisibility = () => {
-    setIsBalanceVisible(!isBalanceVisible);
-  };
+    setIsBalanceVisible(!isBalanceVisible)
+  }
   console.log(toggleBalanceVisibility)
 
   return (
@@ -41,7 +40,7 @@ export const Block = ({
       </div>
 
       <div className={`flex flex-row w-50 md:w-auto items-center ${balanceWrapperClassName}`}>
-        <p className='text-lg m-0 p-0'>{label}</p>
+        <p className="text-lg m-0 p-0">{label}</p>
         <button onClick={toggleBalanceVisibility}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
             <path
@@ -54,12 +53,11 @@ export const Block = ({
             />
           </svg>
         </button>
-        
       </div>
 
       <div className={`font-sora ${amountClassName} font-bold py-2`}>
         <p className="balance-amount">
-          {isBalanceVisible ? `${amount.toLocaleString()}` : "* * * * * *"}
+          {isBalanceVisible ? `${amount.toLocaleString()}` : '* * * * * *'}
         </p>
       </div>
 

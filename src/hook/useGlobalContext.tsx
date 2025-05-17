@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
+import { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
 
 export const useGlobalContext = () => {
-  return useContext<any>(GlobalContext);
-};
+  return useContext<any>(GlobalContext)
+}

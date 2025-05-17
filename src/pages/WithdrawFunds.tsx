@@ -1,62 +1,80 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useWithdrawalMutation } from '../services/mutation';
-import { IWithdrawFunds } from '../types/general';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useWithdrawalMutation } from '../services/mutation'
+import { IWithdrawFunds } from '../types/general'
 
-const WithdrawFunds =() => {
+const WithdrawFunds = () => {
   const recentWithdrawals = [
-    { name: 'John Smith', date: '14/04/2025', amount: '₦20,000', status: 'Pending', method: 'Gbesepay' },
-    { name: 'Jones Deborah', date: '19/04/2025', amount: '₦20,000', status: 'Successful', method: 'Transfer' },
-    { name: 'Abby Grace', date: '22/04/2025', amount: '₦20,000', status: 'Rejected', method: 'GbesePay' }
-  ];
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const navigate = useNavigate();
-  const [method, setMethod] = useState('bank');
+    {
+      name: 'John Smith',
+      date: '14/04/2025',
+      amount: '₦20,000',
+      status: 'Pending',
+      method: 'Gbesepay',
+    },
+    {
+      name: 'Jones Deborah',
+      date: '19/04/2025',
+      amount: '₦20,000',
+      status: 'Successful',
+      method: 'Transfer',
+    },
+    {
+      name: 'Abby Grace',
+      date: '22/04/2025',
+      amount: '₦20,000',
+      status: 'Rejected',
+      method: 'GbesePay',
+    },
+  ]
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const navigate = useNavigate()
+  const [method, setMethod] = useState('bank')
   const [formData, setFormData] = useState({
     amount: '',
     bankName: '',
     accountNumber: '',
     reason: '',
-    attachDebt: false
-  });
+    attachDebt: false,
+  })
 
   const handleInputChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+      [name]: type === 'checkbox' ? checked : value,
+    }))
+  }
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(formData);
-    
+    e.preventDefault()
+    console.log(formData)
+
     const info: IWithdrawFunds = {
       amount: parseInt(formData.amount),
       bankCode: formData.bankName,
-      accountNumber: formData.accountNumber
+      accountNumber: formData.accountNumber,
     }
     withdrawalData(info)
     // setIsPopupOpen(true); // ✅ Show popup on submit
-  };
+  }
 
-  const closePopup = () => setIsPopupOpen(false);
+  const closePopup = () => setIsPopupOpen(false)
 
   useEffect(() => {
-    console.log('Popup state updated:', isPopupOpen);
-  }, [isPopupOpen]);
-  
+    console.log('Popup state updated:', isPopupOpen)
+  }, [isPopupOpen])
+
   const { mutate: withdrawalData } = useWithdrawalMutation()
 
   const handleMethodChange = (method: any) => {
-    setMethod(method);
+    setMethod(method)
     if (method === 'bank') {
-      navigate('/withdrawal');  // Navigate to the Bank Account page
+      navigate('/withdrawal') // Navigate to the Bank Account page
     } else if (method === 'wallet') {
-      navigate('/withdrawal/gbesepay-wallet');  // Navigate to the GbesePay Wallet page
+      navigate('/withdrawal/gbesepay-wallet') // Navigate to the GbesePay Wallet page
     }
-  };
+  }
 
   return (
     <div className="p-9 bg-blue-50 min-h-screen text-gray-800">
@@ -75,19 +93,18 @@ const WithdrawFunds =() => {
         <p className="font-semibold mb-4">Withdrawal Methods</p>
         <p className="text-sm text-gray-600 mb-3">Choose where you want your gbese cash to land.</p>
         <div className="flex space-x-4">
-        <button
-        className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'bank' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-gray-600'}`}
-        onClick={() => handleMethodChange('bank')}
-      >
-        Bank Account
-      </button>
-      <button
-        className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'wallet' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-blue-600 hover:bg-blue-100 text-blue-700'}`}
-        onClick={() => handleMethodChange('wallet')}
-      >
-        GbesePay Wallet
-      </button>
-
+          <button
+            className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'bank' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-gray-600'}`}
+            onClick={() => handleMethodChange('bank')}
+          >
+            Bank Account
+          </button>
+          <button
+            className={`px-4 py-2 w-full rounded border cursor-pointer ${method === 'wallet' ? 'bg-blue-100 border-blue-600 text-blue-700 font-bold' : 'border-gray-300 text-blue-600 hover:bg-blue-100 text-blue-700'}`}
+            onClick={() => handleMethodChange('wallet')}
+          >
+            GbesePay Wallet
+          </button>
         </div>
       </div>
 
@@ -166,9 +183,18 @@ const WithdrawFunds =() => {
               &times;
             </button>
             <div className="text-center">
-               <svg className="text-green-600 text-5xl mb-2 ml-35 sm:ml-45" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 2048 2048">
-                  <path fill="#13BE41" d="M1024 0q141 0 272 36t244 104t207 160t161 207t103 245t37 272q0 141-36 272t-104 244t-160 207t-207 161t-245 103t-272 37q-141 0-272-36t-244-104t-207-160t-161-207t-103-245t-37-272q0-141 36-272t104-244t160-207t207-161T752 37t272-37m603 685l-136-136l-659 659l-275-275l-136 136l411 411z" />
-                </svg>
+              <svg
+                className="text-green-600 text-5xl mb-2 ml-35 sm:ml-45"
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="34"
+                viewBox="0 0 2048 2048"
+              >
+                <path
+                  fill="#13BE41"
+                  d="M1024 0q141 0 272 36t244 104t207 160t161 207t103 245t37 272q0 141-36 272t-104 244t-160 207t-207 161t-245 103t-272 37q-141 0-272-36t-244-104t-207-160t-161-207t-103-245t-37-272q0-141 36-272t104-244t160-207t207-161T752 37t272-37m603 685l-136-136l-659 659l-275-275l-136 136l411 411z"
+                />
+              </svg>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Withdrawal successful</h2>
               <div className="text-left space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -212,11 +238,15 @@ const WithdrawFunds =() => {
                 <td className="py-2">{r.name}</td>
                 <td>{r.date}</td>
                 <td>{r.amount}</td>
-                <td className={
-                  r.status === 'Successful' ? 'text-green-600 font-semibold' :
-                  r.status === 'Rejected' ? 'text-red-600 font-semibold' :
-                  'text-yellow-600 font-semibold'
-                }>
+                <td
+                  className={
+                    r.status === 'Successful'
+                      ? 'text-green-600 font-semibold'
+                      : r.status === 'Rejected'
+                        ? 'text-red-600 font-semibold'
+                        : 'text-yellow-600 font-semibold'
+                  }
+                >
                   {r.status}
                 </td>
                 <td>{r.method}</td>
@@ -226,6 +256,6 @@ const WithdrawFunds =() => {
         </table>
       </div>
     </div>
-  );
+  )
 }
 export default WithdrawFunds

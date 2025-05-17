@@ -13,8 +13,14 @@ export const DebtTransfer = ({ name, bill }: { name: string; bill: string }) => 
         <p className="text-lg md:text-sm">{bill}</p>
       </div>
       <div className="flex flex-row justify-between my-1">
-        <Button title="Accept" style="bg-[#34A67B] text-white text-md md:text-xs my-1 px-8 md:px-4 py-1" />
-        <Button title="Decline" style="bg-[#FAD1D1] text-red-500 text-md md:text-xs my-1 px-8 md:px-5 py-1" />
+        <Button
+          title="Accept"
+          style="bg-[#34A67B] text-white text-md md:text-xs my-1 px-8 md:px-4 py-1"
+        />
+        <Button
+          title="Decline"
+          style="bg-[#FAD1D1] text-red-500 text-md md:text-xs my-1 px-8 md:px-5 py-1"
+        />
         <div>
           <button
             onClick={() => setIsOpen(true)}

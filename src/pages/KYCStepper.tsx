@@ -13,64 +13,65 @@ interface KYCStepperProps {
 }
 
 export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
-
   const { data, isSuccess } = useGetMyUserDetails()
 
-  const { mutate: useUpdateUse } = useUpdateUserMutation()
+  const { mutate: UseUpdateUse } = useUpdateUserMutation()
 
   const [step, setStep] = useState(() => {
-    const saved = localStorage.getItem('formData');
-    const parsed = saved ? JSON.parse(saved) : null;
-    return parsed?.step || 1;
-  });
+    const saved = localStorage.getItem('formData')
+    const parsed = saved ? JSON.parse(saved) : null
+    return parsed?.step || 1
+  })
 
   const [formData, setFormData] = useState<UserData>(() => {
-    const saved = localStorage.getItem('formData');
-    return saved ? JSON.parse(saved) : {
-      firstName: '',
-      lastName: '',
-      dob: '',
-      phone: '',
-      email: '',
-      address: '',
-      identityNumber: '',
-      frontIdImage: '',
-      backIdImage: '',
-      selfie: '',
-      documentType: '',
-      step: 1
-    };
+    const saved = localStorage.getItem('formData')
+    return saved
+      ? JSON.parse(saved)
+      : {
+          firstName: '',
+          lastName: '',
+          dob: '',
+          phone: '',
+          email: '',
+          address: '',
+          identityNumber: '',
+          frontIdImage: '',
+          backIdImage: '',
+          selfie: '',
+          documentType: '',
+          step: 1,
+        }
   })
 
   // On formData change update local storage
   useEffect(() => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-  }, [formData]);
+    localStorage.setItem('formData', JSON.stringify(formData))
+  }, [formData])
 
   useEffect(() => {
-    setFormData((prev: any) => ({ ...prev, step }));
-  }, [step]);
+    setFormData((prev: any) => ({ ...prev, step }))
+  }, [step])
 
   useEffect(() => {
     if (isSuccess && data?.data?.data) {
-      const userDetails: UserData = data.data.data;
-      
+      const userDetails: UserData = data.data.data
+
       setFormData((prev: UserData) => ({
         ...prev,
         firstName: userDetails.firstName || prev.firstName,
         lastName: userDetails.lastName || prev.lastName,
         email: userDetails.email || prev.email,
         // Preserve step from previous formData or default to current step
-      step: prev.step || step,
-      }));
+        step: prev.step || step,
+      }))
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data])
 
   const handleNext = () => setStep((prev: number) => prev + 1)
   const handleBack = () => setStep((prev: number) => prev - 1)
 
   const updateFormData = (data: any) => {
-    setFormData((prev: any) => ({ ...prev, ...data }));
+    setFormData((prev: any) => ({ ...prev, ...data }))
   }
 
   console.log(formData)
@@ -80,42 +81,43 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
     try {
       // Upload front and back ID images
       const [responseFront, responseBack] = await Promise.all([
-        uploadFile(formData.frontIdImage ),
-        uploadFile(formData.backIdImage ),
-      ]);
-      
-      console.log(responseFront?.secure_url);
-      console.log(responseBack?.secure_url);
-       
-      
+        uploadFile(formData.frontIdImage),
+        uploadFile(formData.backIdImage),
+      ])
+
+      console.log(responseFront?.secure_url)
+      console.log(responseBack?.secure_url)
+
       // Check both uploads
       if (responseFront?.secure_url && responseBack?.secure_url) {
         const updatedData: KYCForm = {
           dateOfBirth: formData.dob,
           firstName: formData.firstName,
           lastName: formData.lastName,
-          identityDocuments: responseFront?.secure_url && responseBack?.secure_url 
-            ? [responseFront.secure_url, responseBack.secure_url] : undefined,
-          identityDocumentType: "nin",
+          identityDocuments:
+            responseFront?.secure_url && responseBack?.secure_url
+              ? [responseFront.secure_url, responseBack.secure_url]
+              : undefined,
+          identityDocumentType: 'nin',
           // identityDocumentType: formData.documentType,
           phone: formData.phoneNumber,
           address: {
             street: formData.address,
             town: formData.town,
             state: formData.state,
-            number: '23'
+            number: '23',
           },
           // frontIdImage: responseFront.secure_url,
           // backIdImage: responseBack.secure_url,
-        };
+        }
         console.log(updatedData)
-        useUpdateUse(updatedData);      // Submit updated form with URLs
-        onComplete();                    // Call completion callback
+        UseUpdateUse(updatedData) // Submit updated form with URLs
+        onComplete() // Call completion callback
       } else {
-        console.error("One or both image uploads failed.");
+        console.error('One or both image uploads failed.')
       }
     } catch (error) {
-      console.error("Image upload error:", error);
+      console.error('Image upload error:', error)
     }
   }
 

@@ -1,46 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRegisterMutation } from '../services/mutation';
+import { useRegisterMutation } from '../services/mutation'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-  });
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+  })
 
   const {
     mutate: registerMerchant,
     isPending,
     isSuccess: isRegistrationSuccessfull,
-  } = useRegisterMutation();
+  } = useRegisterMutation()
 
   useEffect(() => {
     if (isRegistrationSuccessfull) {
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        phoneNumber: "",
-      });
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+      })
     }
-  }, [isRegistrationSuccessfull]);
+  }, [isRegistrationSuccessfull])
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
-    
-    event.preventDefault();
-    registerMerchant(formData);
-  };
+    console.log(formData)
+
+    event.preventDefault()
+    registerMerchant(formData)
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -86,7 +84,6 @@ const SignUp = () => {
           </p>
 
           <Link to="https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=http://localhost:5173/dashboard">
-
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +111,7 @@ const SignUp = () => {
               </svg>
               Continue with Google
             </button>
-        </Link>
+          </Link>
 
           {/* <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium">
             <svg

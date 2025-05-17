@@ -1,77 +1,82 @@
-import  { useState } from 'react';
-import '../LoanForm.css';
+import { useState } from 'react'
+import '../LoanForm.css'
 
 const LoanForm: React.FC = () => {
-  const [loanAmount, setLoanAmount] = useState<number | string>('');
-  const [purpose, setPurpose] = useState<string>('');
-  const [employmentStatus, setEmploymentStatus] = useState<string>('');
-  const [incomeRange, setIncomeRange] = useState<string>('');
-  const [wallet, setWallet] = useState<string>('Gbese Pay Wallet');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [loanAmount, setLoanAmount] = useState<number | string>('')
+  const [purpose, setPurpose] = useState<string>('')
+  const [employmentStatus, setEmploymentStatus] = useState<string>('')
+  const [incomeRange, setIncomeRange] = useState<string>('')
+  const [wallet, setWallet] = useState<string>('Gbese Pay Wallet')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [successMessage, setSuccessMessage] = useState<string>('')
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     switch (name) {
       case 'loanAmount':
-        setLoanAmount(value);
-        break;
+        setLoanAmount(value)
+        break
       case 'purpose':
-        setPurpose(value);
-        break;
+        setPurpose(value)
+        break
       case 'employmentStatus':
-        setEmploymentStatus(value);
-        break;
+        setEmploymentStatus(value)
+        break
       case 'incomeRange':
-        setIncomeRange(value);
-        break;
+        setIncomeRange(value)
+        break
       case 'wallet':
-        setWallet(value);
-        break;
+        setWallet(value)
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Basic validation
     if (!loanAmount || !purpose || !employmentStatus || !incomeRange) {
-      setErrorMessage('Please fill out all required fields.');
-      setSuccessMessage('');
-      return;
+      setErrorMessage('Please fill out all required fields.')
+      setSuccessMessage('')
+      return
     }
 
     // Assuming the form is valid, display a success message
-    setSuccessMessage('Your loan application has been successfully submitted! 🎉');
-    setErrorMessage('');
+    setSuccessMessage('Your loan application has been successfully submitted! 🎉')
+    setErrorMessage('')
 
     // Reset the form after 3 seconds
     setTimeout(() => {
-      setLoanAmount('');
-      setPurpose('');
-      setEmploymentStatus('');
-      setIncomeRange('');
-      setWallet('Gbese Pay Wallet');
-      setSuccessMessage('');
-    }, 3000); // 3 seconds delay
+      setLoanAmount('')
+      setPurpose('')
+      setEmploymentStatus('')
+      setIncomeRange('')
+      setWallet('Gbese Pay Wallet')
+      setSuccessMessage('')
+    }, 3000) // 3 seconds delay
 
     console.log({
       loanAmount,
       purpose,
       employmentStatus,
       incomeRange,
-      wallet
-    });
-  };
+      wallet,
+    })
+  }
 
   return (
     <div className="loan-container">
       <div className="loan-header">
-        <h1>Almost There, Boss! <span role="img" aria-label="emoji">😎</span></h1>
+        <h1>
+          Almost There, Boss!{' '}
+          <span role="img" aria-label="emoji">
+            😎
+          </span>
+        </h1>
         <p>Let’s Set You Up!</p>
       </div>
 
@@ -79,7 +84,7 @@ const LoanForm: React.FC = () => {
         <h2>Instant Loan Approval System</h2>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
-        
+
         <form className="loan-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Amount (₦)</label>
@@ -105,11 +110,7 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Employment Status</label>
-            <select
-              name="employmentStatus"
-              value={employmentStatus}
-              onChange={handleInputChange}
-            >
+            <select name="employmentStatus" value={employmentStatus} onChange={handleInputChange}>
               <option>Select employment status</option>
               <option>Employed</option>
               <option>Self-Employed</option>
@@ -121,11 +122,7 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Income Range</label>
-            <select
-              name="incomeRange"
-              value={incomeRange}
-              onChange={handleInputChange}
-            >
+            <select name="incomeRange" value={incomeRange} onChange={handleInputChange}>
               <option>Monthly Income Range (₦)</option>
               <option>₦0 - ₦50,000</option>
               <option>₦50,001 - ₦100,000</option>
@@ -139,11 +136,7 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Preferred Wallet</label>
-            <select
-              name="wallet"
-              value={wallet}
-              onChange={handleInputChange}
-            >
+            <select name="wallet" value={wallet} onChange={handleInputChange}>
               <option>Gbese Pay Wallet</option>
             </select>
           </div>
@@ -152,7 +145,7 @@ const LoanForm: React.FC = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoanForm;
+export default LoanForm

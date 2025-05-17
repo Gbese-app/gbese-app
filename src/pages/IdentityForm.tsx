@@ -8,7 +8,9 @@ interface Props {
 }
 
 const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
-  const [selectedDocumentType, setSelectedDocumentType] = useState<string>(data.documentType || 'National ID')
+  const [selectedDocumentType, setSelectedDocumentType] = useState<string>(
+    data.documentType || 'National ID'
+  )
   const [frontImage, setFrontImage] = useState<string | null>(data.frontIdImage)
   const [backImage, setBackImage] = useState<string | null>(data.backIdImage)
 
@@ -23,9 +25,9 @@ const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
   // Handle doc type change and save to form data
   useEffect(() => {
     if (data.documentType) {
-      setSelectedDocumentType(data.documentType);
+      setSelectedDocumentType(data.documentType)
     }
-  }, [data.documentType]);
+  }, [data.documentType])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, isFront: boolean) => {
     const file = e.target.files?.[0]

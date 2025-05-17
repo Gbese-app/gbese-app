@@ -19,129 +19,124 @@ import { DebtRequest } from './pages/DebtRequest'
 import WithdrawFunds from './pages/WithdrawFunds'
 import WithdrawFunds2 from './pages/WithdrawFunds2'
 import GbesePayWallet from './pages/GbesePayWallet'
-import { WalletProvider } from './contexts/WalletContext';
+import { WalletProvider } from './contexts/WalletContext'
 import CreditOptions from './pages/CreditOptions'
 import LoanForm from './pages/LoanForm'
 import LandingPage from './pages/LandingPage'
-import NftDetailsPage from './pages/NftDetailsPage';
+import NftDetailsPage from './pages/NftDetailsPage'
 // import RewardsPage from './pages/RewardsPage';  // Assuming you have this page
 // import PointsDetailsPage from './pages/PointsDetailsPage';
-import Walletlist from './pages/Walletlist';
-import CompletePurchasPage from './pages/CompletePurchasPage';
+import Walletlist from './pages/Walletlist'
+import CompletePurchasPage from './pages/CompletePurchasPage'
 
 const App = () => {
   return (
     <WalletProvider>
-    <Router>
-      <Routes>
-                <Route path="/" element={<LandingPage />} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
 
-        {/* Public routes */}
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-       
-        
+          {/* Public routes */}
+          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
 
+          {/* KYC routes (no Layout wrapper) */}
+          <Route
+            path="/kycstepper"
+            element={
+              <KYCStepper
+                onComplete={() => {
+                  console.log('KYC process completed')
+                }}
+              />
+            }
+          />
 
+          <Route
+            path="/personalform"
+            element={
+              <PersonalForm
+                onNext={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                onUpdate={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                data={undefined}
+              />
+            }
+          />
 
-        {/* KYC routes (no Layout wrapper) */}
-        <Route
-          path="/kycstepper"
-          element={
-            <KYCStepper
-              onComplete={() => {
-                console.log('KYC process completed')
-              }}
-            />
-          }
-        />
+          <Route
+            path="/identityform"
+            element={
+              <IdentityForm
+                onNext={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                onBack={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                onUpdate={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                data={undefined}
+              />
+            }
+          />
 
-        <Route
-          path="/personalform"
-          element={
-            <PersonalForm
-              onNext={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              onUpdate={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              data={undefined}
-            />
-          }
-        />
+          <Route
+            path="/reviewinfo"
+            element={
+              <ReviewInfo
+                onBack={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                onSubmit={function (): void {
+                  throw new Error('Function not implemented.')
+                }}
+                data={undefined}
+              />
+            }
+          />
 
-        <Route
-          path="/identityform"
-          element={
-            <IdentityForm
-              onNext={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              onBack={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              onUpdate={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              data={undefined}
-            />
-          }
-        />
+          {/* Main app layout routes */}
+          <Route path="/" element={<Layout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
+            <Route path="fundwallet" element={<FundWallet />} />
+            <Route path="/credit" element={<CreditOptions />} />
+            <Route path="/credit/loanform" element={<LoanForm />} />
 
-        <Route
-          path="/reviewinfo"
-          element={
-            <ReviewInfo
-              onBack={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              onSubmit={function (): void {
-                throw new Error('Function not implemented.')
-              }}
-              data={undefined}
-            />
-          }
-        />
+            <Route path="/mydebt" element={<MyDebt />} />
+            <Route path="/transfer-debt" element={<TransferDebtPage />} />
+            <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
+            <Route path="/debt-request" element={<DebtRequest />} />
 
-        {/* Main app layout routes */}
-        <Route path="/" element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
-          <Route path='fundwallet' element={<FundWallet />} />
-          <Route path='/credit' element={<CreditOptions /> } />
-          <Route path='/loanform' element={<LoanForm />} />
+            <Route path="/rewards" element={<RewardsPage />} />
 
-          <Route path="/mydebt" element={<MyDebt />} />
-          <Route path="/transfer-debt" element={<TransferDebtPage />} />
-          <Route path="/debt-transfer-success" element={<DebtTransferSuccess />} />
-          <Route path="/debt-request" element={<DebtRequest />} />
+            {/* Tracy Conflict */}
+            <Route path="/rewards/nft/:nftName" element={<NftDetailsPage />} />
+            <Route path="/rewards/complete-purchase" element={<CompletePurchasPage />} />
+            <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
+            <Route path="/rewards/wallet-list" element={<Walletlist />} />
+            {/* Tracy Conflict */}
 
-          <Route path="/rewards" element={<RewardsPage />} />
+            <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
-          {/* Tracy Conflict */}
-          <Route path="/rewards/nft/:nftName" element={<NftDetailsPage />} /> 
-          <Route path="/rewards/complete-purchase" element={<CompletePurchasPage/>} />
-          <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
-          <Route path="/rewards/wallet-list" element={<Walletlist />} />
-          {/* Tracy Conflict */}
+            <Route path="/transaction" element={<Transaction />} />
+            <Route path="/withdrawal" element={<WithdrawFunds />} />
+            {/* <Route path="/withdrawal" element={<WithdrawFunds />} /> */}
+            <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
+            <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
 
-          <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
-
-          <Route path="/transaction" element={<Transaction />} />
-           <Route path="/withdrawal" element={<WithdrawFunds />} />
-          {/* <Route path="/withdrawal" element={<WithdrawFunds />} /> */}
-          <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
-          <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
-          
-
-          {/* <Route path="/contact" element={<ContactPage />} /> */}
-          {/* <Route path="/services" element={<ServicesPage />} /> */}
-        </Route>
-      </Routes>
-    </Router>
+            {/* <Route path="/contact" element={<ContactPage />} /> */}
+            {/* <Route path="/services" element={<ServicesPage />} /> */}
+          </Route>
+        </Routes>
+      </Router>
     </WalletProvider>
   )
 }
 
-export default App;
+export default App

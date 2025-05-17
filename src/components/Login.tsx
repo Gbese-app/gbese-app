@@ -1,23 +1,15 @@
 import { Link } from 'react-router-dom'
-import { useLoginMutation } from "../services/mutation";
-import { ChangeEvent, useEffect, useState } from 'react';
-import { FormData } from '../types/general';
-
+import { useLoginMutation } from '../services/mutation'
+import { ChangeEvent, useState } from 'react'
+import { FormData } from '../types/general'
 
 const Login = () => {
-
-  const { mutate, isPending, isSuccess } = useLoginMutation();
-
-  useEffect(() => {
-    if (isSuccess) {
-      
-    }
-  }, [isSuccess]);
+  const { mutate, isPending } = useLoginMutation()
 
   const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: '',
+  })
   console.log(formData)
 
   // Handle form change
@@ -25,14 +17,13 @@ const Login = () => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }));
-  };
+    }))
+  }
 
   const handleUserLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mutate(formData);
-    
-  };
+    e.preventDefault()
+    mutate(formData)
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -78,9 +69,7 @@ const Login = () => {
           </p>
 
           <Link to="https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=http://localhost:5173/dashboard">
-            <button 
-              className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer" >
-              
+            <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="26"
@@ -137,13 +126,13 @@ const Login = () => {
               />
             </div>
 
-              <button
-                type="submit"
-                className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8"
-                disabled={isPending}
-              >
-                Sign in
-              </button>
+            <button
+              type="submit"
+              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8"
+              disabled={isPending}
+            >
+              Sign in
+            </button>
           </form>
 
           <p className="text-xs text-center text-gray-400 mt-4">

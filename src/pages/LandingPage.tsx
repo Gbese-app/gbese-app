@@ -1,37 +1,39 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import "../LandingPage.css";
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import '../LandingPage.css'
 
 // Importing individual sections/components
-import WorksPage from "./WorksPage";
-import WhyChoose from "./WhyChoose";
-import GbeAdventure from "./GbeAdventure";
-import GbeQuestions from "./GbeQuestions";
-import Footer from "./Footer";
+import WorksPage from './WorksPage'
+import WhyChoose from './WhyChoose'
+import GbeAdventure from './GbeAdventure'
+import GbeQuestions from './GbeQuestions'
+import Footer from './Footer'
 
 const LandingPage = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false)
 
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-  };
+    setIsNavOpen(!isNavOpen)
+  }
 
   return (
     <div className="landing-page">
       {/* Navbar with anchor links */}
       <header className="navbar">
-        <img
-          className="logo"
-          src="/src/assets/Logo Dark BG.png"
-          alt="Gbese Logo"
-        />
+        <img className="logo" src="/src/assets/Logo Dark BG.png" alt="Gbese Logo" />
         <button className="toggle-btn" onClick={toggleNav} aria-label="Toggle navigation">
-          <span className={isNavOpen ? "hamburger open" : "hamburger"}></span>
+          <span className={isNavOpen ? 'hamburger open' : 'hamburger'}></span>
         </button>
         <nav className="nav-links">
-          <a href="#works-page" onClick={() => setIsNavOpen(false)}>About Us</a>
-          <a href="#footer" onClick={() => setIsNavOpen(false)}>Contact</a>
-          <a href="#faq" onClick={() => setIsNavOpen(false)}>FAQ's</a>
+          <a href="#works-page" onClick={() => setIsNavOpen(false)}>
+            About Us
+          </a>
+          <a href="#footer" onClick={() => setIsNavOpen(false)}>
+            Contact
+          </a>
+          <a href="#faq" onClick={() => setIsNavOpen(false)}>
+            FAQ's
+          </a>
         </nav>
         <div className="auth-buttons">
           <div className="log-btn">
@@ -48,9 +50,15 @@ const LandingPage = () => {
         {/* Mobile menu for mobile view */}
         <div className={`mobile-menu ${isNavOpen ? 'open' : ''}`}>
           <nav className="nav-links">
-            <a href="#works-page" onClick={() => setIsNavOpen(false)}>About Us</a>
-            <a href="#footer" onClick={() => setIsNavOpen(false)}>Contact</a>
-            <a href="#faq" onClick={() => setIsNavOpen(false)}>FAQ's</a>
+            <a href="#works-page" onClick={() => setIsNavOpen(false)}>
+              About Us
+            </a>
+            <a href="#footer" onClick={() => setIsNavOpen(false)}>
+              Contact
+            </a>
+            <a href="#faq" onClick={() => setIsNavOpen(false)}>
+              FAQ's
+            </a>
           </nav>
           <div className="auth-buttons">
             <div className="log-btn">
@@ -69,10 +77,14 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <h1>Shift Debt Like a Pro<br />No Bank Stress, No Wahala!</h1>
+        <h1>
+          Shift Debt Like a Pro
+          <br />
+          No Bank Stress, No Wahala!
+        </h1>
         <p>
-          GBESE lets you transfer loans to willing helpers, negotiate better
-          terms, earn and exchange crypto rewards and breathe easy.
+          GBESE lets you transfer loans to willing helpers, negotiate better terms, earn and
+          exchange crypto rewards and breathe easy.
         </p>
         <div className="cta-wrapper">
           <Link to={'/sign-up'}>
@@ -84,10 +96,7 @@ const LandingPage = () => {
 
       {/* App Screenshot */}
       <div className="app-screenshot">
-        <img
-          src="/src/assets/gbese-app-screenshot1.png"
-          alt="Gbese App Screenshot"
-        />
+        <img src="/src/assets/gbese-app-screenshot1.png" alt="Gbese App Screenshot" />
       </div>
 
       {/* Works Page Section */}
@@ -115,7 +124,7 @@ const LandingPage = () => {
         <Footer />
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage

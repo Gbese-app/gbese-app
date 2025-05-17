@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Spinthewheel from '../components/Dashboard/Spinthewheel'
-import { useLocation, useNavigate } from "react-router-dom";
-import { useWallet } from "../contexts/WalletContext";
-import { useGbeseBalance } from "../hook/useGbeseBalance";
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useWallet } from '../contexts/WalletContext'
+import { useGbeseBalance } from '../hook/useGbeseBalance'
 
 const nftList = [
   {
@@ -62,26 +62,24 @@ const nftList = [
 ]
 
 const RewardsPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { userAddress } = useWallet();
-  const balance = useGbeseBalance(userAddress);
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { userAddress } = useWallet()
+  const balance = useGbeseBalance(userAddress)
 
-  const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
-    location.state?.activeTab || "marketplace"
-  );
+  const [activeTab, setActiveTab] = useState<'marketplace' | 'collection' | 'LuckyWheel'>(
+    location.state?.activeTab || 'marketplace'
+  )
 
   const handlePurchase = (nftName: string) => {
-    if (nftName === "King Ape") {
-    
-      navigate(`/rewards/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
+    if (nftName === 'King Ape') {
+      navigate(`/rewards/nft/${nftName.toLowerCase().replace(' ', '-')}`, {
         state: { nft: nftList.find((nft) => nft.name === nftName) },
-      });
+      })
     } else {
-   
-      alert("Details not available for now");
+      alert('Details not available for now')
     }
-  };
+  }
 
   return (
     <div className="flex">
@@ -107,9 +105,8 @@ const RewardsPage = () => {
               <h2 className="text-xl font-semibold">Gbese Tokens</h2>
               <img src="images/Framelogo2.png" alt="" />
             </div>
-            <p className="text-xl font-bold mt-7">
-              {balance !== null ? `${balance} GBT` : "--"}
-            </p>
+
+            <p className="text-xl font-bold mt-7">{balance !== null ? `${balance} GBT` : '--'}</p>
             <button className="mt-5 w-40 bg-[#031A69] text-white py-2 rounded-lg  hover:bg-[#031A69] cursor-pointer">
               Verify wallet
             </button>
@@ -123,8 +120,8 @@ const RewardsPage = () => {
                 activeTab === 'marketplace' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
               onClick={() => {
-                setActiveTab("marketplace");
-                navigate("/rewards", { state: { activeTab: "marketplace" } });
+                setActiveTab('marketplace')
+                navigate('/rewards', { state: { activeTab: 'marketplace' } })
               }}
             >
               NFT Marketplace
@@ -134,8 +131,8 @@ const RewardsPage = () => {
                 activeTab === 'collection' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
               onClick={() => {
-                setActiveTab('collection');
-                navigate("/rewards", { state: { activeTab: "collection" } });
+                setActiveTab('collection')
+                navigate('/rewards', { state: { activeTab: 'collection' } })
               }}
             >
               Your Collection
@@ -148,7 +145,7 @@ const RewardsPage = () => {
               }`}
               onClick={() => {
                 setActiveTab('LuckyWheel')
-                navigate("/rewards", { state: { activeTab: "LuckyWheel" } });
+                navigate('/rewards', { state: { activeTab: 'LuckyWheel' } })
               }}
             >
               Lucky Wheel
@@ -190,7 +187,6 @@ const RewardsPage = () => {
                     <button
                       onClick={() => handlePurchase(nft.name)}
                       className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded"
-
                     >
                       Purchase NFT
                     </button>
@@ -213,8 +209,8 @@ const RewardsPage = () => {
                 }}
               >
                 {userAddress
-                  ? `${userAddress.slice(0,6)}…${userAddress.slice(-4)}`
-                  : "Connect Wallet"}
+                  ? `${userAddress.slice(0, 6)}…${userAddress.slice(-4)}`
+                  : 'Connect Wallet'}
               </button>
             </div>
           )}

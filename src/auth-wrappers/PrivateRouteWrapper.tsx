@@ -1,19 +1,19 @@
-import { ReactElement, ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../hook/useAuthContext";
+import { ReactElement, ReactNode } from 'react'
+import { Navigate } from 'react-router-dom'
+import { useAuthContext } from '../hook/useAuthContext'
 
 type Props = {
-  component: ReactNode;
-};
+  component: ReactNode
+}
 
 const PrivateRouteWrapper = ({ component }: Props): ReactElement => {
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn } = useAuthContext()
 
   if (!isLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace />
   }
 
-  return <>{component}</>;
-};
+  return <>{component}</>
+}
 
-export default PrivateRouteWrapper;
+export default PrivateRouteWrapper

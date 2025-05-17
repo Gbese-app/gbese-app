@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import '../GbeAdventure.css';
+import { Link } from 'react-router-dom'
+import '../GbeAdventure.css'
 
 const GbeAdventure = () => {
   return (
@@ -39,7 +39,7 @@ const GbeAdventure = () => {
         <button className="cta-button">Get in, Let’s Go</button>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default GbeAdventure;
+export default GbeAdventure

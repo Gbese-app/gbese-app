@@ -58,8 +58,6 @@ const Kene = () => {
     //         </div>
     //       </div>
 
-      
-
     //   {/* Debt Details Popup */}
     //   {isPopupOpen && (
     //     <div className="popup-overlay">
@@ -93,7 +91,7 @@ const Kene = () => {
     //     )}
     //   </div>
     // </div>
-    );
-  }
+  )
+}
 
-export default Kene;
+export default Kene

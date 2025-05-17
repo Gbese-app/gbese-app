@@ -1,123 +1,119 @@
 // This file talks to the backend server
-import axios from "axios";
-import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from "../types/general";
+import axios from 'axios'
+import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from '../types/general'
 
 type FormDataNot = {
-  title: string;
-  content: string;
-};
+  title: string
+  content: string
+}
 
-const BASE_URL = "https://gbese-backend.onrender.com/api/v1/";
+const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
-});
+})
 
 const axiosInstanceWithToken = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
-});
+})
 
 // Add a request interceptor to include the bearer token in the header
 axiosInstanceWithToken.interceptors.request.use(
   (config) => {
     // Retrieve the token gotten back from the login stored in the local Storage
-    config.withCredentials = true;
-    return config; // Return the modified config
+    config.withCredentials = true
+    return config // Return the modified config
   },
   (error) => {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
 // POST Requests
 
 // Auth
 export const loginUser = async (data: FormData) => {
-  return await axiosInstance.post("auth/login", data);
-};
+  return await axiosInstance.post('auth/login', data)
+}
 
 export const registerUser = async (data: IRegisterUser) => {
-    return await axiosInstance.post("auth/register", data);
-};
+  return await axiosInstance.post('auth/register', data)
+}
 
 // users
 export const UpdateUserDetails = async (data: KYCForm) => {
-    return await axiosInstanceWithToken.patch("users/me", data);
-};  
+  return await axiosInstanceWithToken.patch('users/me', data)
+}
 
 // Debt Request
 export const createDebtRequest = async (data: FormDataNot) => {
-  return await axiosInstanceWithToken.post("debt-requests", data);
-};
+  return await axiosInstanceWithToken.post('debt-requests', data)
+}
 
 export const updateDebtRequest = async (data: any, debtRequestId: string) => {
-  return await axiosInstanceWithToken.post(`debt-requests/:${debtRequestId}`, data);
-};
+  return await axiosInstanceWithToken.post(`debt-requests/:${debtRequestId}`, data)
+}
 
 // Account
 export const peerTransfer = async () => {
-  return await axiosInstanceWithToken.post(`accounts/transfer`);
-}; 
+  return await axiosInstanceWithToken.post(`accounts/transfer`)
+}
 
 export const withdrawFunds = async (data: IWithdrawFunds) => {
-  return await axiosInstanceWithToken.post(`accounts/withdraw`, data);
-};
+  return await axiosInstanceWithToken.post(`accounts/withdraw`, data)
+}
 
 export const disableAccount = async () => {
-    return await axiosInstanceWithToken.patch(`accounts/disable`);
-};
+  return await axiosInstanceWithToken.patch(`accounts/disable`)
+}
 
 export const enableAccount = async () => {
-    return await axiosInstanceWithToken.patch(`accounts/enable`);
-  };
-
-
+  return await axiosInstanceWithToken.patch(`accounts/enable`)
+}
 
 // GET Requests
 // auth
 export const verifyEmail = async (token: string) => {
-  if (!token) token = "";
-  return await axiosInstance.get(`auth/verify-email?token=${token}`);
-};
+  if (!token) token = ''
+  return await axiosInstance.get(`auth/verify-email?token=${token}`)
+}
 
 // users
 export const getUserDetails = async () => {
-  return await axiosInstanceWithToken.get(
-    `users/me`
-  );
-};
+  return await axiosInstanceWithToken.get(`users/me`)
+}
 
 export const searchUser = async (search: string) => {
-  return await axiosInstanceWithToken.get(`users/search?search=${search}`);
-};
+  return await axiosInstanceWithToken.get(`users/search?search=${search}`)
+}
 
 // Debt Request
 export const CurrentUserDebtRequest = async (role: string) => {
-  return await axiosInstanceWithToken.get(`debt-requests?role=${role}`);
-};
+  return await axiosInstanceWithToken.get(`debt-requests?role=${role}`)
+}
 
 export const getAllDebtRequests = async () => {
-  return await axiosInstanceWithToken.get("debt-requests/all");
-};
+  return await axiosInstanceWithToken.get('debt-requests/all')
+}
 
 // Account
 export const getMyAccount = async () => {
-  return await axiosInstanceWithToken.get(`accounts/me`);
-};
+  return await axiosInstanceWithToken.get(`accounts/me`)
+}
 
 export const getAnAccount = async (accountId: string) => {
-  return await axiosInstanceWithToken.get(`accounts/:${accountId}`);
-};
+  return await axiosInstanceWithToken.get(`accounts/:${accountId}`)
+}
 
 // Transactions
 export const getTransaction = async () => {
-    return await axiosInstanceWithToken.get(`transactions`);
-};
+  return await axiosInstanceWithToken.get(`transactions`)
+}
 
 export const getTransactionByRef = async (reference: string) => {
-    return await axiosInstanceWithToken.get(`transactions/:${reference}`);
-};
+  return await axiosInstanceWithToken.get(`transactions/:${reference}`)
+}

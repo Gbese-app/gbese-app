@@ -1,19 +1,18 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function CompletePurchasPage() {
-  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
-  const { nftName } = useParams<{ nftName: string }>();
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null)
+  const [showPopup, setShowPopup] = useState(false)
+  const navigate = useNavigate()
+  const { nftName } = useParams<{ nftName: string }>()
 
-  const isSelected = (method: string) => paymentMethod === method;
+  const isSelected = (method: string) => paymentMethod === method
 
   return (
     <div className="min-h-screen bg-white text-gray-900 p-4 flex justify-center items-center relative">
       <div className="bg-[#f1f5ff] w-full min-h-screen flex justify-center items-start py-16 px-6">
         <div className="w-full max-w-4xl space-y-10">
-         
           <div className="p-6">
             <button
               onClick={() => navigate(`/nft/${nftName}`)}
@@ -25,7 +24,6 @@ export default function CompletePurchasPage() {
             <h1 className="text-3xl font-bold">Complete Your Purchase</h1>
           </div>
 
-        
           <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10">
             <div className="flex items-center border-b border-gray-300 pb-6 mb-6">
               <img
@@ -54,25 +52,27 @@ export default function CompletePurchasPage() {
             </div>
           </div>
 
-      
           <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10">
             <h3 className="font-semibold text-2xl mb-6">Select Payment Method</h3>
 
-          
             <div
               className={`flex items-center p-5 mb-4 border rounded-xl cursor-pointer transition ${
-                isSelected("Crypto Wallet") ? "border-blue-600 bg-blue-50" : "border-gray-300"
+                isSelected('Crypto Wallet') ? 'border-blue-600 bg-blue-50' : 'border-gray-300'
               }`}
               onClick={() =>
-                isSelected("Crypto Wallet") ? setPaymentMethod(null) : setPaymentMethod("Crypto Wallet")
+                isSelected('Crypto Wallet')
+                  ? setPaymentMethod(null)
+                  : setPaymentMethod('Crypto Wallet')
               }
             >
               <input
                 type="radio"
                 name="payment"
-                checked={isSelected("Crypto Wallet")}
+                checked={isSelected('Crypto Wallet')}
                 onChange={() =>
-                  isSelected("Crypto Wallet") ? setPaymentMethod(null) : setPaymentMethod("Crypto Wallet")
+                  isSelected('Crypto Wallet')
+                    ? setPaymentMethod(null)
+                    : setPaymentMethod('Crypto Wallet')
                 }
                 className="form-checkbox mr-4 w-5 h-5"
               />
@@ -84,18 +84,20 @@ export default function CompletePurchasPage() {
 
             <div
               className={`flex items-center p-5 mb-6 border rounded-xl cursor-pointer transition ${
-                isSelected("Gbese Token") ? "border-blue-600 bg-blue-50" : "border-gray-300"
+                isSelected('Gbese Token') ? 'border-blue-600 bg-blue-50' : 'border-gray-300'
               }`}
               onClick={() =>
-                isSelected("Gbese Token") ? setPaymentMethod(null) : setPaymentMethod("Gbese Token")
+                isSelected('Gbese Token') ? setPaymentMethod(null) : setPaymentMethod('Gbese Token')
               }
             >
               <input
                 type="radio"
                 name="payment"
-                checked={isSelected("Gbese Token")}
+                checked={isSelected('Gbese Token')}
                 onChange={() =>
-                  isSelected("Gbese Token") ? setPaymentMethod(null) : setPaymentMethod("Gbese Token")
+                  isSelected('Gbese Token')
+                    ? setPaymentMethod(null)
+                    : setPaymentMethod('Gbese Token')
                 }
                 className="form-checkbox mr-4 w-5 h-5"
               />
@@ -105,10 +107,9 @@ export default function CompletePurchasPage() {
               </div>
             </div>
 
-          
             <button
               className={`w-full text-white py-4 px-8 text-lg rounded-lg transition ${
-                paymentMethod ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-400 cursor-not-allowed"
+                paymentMethod ? 'bg-blue-700 hover:bg-blue-800' : 'bg-gray-400 cursor-not-allowed'
               }`}
               disabled={!paymentMethod}
               onClick={() => setShowPopup(true)}
@@ -118,7 +119,6 @@ export default function CompletePurchasPage() {
           </div>
         </div>
       </div>
-
 
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex justify-center items-center">
@@ -138,7 +138,8 @@ export default function CompletePurchasPage() {
             </div>
             <h2 className="text-2xl font-bold mb-2">Purchase Successful</h2>
             <p className="text-gray-600 mb-6">
-              Congratulations! You have successfully purchased the <strong>King Ape</strong> NFT. It has been added to your collection.
+              Congratulations! You have successfully purchased the <strong>King Ape</strong> NFT. It
+              has been added to your collection.
             </p>
             <div className="flex items-center bg-gray-50 p-4 rounded-lg mb-6">
               <img src="/images/king-ape.png" alt="King Ape" className="w-21 h-19 rounded mr-4" />
@@ -149,28 +150,27 @@ export default function CompletePurchasPage() {
             </div>
 
             <button
-  onClick={() => {
-    setShowPopup(false);
-    navigate("/rewards", { state: { activeTab: "collection" } });
-  }}
-  className="w-full border border-gray-400 text-black py-3 rounded hover:bg-[#05238C] hover:text-white"
->
-  View My Collection
-</button>
+              onClick={() => {
+                setShowPopup(false)
+                navigate('/rewards', { state: { activeTab: 'collection' } })
+              }}
+              className="w-full border border-gray-400 text-black py-3 rounded hover:bg-[#05238C] hover:text-white"
+            >
+              View My Collection
+            </button>
 
-<button
-  onClick={() => {
-    setShowPopup(false);
-    navigate("/rewards", { state: { activeTab: "marketplace" } })
-  }}
-  className="w-full border border-gray-400 text-black py-3 rounded mt-5 hover:bg-[#05238C] hover:text-white"
->
-  Back to Marketplace
-</button>
-
+            <button
+              onClick={() => {
+                setShowPopup(false)
+                navigate('/rewards', { state: { activeTab: 'marketplace' } })
+              }}
+              className="w-full border border-gray-400 text-black py-3 rounded mt-5 hover:bg-[#05238C] hover:text-white"
+            >
+              Back to Marketplace
+            </button>
           </div>
         </div>
       )}
     </div>
-  );
+  )
 }
