@@ -1,43 +1,129 @@
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PersonalInfoForm from './PersonalForm'
 import IdentityDocumentForm from './IdentityForm'
 import ReviewInfo from './ReviewInfo'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { useGetMyUserDetails } from '../services/queries'
+import { KYCForm, UserData } from '../types/general'
+import { useUpdateUserMutation } from '../services/mutation'
+import { uploadFile } from '../lib/uploads'
 
 interface KYCStepperProps {
   onComplete: () => void
 }
 
 export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
-  const [step, setStep] = useState(1)
-  const [formData, setFormData] = useState({
-    name: '',
-    dob: '',
-    phone: '',
-    email: '',
-    address: '',
-    identityNumber: '',
-    frontID: '',
-    backID: '',
-    selfie: '',
+  const { data, isSuccess } = useGetMyUserDetails()
+
+  const { mutate: UseUpdateUse } = useUpdateUserMutation()
+
+  const [step, setStep] = useState(() => {
+    const saved = localStorage.getItem('formData')
+    const parsed = saved ? JSON.parse(saved) : null
+    return parsed?.step || 1
   })
 
-  const handleNext = () => setStep((prev) => prev + 1)
-  const handleBack = () => setStep((prev) => prev - 1)
+  const [formData, setFormData] = useState<UserData>(() => {
+    const saved = localStorage.getItem('formData')
+    return saved
+      ? JSON.parse(saved)
+      : {
+          firstName: '',
+          lastName: '',
+          dob: '',
+          phone: '',
+          email: '',
+          address: '',
+          identityNumber: '',
+          frontIdImage: '',
+          backIdImage: '',
+          selfie: '',
+          documentType: '',
+          step: 1,
+        }
+  })
+
+  // On formData change update local storage
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData))
+  }, [formData])
+
+  useEffect(() => {
+    setFormData((prev: any) => ({ ...prev, step }))
+  }, [step])
+
+  useEffect(() => {
+    if (isSuccess && data?.data?.data) {
+      const userDetails: UserData = data.data.data
+
+      setFormData((prev: UserData) => ({
+        ...prev,
+        firstName: userDetails.firstName || prev.firstName,
+        lastName: userDetails.lastName || prev.lastName,
+        email: userDetails.email || prev.email,
+        // Preserve step from previous formData or default to current step
+        step: prev.step || step,
+      }))
+    }
+  }, [isSuccess, data])
+
+  const handleNext = () => setStep((prev: number) => prev + 1)
+  const handleBack = () => setStep((prev: number) => prev - 1)
 
   const updateFormData = (data: any) => {
-    setFormData({ ...formData, ...data })
+    setFormData((prev: any) => ({ ...prev, ...data }))
   }
 
-  const handleSubmit = () => {
+  console.log(formData)
+  const handleSubmit = async () => {
     console.log('Final KYC data submitted:', formData)
-    onComplete()
+
+    try {
+      // Upload front and back ID images
+      const [responseFront, responseBack] = await Promise.all([
+        uploadFile(formData.frontIdImage),
+        uploadFile(formData.backIdImage),
+      ])
+
+      console.log(responseFront?.secure_url)
+      console.log(responseBack?.secure_url)
+
+      // Check both uploads
+      if (responseFront?.secure_url && responseBack?.secure_url) {
+        const updatedData: KYCForm = {
+          dateOfBirth: formData.dob,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          identityDocuments:
+            responseFront?.secure_url && responseBack?.secure_url
+              ? [responseFront.secure_url, responseBack.secure_url]
+              : undefined,
+          identityDocumentType: 'nin',
+          // identityDocumentType: formData.documentType,
+          phone: formData.phoneNumber,
+          address: {
+            street: formData.address,
+            town: formData.town,
+            state: formData.state,
+            number: '23',
+          },
+          // frontIdImage: responseFront.secure_url,
+          // backIdImage: responseBack.secure_url,
+        }
+        console.log(updatedData)
+        UseUpdateUse(updatedData) // Submit updated form with URLs
+        onComplete() // Call completion callback
+      } else {
+        console.error('One or both image uploads failed.')
+      }
+    } catch (error) {
+      console.error('Image upload error:', error)
+    }
   }
 
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
-      {/* Further reduced sidebar width to w-1/8 */}
+      {/* Sidebar */}
       <aside className="fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white pt-6 pb-8 pl-4 pr-4 sticky">
         <img src="./src/assets/Logo Dark BG.png" alt="gbese" className="h-12 w-25" />
         <div className="mb-8">
@@ -49,7 +135,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             <div className="relative flex flex-col items-center">
               <div className="w-6 h-6 flex items-center justify-center rounded-full border border-white bg-transparent">
                 {step > 1 ? (
-                  <CheckCircleIcon className="h-4 w-4 text-white" />
+                  <CheckCircleIcon className="h-4 w-4 text-green-400" />
                 ) : step === 1 ? (
                   <div className="text-xs text-white font-semibold">{step}</div>
                 ) : (
@@ -79,21 +165,13 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             <div className="relative flex flex-col items-center">
               <div className="w-6 h-6 flex items-center justify-center rounded-full border border-white bg-transparent">
                 {step > 2 ? (
-                  <CheckCircleIcon className="h-4 w-4 text-white" />
+                  <CheckCircleIcon className="h-4 w-4 text-green-400" />
                 ) : step === 2 ? (
                   <div className="text-xs text-white font-semibold">{step}</div>
                 ) : (
                   <div className="text-xs text-white font-semibold">{2}</div>
                 )}
               </div>
-              {step >= 2 && (
-                <div className="mt-2 flex flex-col items-center">
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                  <div className="text-white text-xs">|</div>
-                </div>
-              )}
             </div>
             <div>
               <span className="block text-sm text-white">Step 2</span>
@@ -107,7 +185,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             <div className="relative flex flex-col items-center">
               <div className="w-6 h-6 flex items-center justify-center rounded-full border border-white bg-transparent">
                 {step > 3 ? (
-                  <CheckCircleIcon className="h-4 w-4 text-white" />
+                  <CheckCircleIcon className="h-4 w-4 text-green-400" />
                 ) : step === 3 ? (
                   <div className="text-xs text-white font-semibold">{step}</div>
                 ) : (

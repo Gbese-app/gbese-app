@@ -33,6 +33,17 @@ jobs:
       - name: Lint codebase and fix errors using prettier
         run: npm run lint:fix
 
+      # Error handling for the build step
+      - name: Remove node_modules and lock file (force rebuild)
+        run: rm -rf node_modules package-lock.json
+      
+      - name: Clear npm cache
+        run: npm cache clean --force
+      
+      - name: Reinstall packages cleanly
+        run: npm install
+      # Error handling for the build step
+
       - name: Build project
         run: npm run build
 

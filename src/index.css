@@ -3,6 +3,12 @@
 .parent-container {
      width: 220px;
      height: 220px;
+     margin: 0 auto;
+     /* display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column; */
+
 
      > div {
           height: 100%;
@@ -11,3 +17,11 @@
           max-width: unset;
      }
 }
+
+/* .hover-button {
+     transition-colors 
+     duration-300 
+     ease-in-out
+     hover:bg-[#CDD7F6] 
+     hover:text-[black]
+} */

@@ -1,83 +1,85 @@
 import { useState } from 'react'
 import Spinthewheel from '../components/Dashboard/Spinthewheel'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useWallet } from '../contexts/WalletContext'
+import { useGbeseBalance } from '../hook/useGbeseBalance'
 
 const nftList = [
   {
     name: 'King Ape',
     creator: 'Ralph Edwards',
     bid: '1.52 ETH',
-    image: '/images/king-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg',
   },
   {
     name: 'Street Legend',
     creator: 'Marvin McKinney',
     bid: '2.78 ETH',
-    image: '/images/street-legend.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.39 (3).jpeg',
   },
   {
     name: 'Boss Ape',
     creator: 'Annette Black',
     bid: '1.78 ETH',
-    image: '/images/boss-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (4).jpeg',
   },
   {
     name: 'Party Ape',
     creator: 'Esther Johnson',
     bid: '2.45 ETH',
-    image: '/images/party-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (5).jpeg',
   },
   {
     name: 'Pilgrim Ape',
     creator: 'Khalid Mohammed',
     bid: '4.12 ETH',
-    image: '/images/pilgrim-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (6).jpeg',
   },
   {
     name: 'Space Ape',
     creator: 'Alex Turner',
     bid: '8.24 ETH',
-    image: '/images/space-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (7).jpeg',
   },
   {
     name: 'Chill Ape',
     creator: 'Martinez Joe',
     bid: '8.24 ETH',
-    image: '/images/chill-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.41 (1).jpeg',
   },
   {
     name: 'Rabel Ape',
     creator: 'Jordan Blake',
     bid: '8.24 ETH',
-    image: '/images/rabal-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.41 (2).jpeg',
   },
   {
     name: 'Battle Ape',
     creator: 'Chris Njoku',
     bid: '8.24 ETH',
-    image: '/images/battle-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.42.jpeg',
   },
 ]
 
 const RewardsPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { userAddress } = useWallet()
+  const balance = useGbeseBalance(userAddress)
 
-  const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
-    location.state?.activeTab || "marketplace"
-  );
+  const [activeTab, setActiveTab] = useState<'marketplace' | 'collection' | 'LuckyWheel'>(
+    location.state?.activeTab || 'marketplace'
+  )
 
   const handlePurchase = (nftName: string) => {
-    if (nftName === "King Ape") {
-    
-      navigate(`/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
+    if (nftName === 'King Ape') {
+      navigate(`/rewards/nft/${nftName.toLowerCase().replace(' ', '-')}`, {
         state: { nft: nftList.find((nft) => nft.name === nftName) },
-      });
+      })
     } else {
-   
-      alert("Details not available for now");
+      alert('Details not available for now')
     }
-  };
+  }
 
   return (
     <div className="flex">
@@ -103,7 +105,11 @@ const RewardsPage = () => {
               <h2 className="text-xl font-semibold">Gbese Tokens</h2>
               <img src="images/Framelogo2.png" alt="" />
             </div>
-            <p className="text-xl font-bold mt-7">75 GBESE</p>
+
+            <p className="text-xl font-bold mt-7">{balance !== null ? `${balance} GBT` : '--'}</p>
+            <button className="mt-5 w-40 bg-[#031A69] text-white py-2 rounded-lg  hover:bg-[#031A69] cursor-pointer">
+              Verify wallet
+            </button>
           </div>
         </div>
 
@@ -114,8 +120,8 @@ const RewardsPage = () => {
                 activeTab === 'marketplace' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
               onClick={() => {
-                setActiveTab("marketplace");
-                navigate("/rewards", { state: { activeTab: "marketplace" } });
+                setActiveTab('marketplace')
+                navigate('/rewards', { state: { activeTab: 'marketplace' } })
               }}
             >
               NFT Marketplace
@@ -125,8 +131,8 @@ const RewardsPage = () => {
                 activeTab === 'collection' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
               onClick={() => {
-                setActiveTab('collection');
-                navigate("/rewards", { state: { activeTab: "collection" } });
+                setActiveTab('collection')
+                navigate('/rewards', { state: { activeTab: 'collection' } })
               }}
             >
               Your Collection
@@ -139,7 +145,7 @@ const RewardsPage = () => {
               }`}
               onClick={() => {
                 setActiveTab('LuckyWheel')
-                navigate("/rewards", { state: { activeTab: "LuckyWheel" } });
+                navigate('/rewards', { state: { activeTab: 'LuckyWheel' } })
               }}
             >
               Lucky Wheel
@@ -181,7 +187,6 @@ const RewardsPage = () => {
                     <button
                       onClick={() => handlePurchase(nft.name)}
                       className="bg-[#CDD7F6] hover:bg-blue-700 text-[#021346] text-xs font-bold px-3 py-1 rounded"
-
                     >
                       Purchase NFT
                     </button>
@@ -197,13 +202,15 @@ const RewardsPage = () => {
               <h2 className="text-2xl font-bold mb-2">Your NFT Collection</h2>
               <p className="mb-7 text-grey">Connect your wallet to view your NFTs</p>
               <button
-                onClick={() => navigate('/wallet-list')}
+                onClick={() => navigate('/rewards/wallet-list')}
                 className="w-70 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full"
                 style={{
                   background: 'linear-gradient(to right, #053EFF, #041B6C)',
                 }}
               >
-                Connect Wallet
+                {userAddress
+                  ? `${userAddress.slice(0, 6)}…${userAddress.slice(-4)}`
+                  : 'Connect Wallet'}
               </button>
             </div>
           )}

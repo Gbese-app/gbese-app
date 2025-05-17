@@ -36,14 +36,14 @@ export const DebtHistory = () => {
               className="bg-white shadow-md rounded-lg p-4 flex justify-between items-center"
             >
               <div>
-                <p className="font-medium">{item.title}</p>
+                <p className="pb-3 font-medium">{item.title}</p>
                 <p className="text-sm text-gray-500">Transferred on {item.date}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold">₦{item.amount.toLocaleString()}</p>
                 <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-800">
                   {item.status}
                 </span>
+                <p className="text-lg font-bold">₦{item.amount.toLocaleString()}</p>
               </div>
             </div>
           ))}
