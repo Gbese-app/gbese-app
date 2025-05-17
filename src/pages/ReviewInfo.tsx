@@ -13,31 +13,40 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
   }
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
-      <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-3xl w-full space-y-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Review Your Information</h2>
+    
+    <main className="min-h-screen bg-white px-4 py-6 max-w-md mx-auto">
+      <h2 className='text-lg font-bold text center text -gray-800'>KYC Verification</h2>
+      <div className='mt-2 text-sm text-center text-gray-500'>
+        <span>3 of 3</span>-<span className='text-blue-600 font-medium'>100% Complete</span>
+      </div>
+      <div className='w-full h-1 bg-gray-200 rounded-full mt-2'>
+        <div className='h-1 bg-blue-600 rounded-full w-full'></div>
+      </div>
+        <h2 className="text-smtext-gray-800">Review Your Information</h2>
+        <p className='text-sm text-gray-500'>Confirm your information before submitting</p>
 
         {/* Personal Info */}
-        <section>
+        <section  className="px-4 sm:px-6 py-4 border-b border-gray-200">
           <h3 className="text-xl font-semibold text-blue-400 mb-4 pb-2 border-b border-gray-200">
             Basic Information
           </h3>
           <div className="divide-y divide-gray-200">
-            <div className="py-2">
-              <span className="font-medium text-gray-600">Name:</span> {data.firstName}{' '}
+            <div className="py-2 flex items-center space-x-2">
+              <span className="font-medium text-gray-600 w-32 sm:w-40">Name:</span> {data.firstName}{' '}
               {data.lastName}
             </div>
-            <div className="py-2">
-              <span className="font-medium text-gray-600">Date of Birth:</span> {data.dob}
+            <div className="py-2 flex items-center space-x-2">
+              <span className="font-medium text-gray-600 w-32 sm:w-40">Date of Birth:</span>
+              <span className="text-gray-800" ></span>{data.dob}
             </div>
-            <div className="py-2">
-              <span className="font-medium text-gray-600">Email:</span> {data.email}
+            <div className="py-2 flex items-center space-x-2">
+              <span className="font-medium text-gray-600 w-32 sm:w-40">Email:</span> {data.email}
             </div>
-            <div className="py-2">
-              <span className="font-medium text-gray-600">Phone Number:</span> {data.phoneNumber}
+            <div className="py-2 flex items-center space-x-2">
+              <span className="font-medium text-gray-600 w-32 sm:w-40">Phone Number:</span> {data.phoneNumber}
             </div>
-            <div className="py-2">
-              <span className="font-medium text-gray-600">Address:</span> {data.address},{' '}
+            <div className="py-2 flex items-center space-x-2">
+              <span className="font-medium text-gray-600 w-32 sm:w-40">Address:</span> {data.address},{' '}
               {data.town}, {data.state}
             </div>
           </div>
@@ -48,6 +57,9 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
           <h3 className="text-xl font-semibold text-blue-400 mb-4 pb-2 border-b border-gray-200">
             Identity Document
           </h3>
+          <div className='py-2 flex items-center space-x-2'>
+            <p><span className='font-medium'>identityNumber:</span>5394-2678-4245-0618</p>
+          </div>
           <div className="text-gray-800 divide-y divide-gray-200">
             <div className="py-2">
               <span className="font-medium text-gray-600">Document Type:</span> {data.documentType}
@@ -60,9 +72,9 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
                 <img
                   src={data.frontIdImage}
                   alt="Front ID"
-                  className="w-full h-48 object-cover rounded-md"
+                  className="rounded-md border`"
                 />
-                <p className="text-sm text-center mt-2 text-gray-500">Front ID</p>
+                <p className="text-xm text-gray-500 mb-1">Front ID</p>
               </div>
             )}
             {data.backIdImage && (
@@ -70,26 +82,27 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
                 <img
                   src={data.backIdImage}
                   alt="Back ID"
-                  className="w-full h-48 object-cover rounded-md"
+                  className="rounded-md border"
                 />
-                <p className="text-sm text-center mt-2 text-gray-500">Back ID</p>
+                <p className="text-xm text-gray-500 mb-1">Back ID</p>
               </div>
             )}
           </div>
         </section>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-between gap-4 pt-4 border-t border-gray-200">
+        <div className="flex justify-between mt-4">
           <button
-            className="w-full sm:w-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2.5 px-6 rounded-md transition-shadow shadow-sm"
+            className="w-[48%] border border-gray-400 text-gray-700 font-medium py-2 rounded-md"
             onClick={onBack}
           >
             Back
           </button>
 
           <Link to="/dashboard">
+           
             <button
-              className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
+              className="w-[48%] bg-blue-600 text-white font-medium py-2 rounded-md"
               style={{ backgroundColor: '#1c2964' }}
               onClick={handleSubmit}
             >
@@ -97,9 +110,9 @@ const ReviewInfo: React.FC<Props> = ({ onBack, data }) => {
             </button>
           </Link>
         </div>
-      </div>
-    </main>
+      </main>
+    
   )
 }
 
-export default ReviewInfo
+export default ReviewInfo;

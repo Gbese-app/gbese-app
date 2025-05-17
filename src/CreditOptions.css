@@ -1,0 +1,102 @@
+.credit-options-container {
+  max-width: 1200px;
+  margin-left: 4%;
+}
+  
+  .credit-options-container h2 {
+    font-size: 30px;
+    color: #1a1a5c;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin-top: 3%;
+  }
+  
+  .subtitle {
+    color: #1a1a5c;
+    margin-bottom: 32px;
+  }
+  
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns for fine control */
+    gap: 25px;
+    justify-content: center;
+    margin-top: 5%;
+  }
+  
+  /* Top row: 3 cards, each spans 2 of 6 columns */
+  .cards-grid > :nth-child(1),
+  .cards-grid > :nth-child(2),
+  .cards-grid > :nth-child(3) {
+    grid-column: span 2;
+  }
+  
+  /* Second row: 2 cards, each spans 3 of 6 columns */
+  .cards-grid > :nth-child(4),
+  .cards-grid > :nth-child(5) {
+    grid-column: span 3;
+  }
+
+  
+  .credit-card {
+    background-color: white;
+    border: 1px solid #cfd7ed;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+  }
+  .icon {
+    width: 25px; /* Set a width for the icon */
+    height: 25px; /* Set a height for the icon */
+    background-color: #bdcffc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  
+  .icon svg {
+    width: 100%; /* Make the SVG scale to the size of the .icon container */
+    height: 100%; /* Ensure the SVG fills the container proportionally */
+  }
+  
+  
+  .icon-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+
+  .card-details p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  .card-details .bold {
+    font-weight: 600;
+    color: #000;
+    float: right;
+  }
+  
+  .apply-btn {
+    background-color: #00288d;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    margin-top: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .apply-btn:hover {
+    background-color: #001f6d;
+  }

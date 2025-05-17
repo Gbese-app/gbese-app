@@ -42,8 +42,8 @@ const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
       {' '}
       {/* Increased the height here */}
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-4xl">
-        <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">Identity Document</h2>
-        <p className="text-gray-600 mb-3 text-sm leading-relaxed text-center">
+        <h2 className="text-xl font-semibold text-gray-800">Identity Document</h2>
+        <p className="text-sm text-gray-600">
           Please upload a valid ID document (passport, driver's license, or national ID card).
         </p>
         <div className="bg-blue-50 text-blue-700 border border-blue-100 rounded-md p-3 mb-4 text-sm leading-relaxed">
@@ -58,7 +58,7 @@ const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
           <div className="relative">
             <select
               id="documentType"
-              className="w-full border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-300 appearance-none"
+              className="border p-2 rounded w-full -gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-300 appearance-none"
               value={selectedDocumentType}
               onChange={handleDocumentTypeChange}
             >
@@ -150,16 +150,16 @@ const IdentityForm: React.FC<Props> = ({ onNext, onBack, onUpdate, data }) => {
           </div>
         </div>
 
-        <div className="flex justify-end mt-6">
+        <div className="flex justify-between gap-4 mt-4">
           <button
             onClick={onBack}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-md text-sm mr-2"
+            className=" flex-1 border py-2 rounded  hover:bg-gray-300"
           >
             Back
           </button>
           <button
             onClick={onNext}
-            className="bg-[#1c2964] hover:bg-[#111827] text-white font-medium py-2 px-4 rounded-md text-sm"
+            className=" flex-1 bg-[#1c2964] hover:bg-[#111827] text-white py-2 rounded"
             disabled={!frontImage || !backImage} // Disable if both images are not uploaded
           >
             Next

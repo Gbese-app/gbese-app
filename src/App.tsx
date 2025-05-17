@@ -19,6 +19,8 @@ import { DebtRequest } from './pages/DebtRequest'
 import WithdrawFunds from './pages/WithdrawFunds'
 import WithdrawFunds2 from './pages/WithdrawFunds2'
 import GbesePayWallet from './pages/GbesePayWallet'
+import LoanForm from './pages/LoanForm'
+import CreditOptions from './pages/CreditOptions'
 
 
 function App() {
@@ -109,10 +111,14 @@ function App() {
           <Route path="/withdrawal" element={<WithdrawFunds />} />
           <Route path="/withdrawal2" element={<WithdrawFunds2 />} />
           <Route path="/withdrawal/gbesepay-wallet" element={<GbesePayWallet />} />
+          <Route path="/credit" element={<CreditOptions />} />
+          
           
 
           {/* <Route path="/contact" element={<ContactPage />} /> */}
           {/* <Route path="/services" element={<ServicesPage />} /> */}
+          <Route path="/loanform" element={<LoanForm />} />
+
         </Route>
       </Routes>
     </Router>
