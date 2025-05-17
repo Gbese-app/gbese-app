@@ -1,4 +1,3 @@
-import React from "react";
 import LandingPage from "./LandingPage";
 import WorksPage from "./WorksPage";
 import WhyChoose from "./WhyChoose"

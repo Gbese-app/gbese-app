@@ -16,7 +16,7 @@ export const Dashboard = () => {
 
   
   // // const [metadata, setMetadata] = useState<any>(null);
-
+  console.log(userData)
   useEffect(() => {
     setTimeout(() => { 
       setTransactionData(false)
@@ -34,7 +34,7 @@ export const Dashboard = () => {
       localStorage.setItem("current-user", JSON.stringify(userDetailsData?.data.data));
       localStorage.setItem("account", JSON.stringify(userDetailsData?.data.data.account));
       
-      const local_info = localStorage.getItem('formData');
+      const local_info = localStorage.getItem('current-user');
       if (local_info) {
         setUserData(JSON.parse(local_info));
       }

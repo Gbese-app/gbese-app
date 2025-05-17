@@ -46,6 +46,9 @@ const FundWallet: React.FC = () => {
       method: paymentMethod,
     };
 
+    // window.location.href =`https://gbese-backend.onrender.com/api/v1/accounts/fund?ammount=${amount}&http://localhost:5173/fundwallet`;
+    window.location.href = `https://gbese-backend.onrender.com/api/v1/accounts/fund?amount=${amount}&callbackUrl=${encodeURIComponent('http://localhost:5173/fundwallet')}`;
+
     // the new transaction to the transactions state
     setTransactions([newTransaction, ...transactions]);
 
@@ -85,7 +88,7 @@ const FundWallet: React.FC = () => {
           <div className="balance-info">
             <p className="balance-label">Available Wallet Balance</p>
             <h1 className="balance-amount">
-              {isBalanceVisible ? `₦${balance.toLocaleString()}` : "● ● ● ● ● ●"}
+              {isBalanceVisible ? `₦${balance.toLocaleString()}` : "* * * * * *"}
             </h1>
             <small className="balance-link">Fund Wallet</small>
           </div>
@@ -130,13 +133,13 @@ const FundWallet: React.FC = () => {
           <option value="Bank Transfer">Bank Transfer</option>
         </select>
 
-        <div className="checkbox-wrapper">
+        {/* <div className="hidden checkbox-wrapper">
           <input type="checkbox" id="attach-debt" />
           <label htmlFor="attach-debt">Attach debt obligations</label>
-        </div>
+        </div> */}
 
         <button
-          className="fund-button"
+          className="fund-button mt-4"
           onClick={handleSubmit}
           disabled={isSubmitting}
         >

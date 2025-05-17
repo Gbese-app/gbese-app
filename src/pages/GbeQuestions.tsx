@@ -4,7 +4,7 @@ import '../GbeQuestions.css';
 const GbeQuestions = () => {
   const [expanded, setExpanded] = useState(null);
 
-  const toggleAccordion = (index) => {
+  const toggleAccordion = (index: any) => {
     setExpanded(expanded === index ? null : index);
   };
 

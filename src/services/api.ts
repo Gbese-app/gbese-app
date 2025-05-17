@@ -1,6 +1,6 @@
 // This file talks to the backend server
 import axios from "axios";
-import { FormData, IRegisterUser, IWithdrawFunds, KYCForm, UpdateUserProfileDto, UserData } from "../types/general";
+import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from "../types/general";
 
 type FormDataNot = {
   title: string;

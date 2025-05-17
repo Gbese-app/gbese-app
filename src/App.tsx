@@ -23,8 +23,13 @@ import { WalletProvider } from './contexts/WalletContext';
 import CreditOptions from './pages/CreditOptions'
 import LoanForm from './pages/LoanForm'
 import LandingPage from './pages/LandingPage'
+import NftDetailsPage from './pages/NftDetailsPage';
+// import RewardsPage from './pages/RewardsPage';  // Assuming you have this page
+// import PointsDetailsPage from './pages/PointsDetailsPage';
+import Walletlist from './pages/Walletlist';
+import CompletePurchasPage from './pages/CompletePurchasPage';
 
-function App() {
+const App = () => {
   return (
     <WalletProvider>
     <Router>
@@ -113,6 +118,14 @@ function App() {
           <Route path="/debt-request" element={<DebtRequest />} />
 
           <Route path="/rewards" element={<RewardsPage />} />
+
+          {/* Tracy Conflict */}
+          <Route path="/rewards/nft/:nftName" element={<NftDetailsPage />} /> 
+          <Route path="/rewards/complete-purchase" element={<CompletePurchasPage/>} />
+          <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
+          <Route path="/rewards/wallet-list" element={<Walletlist />} />
+          {/* Tracy Conflict */}
+
           <Route path="/rewards/points-details" element={<PointsDetailsPage />} />
 
           <Route path="/transaction" element={<Transaction />} />
@@ -131,4 +144,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

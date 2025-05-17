@@ -9,55 +9,55 @@ const nftList = [
     name: 'King Ape',
     creator: 'Ralph Edwards',
     bid: '1.52 ETH',
-    image: '/images/king-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg',
   },
   {
     name: 'Street Legend',
     creator: 'Marvin McKinney',
     bid: '2.78 ETH',
-    image: '/images/street-legend.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.39 (3).jpeg',
   },
   {
     name: 'Boss Ape',
     creator: 'Annette Black',
     bid: '1.78 ETH',
-    image: '/images/boss-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (4).jpeg',
   },
   {
     name: 'Party Ape',
     creator: 'Esther Johnson',
     bid: '2.45 ETH',
-    image: '/images/party-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (5).jpeg',
   },
   {
     name: 'Pilgrim Ape',
     creator: 'Khalid Mohammed',
     bid: '4.12 ETH',
-    image: '/images/pilgrim-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (6).jpeg',
   },
   {
     name: 'Space Ape',
     creator: 'Alex Turner',
     bid: '8.24 ETH',
-    image: '/images/space-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.40 (7).jpeg',
   },
   {
     name: 'Chill Ape',
     creator: 'Martinez Joe',
     bid: '8.24 ETH',
-    image: '/images/chill-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.41 (1).jpeg',
   },
   {
     name: 'Rabel Ape',
     creator: 'Jordan Blake',
     bid: '8.24 ETH',
-    image: '/images/rabal-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.41 (2).jpeg',
   },
   {
     name: 'Battle Ape',
     creator: 'Chris Njoku',
     bid: '8.24 ETH',
-    image: '/images/battle-ape.png',
+    image: 'WhatsApp Image 2025-05-12 at 16.34.42.jpeg',
   },
 ]
 
@@ -67,81 +67,6 @@ const RewardsPage = () => {
   const { userAddress } = useWallet();
   const balance = useGbeseBalance(userAddress);
 
-  // const addGBTToWallet = async ()=> {
-  //   if (!userAddress) {
-  //     return alert('Connect your wallet first')
-  //   }
-  //   if (!window.ethereum) {
-  //     return alert("MetaMask not installed!");
-  //   }
-
-  //   const chainId: string = await window.ethereum.request({ method: "eth_chainId" });
-  //   const BASE_SEPOLIA_ID = "0x14a34"; // 84532 in hex 
-
-
-  //   if (chainId !== BASE_SEPOLIA_ID) {
-  //     try {
-  //       await window.ethereum.request({
-  //         method: "wallet_switchEthereumChain",
-  //         params: [{ chainId: BASE_SEPOLIA_ID }],
-  //       });
-  //       console.log("Switched to Base Sepolia");  
-  //     } catch(switchError: any) {
-  //       if (switchError.code === 4902) {
-  //         try {
-  //           await window.ethereum.request({
-  //             method: "wallet_addEthereumChain",
-  //             params: [
-  //               {
-  //                 chainId: BASE_SEPOLIA_ID,
-  //                 chainName: "Base Sepolia Testnet",
-  //                 rpcUrls: ["https://rpc.base-sepolia.network"],
-  //                 nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
-  //                 blockExplorerUrls: ["https://sepolia.basescan.org"],
-  //               },
-  //             ],
-  //           });
-  //           console.log("🟢 Added Base Sepolia to MetaMask");
-  //         } catch (addError: any) {
-  //           console.error("Failed to add Base Sepolia:", addError);
-  //           return alert("Please add Base Sepolia network to your wallet first.");
-  //         }
-  //       } else {
-  //         console.error("Failed to switch network:", switchError);
-  //         return alert("Please switch to Base Sepolia network in MetaMask.");
-  //       }
-  //     }
-  //   } 
-
-  //   if (window.ethereum) {
-  //     try {
-  //       await window.ethereum.request({
-  //         method: "wallet_watchAsset",
-  //         params: [
-  //         {
-  //           type: "ERC20",
-  //           options: {
-  //             address: "0xC6dd34113889f23b0bf06FA77b3EBf441cB388eF",        // GBT contract address
-  //             symbol: "GBT",
-  //             decimals: 18,
-  //             image: "https://victorprofile.s3.us-east-1.amazonaws.com/gbese-icon.png" // optional icon URL
-  //           }
-  //         }
-  //       ]
-  //       });
-  //     } catch(err: any) {
-  //       console.log(err)
-  //       alert("Can't add GBT to this wallet")
-  //     }
-
-  //     // await provider.send("eth_requestAccounts", []);
-
-      
-    
-  //   }
-
-  // }
-
   const [activeTab, setActiveTab] = useState<"marketplace" | "collection" | "LuckyWheel">(
     location.state?.activeTab || "marketplace"
   );
@@ -149,7 +74,7 @@ const RewardsPage = () => {
   const handlePurchase = (nftName: string) => {
     if (nftName === "King Ape") {
     
-      navigate(`/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
+      navigate(`/rewards/nft/${nftName.toLowerCase().replace(" ", "-")}`, {
         state: { nft: nftList.find((nft) => nft.name === nftName) },
       });
     } else {
@@ -281,7 +206,7 @@ const RewardsPage = () => {
               <h2 className="text-2xl font-bold mb-2">Your NFT Collection</h2>
               <p className="mb-7 text-grey">Connect your wallet to view your NFTs</p>
               <button
-                onClick={() => navigate('/wallet-list')}
+                onClick={() => navigate('/rewards/wallet-list')}
                 className="w-70 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full"
                 style={{
                   background: 'linear-gradient(to right, #053EFF, #041B6C)',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const TransferredDebt = () => {
@@ -37,8 +37,8 @@ const TransferredDebt = () => {
   };
 
   const navigate = useNavigate();
-  const query = new URLSearchParams(useLocation().search);
-  const debtId = query.get('debtId');
+  // const query = new URLSearchParams(useLocation().search);
+  // const debtId = query.get('debtId');
 
    // Example static data for the popup
   //  const data = {

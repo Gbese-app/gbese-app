@@ -96,7 +96,8 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
           lastName: formData.lastName,
           identityDocuments: responseFront?.secure_url && responseBack?.secure_url 
             ? [responseFront.secure_url, responseBack.secure_url] : undefined,
-          identityDocumentType: formData.documentType,
+          identityDocumentType: "nin",
+          // identityDocumentType: formData.documentType,
           phone: formData.phoneNumber,
           address: {
             street: formData.address,

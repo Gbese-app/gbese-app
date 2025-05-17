@@ -2,7 +2,7 @@
 const Footer = () => {
   return (
     <footer style={styles.footer}>
-      <div style={styles.container}>
+      <div style={styles.container as React.CSSProperties}>
         {/* Column 1: Logo and Social Media */}
         <div style={styles.column}>
           <div style={styles.logo}>Gbese</div> {/* Replace with actual logo */}
@@ -28,7 +28,7 @@ const Footer = () => {
 
         {/* Column 2: Quick Links */}
         <div style={styles.column}>
-          <h4 style={styles.columnTitle}>Quick Links</h4>
+          <h4 style={styles.columnTitle as React.CSSProperties}>Quick Links</h4>
           <ul style={styles.list}>
             <li style={styles.listItem}>Product</li>
             <li style={styles.listItem}>Company</li>
@@ -39,7 +39,7 @@ const Footer = () => {
 
         {/* Column 3: Trust & Social Proof */}
         <div style={styles.column}>
-          <h4 style={styles.columnTitle}>Trust & Social Proof</h4>
+          <h4 style={styles.columnTitle as React.CSSProperties}>Trust & Social Proof</h4>
           <ul style={styles.list}>
             <li style={styles.listItem}>Badges</li>
             <li style={styles.listItem}>Testimonial</li>
@@ -48,7 +48,7 @@ const Footer = () => {
 
         {/* Column 4: Contact */}
         <div style={styles.column}>
-          <h4 style={styles.columnTitle}>Contact</h4>
+          <h4 style={styles.columnTitle as React.CSSProperties}>Contact</h4>
           <ul style={styles.list}>
             <li style={styles.listItem}>Lagos, Nigeria</li>
             <li style={styles.listItem}>+234 800 GBESE</li>
@@ -58,7 +58,7 @@ const Footer = () => {
 
         {/* Column 5: Newsletter */}
         <div style={styles.column}>
-          <h4 style={styles.columnTitle}>Newsletter</h4>
+          <h4 style={styles.columnTitle as React.CSSProperties}>Newsletter</h4>
           <p style={styles.newsletterText}>
             No Miss Update Again! Subscribe for GBESE Gist & Quick Loans.
           </p>
@@ -76,7 +76,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div style={styles.copyright}>
+    <div style={styles.copyright as React.CSSProperties}>
         <p style={styles.copyrightText}>
           Copyright 2025 | gbese.com <br /> All rights reserved.
         </p>

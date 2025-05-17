@@ -4,7 +4,7 @@ const NftDetailsPage = () => {
   const navigate = useNavigate();
 
   const nftDetails = {
-    image: "/images/kingape-2.png",
+    image: "/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg",
     name: "King Ape",
     creator: "Ralph Edwards",
     bid: "1.52 ETH",
@@ -49,21 +49,21 @@ const NftDetailsPage = () => {
 
   const collection = [
     {
-      image: "/images/party-ape.png",
+      image: "/public/WhatsApp Image 2025-05-12 at 16.34.39 (3).jpeg",
       name: "Party Ape",
       bid: "2.85 ETH",
       creator: "Esther Johnson",
       route: "party-ape",
     },
     {
-      image: "/images/rabal-ape.png",
+      image: "/public/WhatsApp Image 2025-05-12 at 16.34.40 (4).jpeg",
       name: "Rebel Ape",
       bid: "2.85 ETH",
       creator: "Jordan Blake",
       route: "rabel-ape",
     },
     {
-      image: "/images/battle-ape.png",
+      image: "/public/WhatsApp Image 2025-05-12 at 16.34.40 (7).jpeg",
       name: "Battle Ape",
       bid: "2.50 ETH",
       creator: "Chris Njoku",
@@ -72,7 +72,7 @@ const NftDetailsPage = () => {
   ];
 
   return (
-    <div className="p-6 md:p-10 bg-[#F1F5FF] min-h-screen">
+    <div className="p-6 md:p-9 bg-[#F1F5FF] min-h-screen">
       
       <button
         onClick={() =>  navigate("/rewards", { state: { activeTab: "marketplace" } })}
@@ -114,7 +114,7 @@ const NftDetailsPage = () => {
             </div>
 
             <button
-          onClick={() => navigate("/complete-purchase")}
+          onClick={() => navigate("/rewards/complete-purchase")}
           className="mt-20 bg-[#05238C] text-white px-6 py-3 rounded-md hover:bg-blue-700 text-sm font-semibold w-95 h-13"
         >
           Purchase NFT
@@ -212,24 +212,24 @@ const NftDetailsPage = () => {
       </div>
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 mb-8">
-  <h3 className="text-xl font-bold mb-4">Bid History</h3>
-  {nftDetails.history.length > 0 ? (
-    <ul className="text-sm divide-y divide-gray-100">
-      {nftDetails.history.map((entry, idx) => (
-        <li
-          key={idx}
-          className="grid grid-cols-[1fr_2fr_1fr] items-center gap-4 py-3 text-gray-700"
-        >
-          <span>{entry.name}</span>
-          <span className="text-center">{entry.date}</span>
-          <span className="font-semibold text-right">{entry.bid}</span>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p className="text-gray-500 text-sm mt-2">No bid history available.</p>
-  )}
-</div>
+        <h3 className="text-xl font-bold mb-4">Bid History</h3>
+        {nftDetails.history.length > 0 ? (
+          <ul className="text-sm divide-y divide-gray-100">
+            {nftDetails.history.map((entry, idx) => (
+              <li
+                key={idx}
+                className="grid grid-cols-[1fr_2fr_1fr] items-center gap-4 py-3 text-gray-700"
+              >
+                <span>{entry.name}</span>
+                <span className="text-center">{entry.date}</span>
+                <span className="font-semibold text-right">{entry.bid}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-gray-500 text-sm mt-2">No bid history available.</p>
+        )}
+      </div>
 
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6">

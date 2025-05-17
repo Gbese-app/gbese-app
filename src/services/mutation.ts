@@ -20,13 +20,13 @@ export const useLoginMutation = () => {
     onSuccess(data) {
       const info = data?.data
 
-      console.log(info.data.identityDocuments);
+      console.log(info.data);
       
       if (info.data.id) {
         toast.success("Login Successful");
         login(data?.data);
         setTimeout(() => {
-          if (info.data.emailVerified && (info.data.identityDocuments).lenght > 0) {
+          if (info.data.emailVerified && (info.data.identityDocuments).length > 0) {
             navigate("/dashboard", { replace: true });
           }
           else {
