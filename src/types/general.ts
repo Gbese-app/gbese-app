@@ -116,3 +116,28 @@ export interface IWithdrawFunds {
   bankCode: string
   amount: number
 }
+
+export interface Loan {
+  _id: number
+  description: string
+  totalAmountToBePaid: number
+  durationInDays: number
+  disbursedAt: string
+  interestRate: number
+  status: any
+}
+
+
+export interface DebtRequest {
+  debtorId: string
+  loanId: string
+  payerId?: string
+  amount: string
+  description?: string
+  loan: Loan
+  debtor: UserData
+  payer?: UserData
+  debtPoint: number
+  status: any
+  createdAt: string
+}

@@ -4,9 +4,10 @@ import { DebtTransfer } from '../components/Dashboard/DebtRequest'
 import Spinthewheel from '../components/Dashboard/Spinthewheel'
 import FixedTable from '../components/Dashboard/Table'
 import { AwardBadgeIcon, WalletIcon } from '../components/svg/Icons'
-import { DashboardData, DashboardTH } from '../hook/dumy-data'
+import { DashboardTH } from '../hook/dumy-data'
 import { UserData } from '../types/general'
 import { useGetMyTransactions, useGetMyUserDetails } from '../services/queries'
+import BarChartComponent from '../components/Dashboard/BarChartComponent'
 
 export const Dashboard = () => {
   const [userData, setUserData] = useState<UserData>()
@@ -15,16 +16,25 @@ export const Dashboard = () => {
   const [isTransaction, setTransactionData] = useState<boolean>(false)
 
   // // const [metadata, setMetadata] = useState<any>(null);
-  console.log(userData)
+  
+  console.log(isTransaction)
+  console.log(IsTransactionSuccess)
+
+  const transactions = transactionsData?.data?.data
+
   useEffect(() => {
-    setTimeout(() => {
-      setTransactionData(false)
-      console.log(transactionsData?.data?.data)
-    }, 3000)
-    //   if( (transactionsData?.data.data).length > 0 && !isTransaction) {
-    //     setTransactionData(true)
-    //   }
-  }, [IsTransactionSuccess])
+    // Call the transaction
+    if (transactions?.length > 0 && !isTransaction) {
+      setTransactionData(true)
+      console.log(transactions)
+
+      const timeout = setTimeout(() => {
+        setTransactionData(false)
+      }, 5000)
+      return () => clearTimeout(timeout)
+    }
+  }, [transactionsData])
+
 
   useEffect(() => {
     if (isUserDetailsSuccess) {
@@ -122,7 +132,7 @@ export const Dashboard = () => {
                 </select>
               </div>
               <div className="w-full">
-                {/* <BarChartComponent /> */}
+                <BarChartComponent />
 
                 {/* <BarChart width={70} height={50} data={BarChartData}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -156,7 +166,7 @@ export const Dashboard = () => {
               </div>
               <div>
                 {isTransaction ? (
-                  <FixedTable columns={DashboardTH} data={DashboardData} />
+                  <FixedTable columns={DashboardTH} data={transactions} />
                 ) : (
                   <div className="flex flex-col pb-5 text-center items-center w-full mx-auto">
                     <img className="h-40 w-40 my-3" src="rafiki.png" alt="" />

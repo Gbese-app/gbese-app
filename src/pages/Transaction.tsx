@@ -1,8 +1,29 @@
+import { useEffect, useState } from 'react'
 import FixedTable from '../components/Dashboard/Table'
 import Button from '../components/ui/Button'
-import { DashboardData, DashboardTH } from '../hook/dumy-data'
+import { DashboardTH } from '../hook/dumy-data'
+import { useGetMyTransactions } from '../services/queries'
 
 export const Transaction = () => {
+  const { data: transactionsData, isSuccess: IsTransactionSuccess } = useGetMyTransactions()
+  const [isTransaction, setTransactionData] = useState<boolean>(false)
+  
+  const transactions = transactionsData?.data?.data
+
+  // Call the transaction
+  useEffect(() => {
+    // Call the transaction
+    if (transactions?.length > 0 && !isTransaction) {
+      setTransactionData(true)
+      console.log(transactions)
+
+      const timeout = setTimeout(() => {
+        setTransactionData(false)
+      }, 5000)
+      return () => clearTimeout(timeout)
+    }
+  }, [transactionsData])
+  
   return (
     <div className="flex flex-col min-h-screen bg-[#F1F5FF]">
       <div className="flex flex-col w-full h-full px-9 py-9">
@@ -34,7 +55,13 @@ export const Transaction = () => {
           </section>
 
           <section>
-            <FixedTable columns={DashboardTH} data={DashboardData} />
+            {IsTransactionSuccess ? (
+              <FixedTable columns={DashboardTH} data={transactions} />
+            ) : (
+              <div></div>
+            )
+          }
+              
           </section>
         </main>
       </div>

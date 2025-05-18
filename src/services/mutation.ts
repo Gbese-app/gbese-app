@@ -271,6 +271,79 @@ export const useWithdrawalMutation = () => {
     },
   })
 }
+
+// export const useDebtRequestMutation = () => {
+//   const navigate = useNavigate()
+//   const { login } = useAuthContext()
+
+//   return useMutation({
+//     mutationFn: (data: FormData) => (data),
+//     onSuccess(data) {
+//       const info = data?.data
+
+//       console.log(info.data)
+
+//       if (info.data.id) {
+//         toast.success('Login Successful')
+//         login(data?.data)
+//         setTimeout(() => {
+//           if (info.data.emailVerified && info.data.identityDocuments.length > 0) {
+//             navigate('/dashboard', { replace: true })
+//           } else {
+//             navigate('/kycstepper', { replace: true })
+//           }
+//         }, 1000)
+//       } else {
+//         toast.warning('Unauthorized, Login Failed')
+//       }
+//     },
+//     onError(error) {
+//       console.log(error)
+
+//       if (isAxiosError(error)) {
+//         const errorData = error.response?.data
+
+//         if (errorData?.errors) {
+//           const flattenedErrors: string[] = []
+
+//           // Loop through the errors object
+//           for (const key in errorData.errors) {
+//             const value = errorData.errors[key]
+
+//             // If the value is an object (e.g., nested like address.number), recurse or flatten
+//             if (typeof value === 'object' && value !== null) {
+//               for (const subKey in value) {
+//                 flattenedErrors.push(value[subKey])
+//               }
+//             } else {
+//               flattenedErrors.push(value)
+//             }
+//           }
+
+//           // Display all errors as individual toasts
+//           flattenedErrors.forEach((errMsg) => {
+//             toast.error(errMsg)
+//           })
+
+//           return
+//         }
+//         if (errorData.message) {
+//           toast.error(errorData.message)
+//           return
+//         }
+
+//         // ✅ Or if there's a specific `code`
+//         if (errorData.code) {
+//           toast.error(`Error: ${errorData.code}`)
+//           return
+//         }
+//       }
+
+//       // fallback error
+//       toast.error('An unexpected error occurred')
+//     },
+//   })
+// }
 // export const useCreateStoreMutation = () => {
 //   const queryClient = useQueryClient();
 //   return useMutation({

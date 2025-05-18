@@ -113,6 +113,10 @@ export const getAllDebtRequests = async () => {
   return await axiosInstanceWithToken.get('debt-requests/all')
 }
 
+export const acceptDebtRequest = async (deptRequestId: string) => {
+  return await axiosInstanceWithToken.get(`debt-requests/accept/${deptRequestId}`)
+}
+
 // Account
 export const getMyAccount = async () => {
   return await axiosInstanceWithToken.get(`accounts/me`)

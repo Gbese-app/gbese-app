@@ -1,4 +1,5 @@
 import { DashboardEntry } from '../../hook/dumy-data'
+import { convertDate, getCurrentUserAccount } from '../../lib/helpers'
 
 type Column = {
   key: string
@@ -32,33 +33,31 @@ function FixedTable({ columns, data }: FixedTableProps) {
           <tbody>
             {data.map((row, i) => (
               <tr key={i} className="even:bg-gray-50 hover:bg-gray-100">
-                {columns.map((col, j) => {
-                  const value = row[col.key as keyof DashboardEntry]
-                  let cellClass = 'px-4 py-2 border-none'
-
-                  // Conditional styling for 'Status'
-                  if (col.key === 'Status') {
-                    switch (value) {
-                      case 'Completed':
-                        cellClass += ' text-green-600 font-medium'
-                        break
-                      case 'Pending':
-                        cellClass += ' text-yellow-600 font-medium'
-                        break
-                      case 'Failed':
-                        cellClass += ' text-red-600 font-medium'
-                        break
-                      default:
-                        cellClass += ' text-gray-600'
-                    }
-                  }
-
-                  return (
-                    <td key={j} className={cellClass}>
-                      {value}
-                    </td>
-                  )
-                })}
+                <td className='px-4 py-2 border-none'>
+                  {row.category}
+                </td>
+                <td className='px-4 py-2 border-none'>
+                  {convertDate(row.createdAt)}
+                </td>
+                <td className='px-4 py-2 border-none'>
+                  {getCurrentUserAccount(row.balanceAfter - row.balanceBefore)}
+                </td>
+                <td
+                  className={`px-4 py-2 font-medium ${
+                    row.status === 'success'
+                      ? 'text-green-600'
+                      : row.status === 'pending'
+                      ? 'text-yellow-600'
+                      : row.status === 'failed'
+                      ? 'text-red-600'
+                      : 'text-gray-600'
+                  }`}
+                >
+                  {row.status}
+                </td>
+                <td className='px-4 py-2 border-none'>
+                  {row.category}
+                </td>
               </tr>
             ))}
           </tbody>

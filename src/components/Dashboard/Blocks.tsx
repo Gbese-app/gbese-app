@@ -32,7 +32,6 @@ export const Block = ({
   const toggleBalanceVisibility = () => {
     setIsBalanceVisible(!isBalanceVisible)
   }
-  console.log(toggleBalanceVisibility)
 
   return (
     <div className={`md:w-full ${wrapperClassName}`}>
