@@ -73,7 +73,7 @@ const CreditOptions = () => {
               </p>
             </div>
             <button className="apply-btn">
-              <Link to={'/credit/loanform'}>Apply Now</Link>
+              <Link to={'/loanform'}>Apply Now</Link>
             </button>
           </div>
         ))}

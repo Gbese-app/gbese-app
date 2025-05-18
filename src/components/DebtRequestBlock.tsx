@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Button from "./ui/Button"
 
 interface DebtRequestBlockProps {
@@ -5,6 +6,7 @@ interface DebtRequestBlockProps {
     date: string
     details: string
     amount: string | number
+    onDecline: () => void 
 }
 
 interface DebtAcceptBlockProps {
@@ -16,7 +18,7 @@ interface DebtAcceptBlockProps {
     bank_name: string
 }
 
-export const DebtRequestBlock = ({ name, date, details, amount }: DebtRequestBlockProps) => {
+export const DebtRequestBlock = ({ name, date, details, amount, onDecline }: DebtRequestBlockProps) => {
     return (
         <div className="py-5 flex flex-col justify-between border-b border-[#D1D1D1] cursor-pointer">
             <article className="flex flex-row justify-between">
@@ -27,12 +29,14 @@ export const DebtRequestBlock = ({ name, date, details, amount }: DebtRequestBlo
             <section className="md:flex md:flex-row justify-between items-end">
                 <div className="md:pt-3">
                     <h1 className="text-lg py-2">{details}</h1>
-                    <h1 className="text-xl text-start mb-2 font-bold ">{amount}</h1>
+                    <h1 className="text-xl text-start mb-2 font-bold ">{"" + amount}</h1>
                 </div>
                             
                 <div className="space-x-4 flex flex-row h-10 mb-2">
-                    <Button title="Accept Request" style="px-6 py-2 text-white bg-[#05238C]" />
-                    <Button title="Decline Request" style="px-6 py-2 text-[#05238C] border border-[#05238C]" />
+                    <Link to="/payment-form" state={{ debt: { name, description: details, dueDate: date, amount } }}>
+                        <Button title="Accept Request" style="px-6 py-2 text-white bg-[#05238C]" />
+                    </Link>
+                    <Button title="Decline Request" style="px-6 py-2 text-[#05238C] border border-[#05238C]" onClick={onDecline} />
                 </div>
             </section>
         </div>
