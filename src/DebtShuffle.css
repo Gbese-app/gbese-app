@@ -51,61 +51,25 @@
   background-color: #ffffff;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  /* Make table cells stack vertically on small screens */
+
+.table-container table {
+  width: 100%;
+}
+
+.table-cell.amount {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
   .table-container {
     padding: 16px;
   }
-
-  /* Table header (make it more compact) */
   .table-header th {
-    font-size: 10px;
-    padding: 12px;
+    padding: 8px;
+    font-size: 12px;
   }
-
-  /* Table cell text */
   .table-cell {
-    font-size: 12px; /* Smaller text for mobile */
-    padding: 12px; /* Adjust padding for smaller screens */
-  }
-
-  /* Stack table rows on smaller screens */
-  .table-row {
-    display: block;
-    padding: 12px 0;
-    border: none; /* Remove row borders for better readability */
-    margin-bottom: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for card-like effect */
-  }
-
-  /* Adjust each cell to be a block element */
-  .table-cell {
-    display: block;
-    width: 100%;
-    padding: 8px 12px; /* Reduce padding for better alignment */
+    padding: 8px;
     font-size: 14px;
-  }
-
-  /* Make the amount cell stand out on mobile */
-  .table-cell.amount {
-    font-size: 16px; /* Larger font for amounts */
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  /* Add a divider between rows for better separation */
-  .table-cell:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  /* Adjust status cell (positive/negative) text */
-  .table-cell.negative,
-  .table-cell.positive {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 8px;
   }
 }
-
