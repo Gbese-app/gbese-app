@@ -96,7 +96,7 @@ const LandingPage = () => {
 
       {/* App Screenshot */}
       <div className="app-screenshot">
-        <img src="/public/images/gbese-app-screenshot1.png" alt="Gbese App Screenshot" />
+        <img src="/images/gbese-app-screenshot1.png" alt="Gbese App Screenshot" />
       </div>
 
       {/* Works Page Section */}
