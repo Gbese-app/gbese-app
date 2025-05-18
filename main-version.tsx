@@ -124,7 +124,7 @@ export default function GbesePayWallet() {
                 className={`wallet-button ${selectedWallet === 'MetaMask' ? 'selected-wallet' : ''}`}
                 onClick={() => handleWalletSelect('MetaMask')}
               >
-                <img src="/public/images/MetaMask.svg" alt="" />
+                <img src="/images/MetaMask.svg" alt="" />
                 MetaMask
               </div>
 
@@ -132,7 +132,7 @@ export default function GbesePayWallet() {
                 className={`wallet-button ${selectedWallet === 'CoinBase' ? 'selected-wallet' : ''}`}
                 onClick={() => handleWalletSelect('CoinBase')}
               >
-                <img src="/public/images/CoinBase-Wallet.svg" alt="" />
+                <img src="/images/CoinBase-Wallet.svg" alt="" />
                 CoinBase Wallet
               </div>
 
@@ -140,7 +140,7 @@ export default function GbesePayWallet() {
                 className={`wallet-button ${selectedWallet === 'WalletConnect' ? 'selected-wallet' : ''}`}
                 onClick={() => handleWalletSelect('WalletConnect')}
               >
-                <img src="/public/images/Wallet-connect.svg" alt="" />
+                <img src="/images/Wallet-connect.svg" alt="" />
                 Wallet connect
               </div>
 
@@ -148,7 +148,7 @@ export default function GbesePayWallet() {
                 className={`wallet-button ${selectedWallet === 'Keplr' ? 'selected-wallet' : ''}`}
                 onClick={() => handleWalletSelect('Keplr')}
               >
-                <img src="/public/images/Keplr.svg" alt="" />
+                <img src="/images/Keplr.svg" alt="" />
                 Keplr
               </div>
               <button className="w-full" onClick={handleConnectWallet}>

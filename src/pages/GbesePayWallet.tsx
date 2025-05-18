@@ -193,7 +193,7 @@ export default function GbesePayWallet() {
                     className={`wallet-button ${selectedWallet === wallet ? 'selected-wallet' : ''}`}
                     onClick={() => handleWalletSelect(wallet)}
                   >
-                    <img src={`/public/images/${wallet}.svg`} alt={`${wallet} logo`} />
+                    <img src={`/images/${wallet}.svg`} alt={`${wallet} logo`} />
                     {wallet}
                   </div>
                 ))
