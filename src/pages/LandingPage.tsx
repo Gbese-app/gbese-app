@@ -20,7 +20,7 @@ const LandingPage = () => {
     <div className="landing-page">
       {/* Navbar with anchor links */}
       <header className="navbar">
-        <img className="logo" src="/public/images/Logo-Dark-BG.png" alt="Gbese Logo" />
+        <img className="logo" src="/images/Logo-Dark-BG.png" alt="Gbese Logo" />
         <button className="toggle-btn" onClick={toggleNav} aria-label="Toggle navigation">
           <span className={isNavOpen ? 'hamburger open' : 'hamburger'}></span>
         </button>
