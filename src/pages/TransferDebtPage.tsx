@@ -8,8 +8,8 @@ import { useCreateDebtRequestMutation } from '../services/mutation'
 const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const { data: userDetails } = useGetMyUserDetails()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [isFetchingUser, setIsFetchingUser] = useState(false)
+  const [searchParams] = useSearchParams()
+  const [setIsFetchingUser] = useState(false)
   const createDebtMutation = useCreateDebtRequestMutation()
 
   console.log(searchParams, searchParams.get('debtId'))
