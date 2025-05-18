@@ -6,55 +6,55 @@ import { useGbeseBalance } from '../hook/useGbeseBalance'
 
 const nftList = [
   {
-    name: 'King Ape',
+    name: 'Sun set',
     creator: 'Ralph Edwards',
     bid: '1.52 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg',
   },
   {
-    name: 'Street Legend',
+    name: 'Christmas Morning',
     creator: 'Marvin McKinney',
     bid: '2.78 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.39 (3).jpeg',
   },
   {
-    name: 'Boss Ape',
+    name: 'Saturday Morning in Lagos',
     creator: 'Annette Black',
     bid: '1.78 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.40 (4).jpeg',
   },
   {
-    name: 'Party Ape',
+    name: 'African Madonna',
     creator: 'Esther Johnson',
     bid: '2.45 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.40 (5).jpeg',
   },
   {
-    name: 'Pilgrim Ape',
+    name: 'Freedom',
     creator: 'Khalid Mohammed',
     bid: '4.12 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.40 (6).jpeg',
   },
   {
-    name: 'Space Ape',
+    name: 'Tales by Moonlight',
     creator: 'Alex Turner',
     bid: '8.24 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.40 (7).jpeg',
   },
   {
-    name: 'Chill Ape',
+    name: 'The Nigerian Hustle',
     creator: 'Martinez Joe',
     bid: '8.24 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.41 (1).jpeg',
   },
   {
-    name: 'Rabel Ape',
+    name: 'Reincarnation',
     creator: 'Jordan Blake',
     bid: '8.24 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.41 (2).jpeg',
   },
   {
-    name: 'Battle Ape',
+    name: 'Parenthood',
     creator: 'Chris Njoku',
     bid: '8.24 ETH',
     image: 'WhatsApp Image 2025-05-12 at 16.34.42.jpeg',
@@ -72,7 +72,7 @@ const RewardsPage = () => {
   )
 
   const handlePurchase = (nftName: string) => {
-    if (nftName === 'King Ape') {
+    if (nftName === 'Sun set') {
       navigate(`/rewards/nft/${nftName.toLowerCase().replace(' ', '-')}`, {
         state: { nft: nftList.find((nft) => nft.name === nftName) },
       })

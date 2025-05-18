@@ -52,7 +52,7 @@ export const Dashboard = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F1F5FF]">
-      <div className="flex flex-col w-full h-full px-5 py-0 md:px-9 md:py-9">
+      <div className="flex flex-col w-full h-full p-5 md:px-9 md:py-9">
         {/* Intro Text */}
         <div className="">
           <h1 className="text-2xl font-bold text-primary text-[#031A69]">
