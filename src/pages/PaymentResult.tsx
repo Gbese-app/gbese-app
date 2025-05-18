@@ -2,22 +2,17 @@ import '../PaymentResults.css'
 
 interface PaymentResultModalProps {
   status: 'success' | 'declined'
-  onClose?: () => void;
+  onClose?: () => void
 }
 
 const PaymentResult = ({ status, onClose }: PaymentResultModalProps) => {
-  const isSuccess = status === 'success';
+  const isSuccess = status === 'success'
 
   return (
     <div className="modal-overlay">
       <div className="modal-card">
         <button className="close-btnn" onClick={onClose} aria-label="Close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25px"
-            height="25px"
-            viewBox="0 0 24 24"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
             <path
               fill="none"
               stroke="#000"
@@ -60,18 +55,14 @@ const PaymentResult = ({ status, onClose }: PaymentResultModalProps) => {
               </svg>
             )}
           </div>
-          <h2 className="modal-title">
-            {isSuccess ? 'Payment Successful' : 'Request Declined'}
-          </h2>
+          <h2 className="modal-title">{isSuccess ? 'Payment Successful' : 'Request Declined'}</h2>
           <p className="modal-subtitle">
-            {isSuccess
-              ? 'Na Boss you be!'
-              : 'Sorry, I no fit handle this one now.'}
+            {isSuccess ? 'Na Boss you be!' : 'Sorry, I no fit handle this one now.'}
           </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PaymentResult;
+export default PaymentResult

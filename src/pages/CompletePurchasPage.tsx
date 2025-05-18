@@ -142,7 +142,11 @@ export default function CompletePurchasPage() {
               has been added to your collection.
             </p>
             <div className="flex items-center bg-gray-50 p-4 rounded-lg mb-6">
-              <img src="/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg" alt="Sun set" className="w-21 h-19 rounded mr-4" />
+              <img
+                src="/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg"
+                alt="Sun set"
+                className="w-21 h-19 rounded mr-4"
+              />
               <div className="text-left">
                 <p className="font-semibold text-lg">King Ape</p>
                 <p className="text-sm text-gray-500">Transaction ID: 0x8f4e...7a2d</p>

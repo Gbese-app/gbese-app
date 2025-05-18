@@ -6,58 +6,58 @@ import PaymentResult from './PaymentResult'
 import '../PaymentForm.css'
 
 const PaymentForm = () => {
-  const location = useLocation();
-  const debt = location.state?.debt || {};
+  const location = useLocation()
+  const debt = location.state?.debt || {}
 
   const [formData, setFormData] = useState({
     amount: '',
     narration: '',
     method: '',
     attachDebt: false,
-  });
+  })
 
-  const [showRequestModal, setShowRequestModal] = useState(false);
-  const [showResultModal, setShowResultModal] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<'success' | 'declined'>('success');
+  const [showRequestModal, setShowRequestModal] = useState(false)
+  const [showResultModal, setShowResultModal] = useState(false)
+  const [paymentStatus, setPaymentStatus] = useState<'success' | 'declined'>('success')
 
   useEffect(() => {
-    console.log('PaymentForm rendered:', { debt, formData });
-  }, [debt, formData]);
+    console.log('PaymentForm rendered:', { debt, formData })
+  }, [debt, formData])
 
-  console.log("this is debt")
-  console.log(debt);
-  
+  console.log('this is debt')
+  console.log(debt)
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target as HTMLInputElement;
-    const checked = (e.target as HTMLInputElement).checked;
+    const { name, value, type } = e.target as HTMLInputElement
+    const checked = (e.target as HTMLInputElement).checked
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+    }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('PaymentForm: Form submitted', formData);
-    setShowRequestModal(true);
-  };
+    e.preventDefault()
+    console.log('PaymentForm: Form submitted', formData)
+    setShowRequestModal(true)
+  }
 
   const handleCloseRequestModal = () => {
-    console.log('PaymentForm: Closing DebtRequest modal');
-    setShowRequestModal(false);
-  };
+    console.log('PaymentForm: Closing DebtRequest modal')
+    setShowRequestModal(false)
+  }
 
   const handlePaymentComplete = (status: 'success' | 'declined') => {
-    console.log('PaymentForm: Payment complete with status', status);
-    setShowRequestModal(false);
-    setPaymentStatus(status);
-    setShowResultModal(true);
-  };
+    console.log('PaymentForm: Payment complete with status', status)
+    setShowRequestModal(false)
+    setPaymentStatus(status)
+    setShowResultModal(true)
+  }
 
   const handleCloseResultModal = () => {
-    console.log('PaymentForm: Closing PaymentResult modal');
-    setShowResultModal(false);
-  };
+    console.log('PaymentForm: Closing PaymentResult modal')
+    setShowResultModal(false)
+  }
 
   return (
     <div className="app-container">
@@ -68,9 +68,7 @@ const PaymentForm = () => {
           <div>
             <h3 className="recipient-name">{debt.name || 'N/A'}</h3>
             <p className="recipient-desc">{debt.description || 'No description'}</p>
-            <div className="recipient-amount">
-              ₦{parseInt(debt.amount || '0').toLocaleString()}
-            </div>
+            <div className="recipient-amount">₦{parseInt(debt.amount || '0').toLocaleString()}</div>
           </div>
           <div className="recipient-info">
             <p className="due-date">Due date: {debt.dueDate || 'N/A'}</p>
@@ -115,7 +113,9 @@ const PaymentForm = () => {
               className="form-input"
               required
             >
-              <option value="" disabled>Select a payment method</option>
+              <option value="" disabled>
+                Select a payment method
+              </option>
               <option value="bank">Bank Transfer</option>
               <option value="card">Credit/Debit Card</option>
               <option value="wallet">Wallet</option>
@@ -154,14 +154,9 @@ const PaymentForm = () => {
         />
       )}
 
-      {showResultModal && (
-        <PaymentResult
-          status={paymentStatus}
-          onClose={handleCloseResultModal}
-        />
-      )}
+      {showResultModal && <PaymentResult status={paymentStatus} onClose={handleCloseResultModal} />}
     </div>
-  );
-};
+  )
+}
 
-export default PaymentForm;
+export default PaymentForm

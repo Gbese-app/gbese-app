@@ -26,7 +26,6 @@ export const Block = ({
   eyeColor = '#161A26',
   linkText = 'Fund Wallet',
   linkHref = '#',
-  amount_color= "red"
 }: BlockProps) => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(false)
 
@@ -57,8 +56,8 @@ export const Block = ({
         </button>
       </div>
 
-      <div className={`font-sora ${amountClassName }  font-bold py-2`}>
-      <p className={`~ balance-amount`}>
+      <div className={`font-sora ${amountClassName}  font-bold py-2`}>
+        <p className={`~ balance-amount`}>
           {isBalanceVisible ? `${amount.toLocaleString()}` : '* * * * * *'}
         </p>
       </div>

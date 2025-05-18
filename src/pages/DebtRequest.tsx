@@ -165,16 +165,15 @@
 //             </section>
 //           )}
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import BalanceCards from './BalanceCards'
 import '../DebtRequest.css'
-import { DebtRequestBlock } from '../components/DebtRequestBlock';
+import { DebtRequestBlock } from '../components/DebtRequestBlock'
 
 interface DebtRequest {
-  name: string;
-  description: string;
-  dueDate: string;
-  amount: number;
+  name: string
+  description: string
+  dueDate: string
+  amount: number
 }
 
 const DebtRequests = () => {
@@ -203,12 +202,12 @@ const DebtRequests = () => {
       dueDate: '30th April, 2025',
       amount: 150000,
     },
-  ]);
+  ])
 
   const handleDeclineRequest = (index: number) => {
-    console.log('Decline request', index);
-    setDebtRequests(prev => prev.filter((_, i) => i !== index));
-  };
+    console.log('Decline request', index)
+    setDebtRequests((prev) => prev.filter((_, i) => i !== index))
+  }
 
   return (
     <div className="page-container p-5 md:p-9">
@@ -216,9 +215,10 @@ const DebtRequests = () => {
       {/* Debt Requests */}
       <div>
         <h2 className="section-title">Debt Requests</h2>
-        <div >
+        <div>
           {debtRequests.map((request, index) => (
-            <div key={index} className="debt-contents"><hr/>
+            <div key={index} className="debt-contents">
+              <hr />
               <DebtRequestBlock
                 name={request.name}
                 date={request.dueDate}
@@ -231,7 +231,7 @@ const DebtRequests = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DebtRequests;
+export default DebtRequests

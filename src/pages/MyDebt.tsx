@@ -9,7 +9,7 @@ import { Loader2Icon } from 'lucide-react'
 
 function Chief() {
   const [tab, setTab] = useState('about')
-  const { data: { data: userDetails } = {}, isPending, error } = useGetMyUserDetails()
+  const { data: { data: userDetails } = {}, isPending } = useGetMyUserDetails()
 
   return (
     <div className="min-h-screen bg-[#F1F5FF]">

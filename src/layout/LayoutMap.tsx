@@ -20,7 +20,7 @@ const Layout = () => {
           isSidebarOpen ? 'block' : 'hidden'
         } md:block fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white sticky z-10`}
       >
-        <div className="p-4">
+        <div className="">
           <button
             className="md:hidden absolute top-4 right-4 text-white font-bold"
             onClick={closeSidebar}
@@ -35,28 +35,27 @@ const Layout = () => {
 
       <div className="flex-1 bg-[#F1F5FF] md:bg-gray-100 w-auto">
         <div className="flex justify-between items-center px-4 md:p-3 border-b border-gray-300">
-          
-          <div className='w-40'>
-          <div className="md:hidden ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 21 21"
-              onClick={toggleSidebar}
-              className="cursor-pointer"
-              aria-label="Toggle sidebar"
-            >
-              <path
-                fill="none"
-                stroke="#111111"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 6.5h12m-12.002 4h11.997M4.5 14.5h11.995"
-                strokeWidth="1"
-              />
-            </svg>
-          </div>
+          <div className="w-40">
+            <div className="md:hidden ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 21 21"
+                onClick={toggleSidebar}
+                className="cursor-pointer"
+                aria-label="Toggle sidebar"
+              >
+                <path
+                  fill="none"
+                  stroke="#111111"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 6.5h12m-12.002 4h11.997M4.5 14.5h11.995"
+                  strokeWidth="1"
+                />
+              </svg>
+            </div>
           </div>
 
           <div className="flex py-3 w-70 justify-between items-center md:justify-end">
@@ -92,7 +91,7 @@ const Layout = () => {
             />
           </div>
         </div>
-        <Outlet context={{ closeSidebar }} /> 
+        <Outlet context={{ closeSidebar }} />
       </div>
 
       <Toaster position="top-center" />

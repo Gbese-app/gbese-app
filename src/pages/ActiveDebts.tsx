@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useLoans } from '../services/queries'
 import { LoanStatuses } from '../types/debtRequest.type'
 import { FileX2Icon, Loader2Icon } from 'lucide-react'
@@ -29,10 +29,10 @@ const ActiveDebts = () => {
             </div>
           )}
           {loans?.map((loan) => {
-            let dueDate = new Date(loan.disbursedAt)
+            const dueDate = new Date(loan.disbursedAt)
             dueDate.setDate(dueDate.getDate() + loan.durationInDays)
 
-            let interestRateColor =
+            const interestRateColor =
               loan.interestRate > 0.5 ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
 
             return (

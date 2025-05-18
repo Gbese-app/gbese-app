@@ -43,7 +43,7 @@ export const Dashboard = () => {
     style: 'currency',
     currency: 'NGN',
     minimumFractionDigits: 2,
-  }).format(userDetailsData?.data.data.account.balance || 0);
+  }).format(userDetailsData?.data.data.account.balance || 0)
 
   // useEffect(() => {
   //   const meta = getMetaData();

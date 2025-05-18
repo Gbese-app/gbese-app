@@ -1,30 +1,30 @@
 import { FileX2Icon, Loader2Icon } from 'lucide-react'
 import { useLoans } from '../services/queries'
 
-interface DebtHistoryItem {
-  id: number
-  title: string
-  amount: number
-  date: string
-  status: 'Active debt' | 'Settled'
-}
+// interface DebtHistoryItem {
+//   id: number
+//   title: string
+//   amount: number
+//   date: string
+//   status: 'Active debt' | 'Settled'
+// }
 
-const debtHistory: DebtHistoryItem[] = [
-  {
-    id: 1,
-    title: 'Rent Balance - Lekki Apartment',
-    amount: 200000,
-    date: '10th April, 2025',
-    status: 'Active debt',
-  },
-  {
-    id: 2,
-    title: 'Smart Phone Installment - Tecno',
-    amount: 100000,
-    date: '10th April, 2025',
-    status: 'Active debt',
-  },
-]
+// const debtHistory: DebtHistoryItem[] = [
+//   {
+//     id: 1,
+//     title: 'Rent Balance - Lekki Apartment',
+//     amount: 200000,
+//     date: '10th April, 2025',
+//     status: 'Active debt',
+//   },
+//   {
+//     id: 2,
+//     title: 'Smart Phone Installment - Tecno',
+//     amount: 100000,
+//     date: '10th April, 2025',
+//     status: 'Active debt',
+//   },
+// ]
 
 export const DebtHistory = () => {
   const { loans, isLoansLoading, loansError } = useLoans()

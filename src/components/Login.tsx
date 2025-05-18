@@ -72,7 +72,13 @@ const Login = () => {
             </Link>
           </p>
 
-          <Link to={"https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=" + { baseURL } + "/dashboard"}>
+          <Link
+            to={
+              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=' +
+              { baseURL } +
+              '/dashboard'
+            }
+          >
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ import {
   getUserDetails,
   getUserLoans,
 } from './api'
-import { DebtRequestFilters, Loan, LoanFilters } from '../types/debtRequest.type'
+import { DebtRequestFilters, LoanFilters } from '../types/debtRequest.type'
 
 export const useGetMyAccount = () => {
   return useQuery({

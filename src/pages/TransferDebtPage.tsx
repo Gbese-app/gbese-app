@@ -6,7 +6,7 @@ import { useGetMyUserDetails } from '../services/queries'
 
 const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const { data: userDetails, isPending, error } = useGetMyUserDetails()
+  const { data: userDetails } = useGetMyUserDetails()
 
   const handleSubmit = (e: any) => {
     e.preventDefault()

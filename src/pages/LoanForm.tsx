@@ -110,7 +110,12 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Employment Status</label>
-            <select name="employmentStatus" value={employmentStatus} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select
+              name="employmentStatus"
+              value={employmentStatus}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option>Select employment status</option>
               <option>Employed</option>
               <option>Self-Employed</option>
@@ -122,7 +127,12 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Income Range</label>
-            <select name="incomeRange" value={incomeRange} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select
+              name="incomeRange"
+              value={incomeRange}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option>Monthly Income Range (₦)</option>
               <option>₦0 - ₦50,000</option>
               <option>₦50,001 - ₦100,000</option>
@@ -136,7 +146,12 @@ const LoanForm: React.FC = () => {
 
           <div className="form-group">
             <label>Preferred Wallet</label>
-            <select name="wallet" value={wallet} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select
+              name="wallet"
+              value={wallet}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option>Gbese Pay Wallet</option>
             </select>
           </div>
