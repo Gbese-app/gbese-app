@@ -1,5 +1,11 @@
+import { useState } from 'react'
+import { logoutUser } from '../services/api'
 import { AwardBadgeIcon } from './svg/Icons'
 import { NavButton } from './ui/Navbutton'
+import { Loader2Icon, LogOutIcon } from 'lucide-react'
+import { cn, getAxiosError } from '../lib/utils'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 const Sidebar = () => {
   return (
@@ -87,6 +93,22 @@ const Sidebar = () => {
             </svg>
           }
         />
+        <NavButton
+          text="Debt Requests"
+          page="/debt-request"
+          icon={
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+              <g fill="none" stroke="CURRENTCOLOR" stroke-linejoin="round" stroke-width="4">
+                <path d="M24 40c11.046 0 20-7.163 20-16S35.046 8 24 8S4 15.163 4 24s8.954 16 20 16Z" />
+                <path d="M24 28c5.523 0 10-2.686 10-6s-4.477-6-10-6s-10 2.686-10 6s4.477 6 10 6Z" />
+                <path
+                  stroke-linecap="round"
+                  d="M24 16V8m8 10s2.625-4 7-4m-23 4s-2-4-7-4m9 13s-6 2-7 9m19-9s6.5 2 7 9"
+                />
+              </g>
+            </svg>
+          }
+        />
         <NavButton text="Rewards" page="/rewards" icon={<AwardBadgeIcon />} />
         <NavButton
           text="Transaction History"
@@ -100,8 +122,49 @@ const Sidebar = () => {
             </svg>
           }
         />
+
+        <LogoutButton />
       </div>
     </div>
+  )
+}
+
+function LogoutButton() {
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const navigate = useNavigate()
+
+  return (
+    <button
+      className={cn(
+        'mb-4 px-4 py-2 rounded-lg transition-colors duration-300 flex items-center gap-2 cursor-pointer',
+        isLoggingOut ? 'bg-red-400 text-white' : 'text-[#8C8C8C] hover:bg-red-400 hover:text-white'
+      )}
+      onClick={async () => {
+        try {
+          setIsLoggingOut(true)
+          const logoutResponse = await logoutUser()
+          toast.success(logoutResponse.message)
+          navigate('/')
+        } catch (error) {
+          toast.error(getAxiosError(error))
+        } finally {
+          setIsLoggingOut(false)
+        }
+      }}
+      disabled={isLoggingOut}
+    >
+      {isLoggingOut ? (
+        <>
+          <Loader2Icon className="animate-spin size-6" />
+          Logging out...
+        </>
+      ) : (
+        <>
+          <LogOutIcon className="mr-2" />
+          Logout
+        </>
+      )}
+    </button>
   )
 }
 

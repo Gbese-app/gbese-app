@@ -1,6 +1,8 @@
 // This file talks to the backend server
 import axios from 'axios'
 import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from '../types/general'
+import { DebtRequestFilters, Loan, LoanFilters } from '../types/debtRequest.type'
+import { normalizeSearchParams } from '../lib/utils'
 
 type FormDataNot = {
   title: string
@@ -8,6 +10,7 @@ type FormDataNot = {
 }
 
 const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
+// const BASE_URL = 'http://localhost:4000/api/v1/'
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -92,8 +95,18 @@ export const searchUser = async (search: string) => {
 }
 
 // Debt Request
-export const CurrentUserDebtRequest = async (role: string) => {
-  return await axiosInstanceWithToken.get(`debt-requests?role=${role}`)
+export const getUserDebtRequests = async (filters: DebtRequestFilters = {}) => {
+  const response = await axiosInstanceWithToken.get(
+    `debt-requests?${new URLSearchParams(normalizeSearchParams(filters as Record<string, string>)).toString()}`
+  )
+  return response?.data?.data
+}
+
+export async function getUserLoans(filters: LoanFilters = {}): Promise<Loan[]> {
+  const response = await axiosInstanceWithToken.get(
+    `accounts/loans?${new URLSearchParams(normalizeSearchParams(filters as Record<string, string>)).toString()}`
+  )
+  return response.data.data
 }
 
 export const getAllDebtRequests = async () => {
@@ -116,4 +129,9 @@ export const getTransaction = async () => {
 
 export const getTransactionByRef = async (reference: string) => {
   return await axiosInstanceWithToken.get(`transactions/:${reference}`)
+}
+
+export const logoutUser = async () => {
+  const response = await axiosInstanceWithToken.get(`auth/logout`)
+  return response.data
 }

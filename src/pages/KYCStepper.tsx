@@ -33,13 +33,13 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
           dob: '',
           phone: '',
           email: '',
-          address: '',
           identityNumber: '',
           frontIdImage: '',
           backIdImage: '',
           selfie: '',
           documentType: '',
           step: 1,
+          address: { number: '', street: '', town: '', state: '' },
         }
   })
 
@@ -74,7 +74,6 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
     setFormData((prev: any) => ({ ...prev, ...data }))
   }
 
-  console.log(formData)
   const handleSubmit = async () => {
     console.log('Final KYC data submitted:', formData)
 
@@ -98,14 +97,13 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             responseFront?.secure_url && responseBack?.secure_url
               ? [responseFront.secure_url, responseBack.secure_url]
               : undefined,
-          identityDocumentType: 'nin',
-          // identityDocumentType: formData.documentType,
+          identityDocumentType: formData.documentType,
           phone: formData.phoneNumber,
           address: {
-            street: formData.address,
-            town: formData.town,
-            state: formData.state,
-            number: '23',
+            street: formData.address.street || undefined,
+            town: formData.address.town || undefined,
+            state: formData.address.state || undefined,
+            number: formData.address.number || undefined,
           },
           // frontIdImage: responseFront.secure_url,
           // backIdImage: responseBack.secure_url,

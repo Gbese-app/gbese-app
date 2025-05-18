@@ -20,7 +20,7 @@ const LandingPage = () => {
     <div className="landing-page">
       {/* Navbar with anchor links */}
       <header className="navbar">
-        <img className="logo" src="/src/assets/Logo Dark BG.png" alt="Gbese Logo" />
+        <img className="logo" src="/LogoDarkBG.png" alt="Gbese Logo" />
         <button className="toggle-btn" onClick={toggleNav} aria-label="Toggle navigation">
           <span className={isNavOpen ? 'hamburger open' : 'hamburger'}></span>
         </button>
@@ -96,7 +96,7 @@ const LandingPage = () => {
 
       {/* App Screenshot */}
       <div className="app-screenshot">
-        <img src="/src/assets/gbese-app-screenshot1.png" alt="Gbese App Screenshot" />
+        <img src="/public/images/gbese-app-screenshot1.png" alt="Gbese App Screenshot" />
       </div>
 
       {/* Works Page Section */}

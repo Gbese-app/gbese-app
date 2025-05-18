@@ -12,6 +12,7 @@ interface BlockProps {
   eyeColor?: string
   linkText?: string
   linkHref?: string
+  amount_color?: string
 }
 
 export const Block = ({
@@ -55,8 +56,8 @@ export const Block = ({
         </button>
       </div>
 
-      <div className={`font-sora ${amountClassName} font-bold py-2`}>
-        <p className="balance-amount">
+      <div className={`font-sora ${amountClassName}  font-bold py-2`}>
+        <p className={`~ balance-amount`}>
           {isBalanceVisible ? `${amount.toLocaleString()}` : '* * * * * *'}
         </p>
       </div>

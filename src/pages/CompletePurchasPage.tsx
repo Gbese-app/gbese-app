@@ -27,12 +27,12 @@ export default function CompletePurchasPage() {
           <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10">
             <div className="flex items-center border-b border-gray-300 pb-6 mb-6">
               <img
-                src="/images/king-ape.png"
-                alt="King Ape"
+                src="/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg"
+                alt="Sun set"
                 className="w-32 h-32 rounded-lg mr-6"
               />
               <div>
-                <h2 className="font-bold text-2xl">King Ape</h2>
+                <h2 className="font-bold text-2xl">Sun set</h2>
                 <p className="text-md text-gray-600">Primate Royalty Collection</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function CompletePurchasPage() {
       </div>
 
       {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-transparent backdrop-blur-md p-8 bg-opacity-40 z-50 flex justify-center items-center">
           <div className="bg-white w-full max-w-md mx-auto rounded-xl p-8 text-center shadow-lg">
             <div className="flex justify-center mb-4">
               <div className="bg-green-400 rounded-full p-2">
@@ -142,7 +142,11 @@ export default function CompletePurchasPage() {
               has been added to your collection.
             </p>
             <div className="flex items-center bg-gray-50 p-4 rounded-lg mb-6">
-              <img src="/images/king-ape.png" alt="King Ape" className="w-21 h-19 rounded mr-4" />
+              <img
+                src="/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg"
+                alt="Sun set"
+                className="w-21 h-19 rounded mr-4"
+              />
               <div className="text-left">
                 <p className="font-semibold text-lg">King Ape</p>
                 <p className="text-sm text-gray-500">Transaction ID: 0x8f4e...7a2d</p>

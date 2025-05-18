@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRegisterMutation } from '../services/mutation'
+import { Loader2Icon } from 'lucide-react'
+import { cn } from '../lib/utils'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +41,8 @@ const SignUp = () => {
     event.preventDefault()
     registerMerchant(formData)
   }
+
+  const baseURL = import.meta.env.BASE_URL
 
   return (
     <div className="min-h-screen flex">
@@ -83,7 +87,13 @@ const SignUp = () => {
             </Link>
           </p>
 
-          <Link to="https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=http://localhost:5173/dashboard">
+          <Link
+            to={
+              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=' +
+              { baseURL } +
+              '/dashboard'
+            }
+          >
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -197,9 +207,12 @@ const SignUp = () => {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-7 cursor-pointer hover:bg-[#CDD7F6] hover:text-[black] transition-colors duration-300 ease-in-out"
+              className={cn(
+                'w-full flex items-center justify-center gap-2 bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-7 cursor-pointer transition-colors duration-300 ease-in-out disabled:opacity-50',
+                !isPending && 'hover:bg-[#CDD7F6] hover:text-black'
+              )}
             >
-              Create Account
+              {isPending ? <Loader2Icon className="animate-spin size-5" /> : 'Create Account'}
             </button>
           </form>
 
