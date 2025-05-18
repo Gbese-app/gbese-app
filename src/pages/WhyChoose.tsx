@@ -13,7 +13,7 @@ const WhyChooseGbe = () => {
         {/* Left Section */}
         <div className="chart-section">
           <h3 className="chart-title">How Gbese Members Are Thriving:</h3>
-          <img src="/src/assets/image.png" alt="Gbese Members Thriving" className="chart-image" />
+          <img src="/images/image.png" alt="Gbese Members Thriving" className="chart-image" />
         </div>
 
         {/* Right Section */}
