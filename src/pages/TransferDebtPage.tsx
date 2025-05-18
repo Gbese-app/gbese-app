@@ -1,9 +1,12 @@
+import { ChevronLeftIcon } from 'lucide-react'
 import { useState, useEffect } from 'react'
 // import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
+import { useGetMyUserDetails } from '../services/queries'
 
 const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const { data: userDetails, isPending, error } = useGetMyUserDetails()
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
@@ -64,9 +67,9 @@ const TransferredDebt = () => {
         {/* Back button to navigate to the previous page */}
         <button
           onClick={() => navigate(-1)}
-          className="border border-blue-900 px-2 py-1 rounded-2xl mb-4"
+          className="border border-blue-900 px-2 py-1 rounded-2xl mb-4 size-8 flex justify-center items-center"
         >
-          ←
+          <ChevronLeftIcon className="size-4" />
         </button>
         <h1 className="text-2xl font-bold mb-2">Transfer Debt</h1>
         <p className="text-gray-500">Choose your Helper to settle your debt</p>
@@ -75,20 +78,19 @@ const TransferredDebt = () => {
         <div className="bg-white p-4 rounded shadow mt-4 flex justify-between">
           <div>
             <p className="text-sm text-gray-500">Available Balance</p>
-            <h2 className="text-xl font-bold">₦50,000</h2>
+            <h2 className="text-xl font-bold">₦{userDetails?.data?.data?.account?.balance}</h2>
           </div>
           <div>
             <p className="text-sm text-gray-500">Total Outstanding Debt</p>
-            <h2 className="text-xl font-bold">₦300,000</h2>
+            <h2 className="text-xl font-bold">₦{userDetails?.data?.metadata?.totalAmountInDebt}</h2>
             <p className="text-sm text-gray-400">Due date: 30th April, 2025</p>
           </div>
         </div>
 
         {/* Section for capable helpers */}
         <div className="bg-white mt-6 p-4 rounded shadow">
-          <p className="font-semibold mb-2">Capable helpers</p>
+          {/* <p className="font-semibold mb-2">Capable helpers</p>
           <div className="flex sm:w-full space-x-2 ">
-            {/* Example avatars for helpers */}
             <img src="/image (1).png w-50" alt="" />
             <img src="/image 2.png " alt="" />
             <img src="/image 3.png" alt="" />
@@ -97,7 +99,7 @@ const TransferredDebt = () => {
             <img src="/image 7.png" alt="" />
             <img src="/image 8.png" alt="" />
             <span className="ml-2 text-sm text-gray-500 self-center">+15</span>
-          </div>
+          </div> */}
 
           {/* Debt helper selection and form */}
           <div className="mt-6">

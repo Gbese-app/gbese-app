@@ -11,7 +11,8 @@ const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
     dob: '',
     email: '',
     phoneNumber: '',
-    address: '',
+    number: '',
+    street: '',
     town: '',
     state: '',
   }
@@ -82,15 +83,27 @@ const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-6">
+          <fieldset className="border border-gray-300 px-4 py-2 rounded-md flex flex-wrap *:basis-1/3 *:grow gap-6">
+            <legend className="px-2">Address</legend>
             <div>
-              <label className="block mb-2 font-medium">Address</label>
+              <label className="block mb-2 font-medium">Number</label>
               <input
                 type="text"
-                name="address"
+                name="number"
+                placeholder="e.g 23"
+                className="w-full border rounded-lg p-3 text-base"
+                value={safeData.number}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block mb-2 font-medium">Street</label>
+              <input
+                type="text"
+                name="street"
                 placeholder="Street Address"
                 className="w-full border rounded-lg p-3 text-base"
-                value={safeData.address}
+                value={safeData.street}
                 onChange={handleChange}
               />
             </div>
@@ -116,7 +129,7 @@ const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
                 onChange={handleChange}
               />
             </div>
-          </div>
+          </fieldset>
           <div className="text-right">
             <button
               type="button"

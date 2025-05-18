@@ -39,6 +39,12 @@ export const Dashboard = () => {
     }
   }, [isUserDetailsSuccess])
 
+  const amount = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    minimumFractionDigits: 2,
+  }).format(userDetailsData?.data.data.account.balance || 0);
+
   // useEffect(() => {
   //   const meta = getMetaData();
   //   setMetadata(meta);
@@ -67,7 +73,7 @@ export const Dashboard = () => {
               balanceWrapperClassName="text-xs gap-2 mt-1"
               amountClassName="text-2xl"
               label="Available Balance"
-              amount={'₦ ' + userDetailsData?.data.data.account.balance}
+              amount={amount}
               eyeColor="white"
               linkText="Fund Wallet"
               linkHref="/fundwallet"
@@ -80,9 +86,10 @@ export const Dashboard = () => {
               balanceWrapperClassName="text-xs gap-2 mt-1"
               amountClassName="text-2xl text-red-500 mt-1"
               label="My Debt (Gbese)"
-              amount="-₦ 250,000"
+              amount="-₦ 50,000"
               linkText="Top Up"
               linkHref="/mydebt"
+              amount_color=""
             />
 
             <Block

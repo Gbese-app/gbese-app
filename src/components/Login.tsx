@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useLoginMutation } from '../services/mutation'
 import { ChangeEvent, useState } from 'react'
 import { FormData } from '../types/general'
+import { Loader2Icon } from 'lucide-react'
 
 const Login = () => {
   const { mutate, isPending } = useLoginMutation()
@@ -27,6 +28,7 @@ const Login = () => {
 
   const baseURL = import.meta.env.BASE_URL
 
+  console.log(baseURL)
   return (
     <div className="min-h-screen flex">
       <aside className="sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
@@ -130,10 +132,10 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8"
+              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-8 inline-flex justify-center items-center disabled:opacity-50 cursor-pointer transition-colors duration-300 ease-in-out"
               disabled={isPending}
             >
-              Sign in
+              {isPending ? <Loader2Icon className="animate-spin" /> : 'Sign in'}
             </button>
           </form>
 

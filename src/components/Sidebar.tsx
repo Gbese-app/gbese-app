@@ -1,5 +1,11 @@
+import { useState } from 'react'
+import { logoutUser } from '../services/api'
 import { AwardBadgeIcon } from './svg/Icons'
 import { NavButton } from './ui/Navbutton'
+import { Loader2Icon, LogOutIcon } from 'lucide-react'
+import { cn, getAxiosError } from '../lib/utils'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 const Sidebar = () => {
   return (
@@ -113,8 +119,49 @@ const Sidebar = () => {
             </svg>
           }
         />
+
+        <LogoutButton />
       </div>
     </div>
+  )
+}
+
+function LogoutButton() {
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const navigate = useNavigate()
+
+  return (
+    <button
+      className={cn(
+        'mb-4 px-4 py-2 rounded-lg transition-colors duration-300 flex items-center gap-2 cursor-pointer',
+        isLoggingOut ? 'bg-red-400 text-white' : 'text-[#8C8C8C] hover:bg-red-400 hover:text-white'
+      )}
+      onClick={async () => {
+        try {
+          setIsLoggingOut(true)
+          const logoutResponse = await logoutUser()
+          toast.success(logoutResponse.message)
+          navigate('/')
+        } catch (error) {
+          toast.error(getAxiosError(error))
+        } finally {
+          setIsLoggingOut(false)
+        }
+      }}
+      disabled={isLoggingOut}
+    >
+      {isLoggingOut ? (
+        <>
+          <Loader2Icon className="animate-spin size-6" />
+          Logging out...
+        </>
+      ) : (
+        <>
+          <LogOutIcon className="mr-2" />
+          Logout
+        </>
+      )}
+    </button>
   )
 }
 

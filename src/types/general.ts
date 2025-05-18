@@ -46,9 +46,12 @@ export interface UserData {
   _id: string
   name: string
   email: string
-  state: string
-  town: string
-  address: string
+  address: {
+    number: string
+    street: string
+    town: string
+    state: string
+  }
   dob: string
   phoneNumber: string
   emailVerified: boolean
@@ -92,10 +95,10 @@ export interface CloudinaryUploadResponse {
 }
 
 interface Address {
-  number: string
-  street: string
-  town: string
-  state: string
+  number?: string
+  street?: string
+  town?: string
+  state?: string
 }
 
 export interface KYCForm {

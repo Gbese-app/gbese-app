@@ -11,7 +11,7 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <StrictMode>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <App />
     </StrictMode>
   </QueryClientProvider>
