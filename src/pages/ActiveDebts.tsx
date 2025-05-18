@@ -40,6 +40,7 @@ const ActiveDebts = () => {
   const handleTransferClick = (debtId: number) => {
     navigate(`/transfer-debt?debtId=${debtId}`)
   }
+
   return (
     <div className="bg-[#f5f9ff] min-h-screen p-4 sm:p-6">
       {/* Active Debts */}

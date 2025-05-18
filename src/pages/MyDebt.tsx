@@ -4,9 +4,13 @@ import DebtHistory from './DebtHistory'
 import ActiveDebts from './ActiveDebts' // Now imports the "Shuffle History" content
 import '../layout/Popup.css'
 import { Link } from 'react-router-dom'
+import { useGetMyUserDetails } from '../services/queries'
 
 function Chief() {
   const [tab, setTab] = useState('about')
+  const { data: userDetailsData, isSuccess: isUserDetailsSuccess } = useGetMyUserDetails()
+
+  console.log(userDetailsData)
 
   return (
     <div className="min-h-screen bg-[#F1F5FF]">
@@ -43,7 +47,9 @@ function Chief() {
           {/* Outstanding */}
           <div className="bg-[#d9e1fc] p-4 rounded w-full md:w-3/5">
             <h2 className="text-gray-700 py-0.5 text-md">Total Outstanding</h2>
-            <p className="text-2xl font-bold py-2">₦300,000</p>
+            <p className="text-2xl font-bold py-2">
+              ₦ {userDetailsData?.data.metadata?.totalAmountInDebt}
+            </p>
 
             <div className="flex flex-col sm:flex-row mt-3 justify-between items-start sm:items-center gap-3">
               <p className="text-sm">Due date: 15th April, 2025</p>

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { getMyAccount, getTransaction, getUserDetails } from './api'
+import { getUserDebtRequests, getMyAccount, getTransaction, getUserDetails } from './api'
+import { DebtRequestFilters } from '../types/debtRequest.type'
 
 export const useGetMyAccount = () => {
   return useQuery({
@@ -20,4 +21,13 @@ export const useGetMyTransactions = () => {
     queryKey: ['my-transactions'],
     queryFn: () => getTransaction(),
   })
+}
+
+export const useDebtRequests = (filters: DebtRequestFilters) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['debt-requests'],
+    queryFn: () => getUserDebtRequests(filters),
+  })
+
+  return { debtRequests: data, isDebtRequestsLoading: isLoading, debtRequestsError: error }
 }

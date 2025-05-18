@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRegisterMutation } from '../services/mutation'
+import { Loader2Icon } from 'lucide-react'
+import { cn } from '../lib/utils'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -197,9 +199,12 @@ const SignUp = () => {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-7 cursor-pointer hover:bg-[#CDD7F6] hover:text-[black] transition-colors duration-300 ease-in-out"
+              className={cn(
+                'w-full flex items-center justify-center gap-2 bg-[#05238C] text-white py-3 rounded-lg font-semibold mt-7 cursor-pointer transition-colors duration-300 ease-in-out disabled:opacity-50',
+                !isPending && 'hover:bg-[#CDD7F6] hover:text-black'
+              )}
             >
-              Create Account
+              {isPending ? <Loader2Icon className="animate-spin size-5" /> : 'Create Account'}
             </button>
           </form>
 

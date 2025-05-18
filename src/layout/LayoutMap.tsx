@@ -57,7 +57,6 @@ const Layout = () => {
         </div>
         <Outlet />
       </div>
-      <Toaster position="top-center" />
     </div>
   )
 }

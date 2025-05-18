@@ -1,6 +1,7 @@
 // This file talks to the backend server
 import axios from 'axios'
 import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from '../types/general'
+import { DebtRequestFilters } from '../types/debtRequest.type'
 
 type FormDataNot = {
   title: string
@@ -92,8 +93,11 @@ export const searchUser = async (search: string) => {
 }
 
 // Debt Request
-export const CurrentUserDebtRequest = async (role: string) => {
-  return await axiosInstanceWithToken.get(`debt-requests?role=${role}`)
+export const getUserDebtRequests = async (filters: DebtRequestFilters) => {
+  const response = await axiosInstanceWithToken.get(
+    `debt-requests?${new URLSearchParams(filters as unknown as Record<string, string>).toString()}`
+  )
+  return response.data
 }
 
 export const getAllDebtRequests = async () => {
@@ -116,4 +120,9 @@ export const getTransaction = async () => {
 
 export const getTransactionByRef = async (reference: string) => {
   return await axiosInstanceWithToken.get(`transactions/:${reference}`)
+}
+
+export const logoutUser = async () => {
+  const response = await axiosInstanceWithToken.get(`auth/logout`)
+  return response.data
 }
