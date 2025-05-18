@@ -5,13 +5,13 @@ const NftDetailsPage = () => {
 
   const nftDetails = {
     image: '/public/WhatsApp Image 2025-05-12 at 16.34.39 (2).jpeg',
-    name: 'King Ape',
+    name: 'Sun set',
     creator: 'Ralph Edwards',
     bid: '1.52 ETH',
     bidUSD: '$4,230.45',
     endsIn: '12h 30m 15s',
     description:
-      'King Ape is part of the exclusive Primate Royalty Collection. This unique piece features a majestic ape adorned with a golden crown, symbolizing power and authority in the digital realm. Created with meticulous attention to detail, this NFT represents the pinnacle of digital art collecting.',
+      'Sun set is part of the exclusive Primate Royalty Collection. This unique piece features a majestic ape adorned with a golden crown, symbolizing power and authority in the digital realm. Created with meticulous attention to detail, this NFT represents the pinnacle of digital art collecting.',
     properties: {
       Background: 'Yellow Gold',
       Accessory: 'Crown',
