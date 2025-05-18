@@ -25,6 +25,8 @@ const Login = () => {
     mutate(formData)
   }
 
+  const baseURL = import.meta.env.BASE_URL
+
   return (
     <div className="min-h-screen flex">
       <aside className="sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
@@ -68,7 +70,7 @@ const Login = () => {
             </Link>
           </p>
 
-          <Link to="https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=http://localhost:5173/dashboard">
+          <Link to={"https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=" + { baseURL } + "/dashboard"}>
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
