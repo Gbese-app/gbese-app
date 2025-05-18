@@ -5,12 +5,11 @@ import ActiveDebts from './ActiveDebts' // Now imports the "Shuffle History" con
 import '../layout/Popup.css'
 import { Link } from 'react-router-dom'
 import { useGetMyUserDetails } from '../services/queries'
+import { Loader2Icon } from 'lucide-react'
 
 function Chief() {
   const [tab, setTab] = useState('about')
-  const { data: userDetailsData, isSuccess: isUserDetailsSuccess } = useGetMyUserDetails()
-
-  console.log(userDetailsData)
+  const { data: { data: userDetails } = {}, isPending, error } = useGetMyUserDetails()
 
   return (
     <div className="min-h-screen bg-[#F1F5FF]">
@@ -24,7 +23,7 @@ function Chief() {
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <div className="bg-blue-900 text-white px-6 py-2 rounded cursor-pointer text-center">
-              + Add Debt
+              + Borrow Loan
             </div>
             <Link to="/mydebt/debtshuffle">
               <div className="bg-purple-600 text-white px-6 py-2 rounded cursor-pointer text-center flex flex-row">
@@ -47,24 +46,21 @@ function Chief() {
           {/* Outstanding */}
           <div className="bg-[#d9e1fc] p-4 rounded w-full md:w-3/5">
             <h2 className="text-gray-700 py-0.5 text-md">Total Outstanding</h2>
-            <p className="text-2xl font-bold py-2">
-              ₦ {userDetailsData?.data.metadata?.totalAmountInDebt}
+            <p className="text-2xl flex gap-2 items-center font-bold py-2">
+              {isPending ? (
+                <Loader2Icon className="animate-spin size-5" />
+              ) : (
+                <>₦ {userDetails?.metadata?.totalAmountInDebt}</>
+              )}
             </p>
 
             <div className="flex flex-col sm:flex-row mt-3 justify-between items-start sm:items-center gap-3">
               <p className="text-sm">Due date: 15th April, 2025</p>
-              <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                <Link to="/transfer-debt" className="w-full sm:w-auto">
-                  <div className="bg-blue-900 text-white text-md px-2 py-2 rounded cursor-pointer text-center">
-                    Make Payment
-                  </div>
-                </Link>
-                <Link to="/transfer-debt" className="w-full sm:w-auto">
-                  <div className="bg-white text-[#021346] border text-md border-[#021346] px-2 py-2 rounded cursor-pointer text-center">
-                    Transfer Debt
-                  </div>
-                </Link>
-              </div>
+              {/* <Link to="/transfer-debt" className="w-full sm:w-auto">
+                <div className="bg-white text-[#021346] border text-md border-[#021346] px-2 py-2 rounded cursor-pointer text-center">
+                  Transfer Debt
+                </div>
+              </Link> */}
             </div>
           </div>
 

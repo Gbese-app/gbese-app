@@ -1,6 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { getUserDebtRequests, getMyAccount, getTransaction, getUserDetails } from './api'
-import { DebtRequestFilters } from '../types/debtRequest.type'
+import {
+  getUserDebtRequests,
+  getMyAccount,
+  getTransaction,
+  getUserDetails,
+  getUserLoans,
+} from './api'
+import { DebtRequestFilters, Loan, LoanFilters } from '../types/debtRequest.type'
 
 export const useGetMyAccount = () => {
   return useQuery({
@@ -23,11 +29,29 @@ export const useGetMyTransactions = () => {
   })
 }
 
-export const useDebtRequests = (filters: DebtRequestFilters) => {
+export const useDebtRequests = (filters?: DebtRequestFilters) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['debt-requests'],
     queryFn: () => getUserDebtRequests(filters),
   })
 
   return { debtRequests: data, isDebtRequestsLoading: isLoading, debtRequestsError: error }
+}
+
+export const useLoans = (filters?: LoanFilters) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['loans'],
+    queryFn: () => getUserLoans(filters),
+  })
+
+  return { loans: data, isLoansLoading: isLoading, loansError: error }
+}
+
+export const useLoan = (filters?: LoanFilters) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['loans'],
+    queryFn: () => getUserLoans(filters),
+  })
+
+  return { loans: data, isLoansLoading: isLoading, loansError: error }
 }
