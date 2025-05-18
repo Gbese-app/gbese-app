@@ -1,7 +1,7 @@
-import '../PaymentResults.css';
+import '../PaymentResults.css'
 
 interface PaymentResultModalProps {
-  status: 'success' | 'declined';
+  status: 'success' | 'declined'
   onClose?: () => void;
 }
 

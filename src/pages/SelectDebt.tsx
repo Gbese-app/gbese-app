@@ -1,4 +1,4 @@
-import '../SelectDebt.css';
+import '../SelectDebt.css'
 
 const debts = [
   {
@@ -25,7 +25,7 @@ const debts = [
     mprColor: '#ffe5e5',
     mprTextColor: '#d93025',
   },
-];
+]
 
 function SelectDebt() {
   return (
@@ -73,7 +73,7 @@ function SelectDebt() {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default SelectDebt;
+export default SelectDebt

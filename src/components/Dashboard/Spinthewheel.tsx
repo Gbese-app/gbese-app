@@ -50,13 +50,18 @@ export default ({ activate }: { activate: boolean }) => {
           console.log(data[prizeNumber])
         }}
       />
-      <button
-        onClick={handleSpinClick}
-        disabled={!activate}
-        className="border bg-blue-900 text-white text-xs rounded-lg m-2 px-2 py-1"
-      >
-        SPIN
-      </button>
+      {activate ? (
+        <button
+          onClick={handleSpinClick}
+          disabled={!activate}
+          className="border bg-blue-900 text-white text-xs rounded-lg m-2 px-2 py-1"
+        >
+          SPIN
+        </button>
+      ) : (
+        <div className="text-xs mt-2">Spin your first wheel once you’ve earned 10 XP!</div>
+      )}
+
       {!mustSpin ? data[prizeNumber].option : 'SPINNING...'}
     </div>
   )

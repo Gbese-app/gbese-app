@@ -64,8 +64,9 @@ const PersonalInfoForm: React.FC<Props> = ({ onNext, onUpdate, data }) => {
                 type="email"
                 name="email"
                 placeholder="e.g john@example.com"
-                className="w-full border rounded-lg p-3 text-base"
+                className="w-full border rounded-lg p-3 text-gray-500 "
                 value={safeData.email}
+                disabled={true}
                 onChange={handleChange}
               />
             </div>

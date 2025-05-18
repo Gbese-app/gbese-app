@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BalanceCards from './BalanceCards'
 import DebtRequest from './RequestCard'
-import EnterPin from './EnterPin'
-import PaymentResult from './PaymentResult';
+import PaymentResult from './PaymentResult'
 import '../PaymentForm.css'
 
 const PaymentForm = () => {
@@ -14,39 +13,45 @@ const PaymentForm = () => {
     amount: '',
     narration: '',
     method: '',
-    attachDebt: false
+    attachDebt: false,
   });
 
   const [showRequestModal, setShowRequestModal] = useState(false);
-  const [showEnterPin, setShowEnterPin] = useState(false);
-  const [showResultModal, setShowResultModal] = useState(false); // Result modal visibility
-  const [paymentStatus, setPaymentStatus] = useState<'success' | 'declined'>('success'); // Payment status
+  const [showResultModal, setShowResultModal] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState<'success' | 'declined'>('success');
 
-  const handleInputChange = (e: any) => {
+  useEffect(() => {
+    console.log('PaymentForm rendered:', { debt, formData });
+  }, [debt, formData]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('PaymentForm: Form submitted', formData);
     setShowRequestModal(true);
   };
 
-  const handleMakePayment = () => {
+  const handleCloseRequestModal = () => {
+    console.log('PaymentForm: Closing DebtRequest modal');
     setShowRequestModal(false);
-    setShowEnterPin(true);
   };
 
-  const handleCloseEnterPin = (status: 'success' | 'declined' = 'success') => {
-    setShowEnterPin(false);
+  const handlePaymentComplete = (status: 'success' | 'declined') => {
+    console.log('PaymentForm: Payment complete with status', status);
+    setShowRequestModal(false);
     setPaymentStatus(status);
     setShowResultModal(true);
   };
 
   const handleCloseResultModal = () => {
+    console.log('PaymentForm: Closing PaymentResult modal');
     setShowResultModal(false);
   };
 
@@ -54,24 +59,22 @@ const PaymentForm = () => {
     <div className="app-container">
       <BalanceCards />
 
-      {/* Recipient Summary */}
       <div className="recipient-card">
         <div className="recipient-details">
           <div>
-            <h3 className="recipient-name">{debt.name}</h3>
-            <p className="recipient-desc">{debt.description}</p>
+            <h3 className="recipient-name">{debt.name || 'N/A'}</h3>
+            <p className="recipient-desc">{debt.description || 'No description'}</p>
             <div className="recipient-amount">
               ₦{parseInt(debt.amount || '0').toLocaleString()}
             </div>
           </div>
           <div className="recipient-info">
-            <p className="due-date">Due date: {debt.dueDate}</p>
+            <p className="due-date">Due date: {debt.dueDate || 'N/A'}</p>
             <p className="bank-info">22839632637 - GTBank</p>
           </div>
         </div>
       </div>
 
-      {/* Payment Form */}
       <form onSubmit={handleSubmit} className="payment-card">
         <h2 className="payment-title">Details</h2>
 
@@ -134,26 +137,19 @@ const PaymentForm = () => {
         </div>
       </form>
 
-      {/* DebtRequest Modal */}
       {showRequestModal && (
         <DebtRequest
+          modalId="debt-request-1"
           name={debt.name || 'Francis Edwin'}
-          amount={`₦${Number(formData.amount || 0).toLocaleString()}`}
+          amount={formData.amount ? `₦${Number(formData.amount).toLocaleString()}` : '₦0'}
           narration={formData.narration || 'N/A'}
           bank="GTBank"
           accountNumber="22839632637"
-          onClose={handleMakePayment}
+          onClose={handleCloseRequestModal}
+          onPaymentComplete={handlePaymentComplete}
         />
       )}
 
-      {/* Inline EnterPin Display */}
-      {showEnterPin && (
-        <div style={{ marginTop: '2rem' }}>
-          <EnterPin onClose={handleCloseEnterPin} />
-        </div>
-      )}
-
-      {/* Payment Result Modal */}
       {showResultModal && (
         <PaymentResult
           status={paymentStatus}

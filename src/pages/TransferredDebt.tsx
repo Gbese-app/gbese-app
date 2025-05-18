@@ -1,19 +1,19 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import '../layout/Popup.css' // Import external CSS file for the popup
 
 const Kene = () => {
   // State to track if the popup is open or not
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  // const [isPopupOpen, setIsPopupOpen] = useState(false)
 
-  // Function to open the popup
-  const openPopup = () => {
-    setIsPopupOpen(true)
-  }
+  // // Function to open the popup
+  // const openPopup = () => {
+  //   setIsPopupOpen(true)
+  // }
 
-  // Function to close the popup
-  const closePopup = () => {
-    setIsPopupOpen(false)
-  }
+  // // Function to close the popup
+  // const closePopup = () => {
+  //   setIsPopupOpen(false)
+  // }
 
   return (
     <></>
@@ -58,8 +58,6 @@ const Kene = () => {
     //         </div>
     //       </div>
 
-      
-
     //   {/* Debt Details Popup */}
     //   {isPopupOpen && (
     //     <div className="popup-overlay">
@@ -93,7 +91,7 @@ const Kene = () => {
     //     )}
     //   </div>
     // </div>
-    );
-  }
+  )
+}
 
-export default Kene;
+export default Kene

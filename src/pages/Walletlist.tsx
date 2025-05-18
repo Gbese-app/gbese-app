@@ -14,14 +14,14 @@ const Walletlist = () => {
   return (
     <div className="min-h-screen bg-white p-8 flex justify-center items-start ">
       <div className="w-full max-w-2xl bg-blue-100 p-6 rounded-xl shadow-lg ">
-      <button
-  onClick={() => {
-    navigate("/rewards", { state: { activeTab: "collection" } });
-  }}
-  className="text-blue-800 font-semibold mb-4 hover:underline"
->
-  &larr; Back
-</button>
+        <button
+          onClick={() => {
+            navigate('/rewards', { state: { activeTab: 'collection' } })
+          }}
+          className="text-blue-800 font-semibold mb-4 hover:underline"
+        >
+          &larr; Back
+        </button>
 
         <h2 className="text-2xl font-bold mb-6 text-[#031A69] ">Select Wallet</h2>
         <div className="space-y-4">

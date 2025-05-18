@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import '../GbeQuestions.css';
+import { useState } from 'react'
+import '../GbeQuestions.css'
 
 const GbeQuestions = () => {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState(null)
 
-  const toggleAccordion = (index) => {
-    setExpanded(expanded === index ? null : index);
-  };
+  const toggleAccordion = (index: any) => {
+    setExpanded(expanded === index ? null : index)
+  }
 
   const faqs = [
     {
@@ -16,20 +16,17 @@ const GbeQuestions = () => {
     },
     {
       question: "Why would someone accept someone else's debt?",
-      answer:
-        'Because it comes with perks. Receivers can earn incentives...',
+      answer: 'Because it comes with perks. Receivers can earn incentives...',
     },
     {
       question: 'How secure is Gbese?',
-      answer:
-        'Gbese uses bank-level encryption to protect all your data...',
+      answer: 'Gbese uses bank-level encryption to protect all your data...',
     },
     {
       question: 'What is the "Wealth Redistribution Index"?',
-      answer:
-        "It’s a gamified metric that tracks how much gbese you’ve shifted upward...",
+      answer: 'It’s a gamified metric that tracks how much gbese you’ve shifted upward...',
     },
-  ];
+  ]
 
   return (
     <div className="gbe-container">
@@ -52,7 +49,7 @@ const GbeQuestions = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GbeQuestions;
+export default GbeQuestions
