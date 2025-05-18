@@ -66,6 +66,8 @@ const RewardsPage = () => {
   const navigate = useNavigate()
   const { userAddress } = useWallet()
   const balance = useGbeseBalance(userAddress)
+  const [isVerified, setIsVerified] = useState(false);
+  const [isLoading,  setIsLoading]  = useState(false);
 
   const [activeTab, setActiveTab] = useState<'marketplace' | 'collection' | 'LuckyWheel'>(
     location.state?.activeTab || 'marketplace'
@@ -78,6 +80,35 @@ const RewardsPage = () => {
       })
     } else {
       alert('Details not available for now')
+    }
+  }
+
+  const VerifyWallet = async ()=> {
+    setIsLoading(true);
+    if (!userAddress) {
+      console.log(userAddress)
+      alert('Connect your Wallet first')
+      return
+    }
+
+    try {
+      const res = await fetch('https://gbese-backend.onrender.com/api/v1/web3/verify-kyc', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ wallet: userAddress }),
+        credentials: 'include'
+      });
+  
+      const data = await res.json();
+      if (data.success) {
+        setIsVerified(true);
+      }
+
+    } catch (error) {
+      alert('Verification error')
+      console.error("Verification failed:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -107,8 +138,8 @@ const RewardsPage = () => {
             </div>
 
             <p className="text-xl font-bold mt-7">{balance !== null ? `${balance} GBT` : '--'}</p>
-            <button className="mt-5 w-40 bg-[#031A69] text-white py-2 rounded-lg  hover:bg-[#031A69] cursor-pointer">
-              Verify wallet
+            <button className="mt-5 w-40 bg-[#031A69] text-white py-2 rounded-lg  hover:bg-[#031A69] cursor-pointer" onClick={VerifyWallet} disabled={isVerified || isLoading}>
+              {isVerified ? 'Verified' : isLoading ? 'Verifying...' : 'Verify wallet'}
             </button>
           </div>
         </div>
@@ -127,7 +158,7 @@ const RewardsPage = () => {
               NFT Marketplace
             </button>
             <button
-              className={`ml-2 px-4 py-2 rounded-lg text-xl font-semibold ${
+              className={`ml-2 px-4 py-2 rounded-lg text-x l font-semibold ${
                 activeTab === 'collection' ? 'bg-white shadow text-black' : 'text-gray-500'
               }`}
               onClick={() => {
