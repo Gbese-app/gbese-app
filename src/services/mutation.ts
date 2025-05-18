@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { loginUser, registerUser, UpdateUserDetails, withdrawFunds } from './api'
+import { createDebtRequest, loginUser, registerUser, UpdateUserDetails, withdrawFunds } from './api'
 import { FormData, IWithdrawFunds, KYCForm } from '../types/general'
 import { toast } from 'sonner'
 import { useAuthContext } from '../hook/useAuthContext'
 import { useNavigate } from 'react-router-dom'
 import { isAxiosError } from 'axios'
+import { DebtRequestCreation } from '../types/debtRequest.type'
 
 export const useLoginMutation = () => {
   const navigate = useNavigate()
@@ -94,6 +95,64 @@ export const useRegisterMutation = () => {
         toast.success('Verify your email to login')
         navigate('/login', { replace: true })
       }, 1000)
+    },
+    onError(error) {
+      console.log(error)
+
+      if (isAxiosError(error)) {
+        const errorData = error.response?.data
+
+        if (errorData?.errors) {
+          const flattenedErrors: string[] = []
+
+          // Loop through the errors object
+          for (const key in errorData.errors) {
+            const value = errorData.errors[key]
+
+            // If the value is an object (e.g., nested like address.number), recurse or flatten
+            if (typeof value === 'object' && value !== null) {
+              for (const subKey in value) {
+                flattenedErrors.push(value[subKey])
+              }
+            } else {
+              flattenedErrors.push(value)
+            }
+          }
+
+          // Display all errors as individual toasts
+          flattenedErrors.forEach((errMsg) => {
+            toast.error(errMsg)
+          })
+
+          return
+        }
+        if (errorData.message) {
+          toast.error(errorData.message)
+          return
+        }
+
+        // ✅ Or if there's a specific `code`
+        if (errorData.code) {
+          toast.error(`Error: ${errorData.code}`)
+          return
+        }
+      }
+
+      // fallback error
+      toast.error('An unexpected error occurred')
+    },
+  })
+}
+
+export const useCreateDebtRequestMutation = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (data: DebtRequestCreation) => createDebtRequest(data),
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['debt-requests'],
+      })
+      toast.success('Debt Request Created')
     },
     onError(error) {
       console.log(error)
