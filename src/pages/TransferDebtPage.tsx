@@ -9,7 +9,7 @@ const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const { data: userDetails } = useGetMyUserDetails()
   const [searchParams] = useSearchParams()
-  const [setIsFetchingUser] = useState(false)
+  // const [isFetchingUser, setIsFetchingUser] = useState(false)
   const createDebtMutation = useCreateDebtRequestMutation()
 
   console.log(searchParams, searchParams.get('debtId'))
@@ -45,9 +45,9 @@ const TransferredDebt = () => {
   }
 
   // Function to open the popup
-  const openPopup = () => {
-    setIsPopupOpen(true) // Sets the state to true, opening the popup
-  }
+  // const openPopup = () => {
+  //   setIsPopupOpen(true) // Sets the state to true, opening the popup
+  // }
 
   // Function to close the popup
   const closePopup = () => {
@@ -73,16 +73,16 @@ const TransferredDebt = () => {
   }, [isPopupOpen])
 
   const handleUserFetch = (e: any) => {
-    const value = e.target.value
+    // const value = e.target.value
     handleInputChange(e)
-    setIsFetchingUser(true)
+    // setIsFetchingUser(true)
     // try {
 
     // } catch (error) {
 
     // } finally {
 
-    setIsFetchingUser(false)
+    // setIsFetchingUser(false)
     // }
     // ✅ Show popup on submit
   }

@@ -10,10 +10,10 @@ import {
 } from '../types/debtRequest.type'
 import { normalizeSearchParams } from '../lib/utils'
 
-type FormDataNot = {
-  title: string
-  content: string
-}
+// type FormDataNot = {
+//   title: string
+//   content: string
+// }
 
 // const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
 const BASE_URL = 'http://localhost:4000/api/v1/'
