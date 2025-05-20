@@ -33,6 +33,7 @@ import NftDetailsPage from './pages/NftDetailsPage'
 // import PointsDetailsPage from './pages/PointsDetailsPage';
 import Walletlist from './pages/Walletlist'
 import CompletePurchasPage from './pages/CompletePurchasPage'
+import PrivateRouteWrapper from './auth-wrappers/PrivateRouteWrapper'
 
 const App = () => {
   return (
@@ -100,13 +101,14 @@ const App = () => {
                 onSubmit={function (): void {
                   throw new Error('Function not implemented.')
                 }}
+                
                 data={undefined}
               />
             }
           />
 
           {/* Main app layout routes */}
-          <Route path="/" element={<Layout />}>
+          <Route  path="/" element={<PrivateRouteWrapper component={ <Layout /> } />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/mydebt/debtshuffle" element={<DebtAppTabs />} />
             <Route path="fundwallet" element={<FundWallet />} />

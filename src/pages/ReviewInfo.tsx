@@ -7,7 +7,7 @@ interface Props {
   data: any
 }
 
-const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, isPending, data }) => {
+const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
   console.log(data)
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
@@ -87,9 +87,8 @@ const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, isPending, data }) => {
             className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
             style={{ backgroundColor: '#1c2964' }}
             onClick={onSubmit}
-            disabled={isPending}
           >
-            {isPending ? <Loader2Icon className="animate-spin" /> : 'Submit'}
+            Submit
           </button>
         </div>
       </div>

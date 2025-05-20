@@ -74,9 +74,7 @@ const Login = () => {
 
           <Link
             to={
-              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=' +
-              { baseURL } +
-              '/dashboard'
+              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=https://gbese-app-xsfo.vercel.app/dashboard'
             }
           >
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">
