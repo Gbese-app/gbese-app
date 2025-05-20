@@ -5,6 +5,7 @@ interface Props {
 }
 
 const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
+  console.log(data)
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
       <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-3xl w-full space-y-8">
@@ -30,8 +31,7 @@ const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
               <span className="font-medium text-gray-600">Phone Number:</span> {data.phoneNumber}
             </div>
             <div className="py-2">
-              <span className="font-medium text-gray-600">Address:</span> {data.address},{' '}
-              {data.town}, {data.state}
+              <span className="font-medium text-gray-600">Address:</span>{' '} {data.address.town}, {data.address.state}, {data.address.number}
             </div>
           </div>
         </section>

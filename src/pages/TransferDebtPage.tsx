@@ -1,24 +1,39 @@
-import { ChevronLeftIcon } from 'lucide-react'
+import { ChevronLeftIcon, Loader2Icon } from 'lucide-react'
 import { useState, useEffect } from 'react'
-// import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useGetMyUserDetails } from '../services/queries'
+import { useCreateDebtRequestMutation } from '../services/mutation'
 
 const TransferredDebt = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const { data: userDetails } = useGetMyUserDetails()
+  const [searchParams] = useSearchParams()
+  // const [isFetchingUser, setIsFetchingUser] = useState(false)
+  const createDebtMutation = useCreateDebtRequestMutation()
 
-  const handleSubmit = (e: any) => {
+  console.log(searchParams, searchParams.get('debtId'))
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
-    console.log(formData)
-    setIsPopupOpen(true) // ✅ Show popup on submit
+    console.log('hey', formData)
+    createDebtMutation.mutate(
+      {
+        loanId: searchParams.get('debtId') as string,
+        ...formData,
+      },
+      {
+        onSuccess: () => {
+          setIsPopupOpen(true) // ✅ Show popup on submit
+        },
+      }
+    )
   }
 
   const [formData, setFormData] = useState({
+    payerId: '',
     amount: '',
-    details: '',
-    reason: '',
-    receiver: '',
+    description: '',
   })
 
   const handleInputChange = (e: any) => {
@@ -30,9 +45,9 @@ const TransferredDebt = () => {
   }
 
   // Function to open the popup
-  const openPopup = () => {
-    setIsPopupOpen(true) // Sets the state to true, opening the popup
-  }
+  // const openPopup = () => {
+  //   setIsPopupOpen(true) // Sets the state to true, opening the popup
+  // }
 
   // Function to close the popup
   const closePopup = () => {
@@ -56,6 +71,21 @@ const TransferredDebt = () => {
   useEffect(() => {
     console.log('Popup state updated:', isPopupOpen) // Logs the state change for debugging
   }, [isPopupOpen])
+
+  const handleUserFetch = (e: any) => {
+    // const value = e.target.value
+    handleInputChange(e)
+    // setIsFetchingUser(true)
+    // try {
+
+    // } catch (error) {
+
+    // } finally {
+
+    // setIsFetchingUser(false)
+    // }
+    // ✅ Show popup on submit
+  }
 
   return (
     <div className="bg-[#f5f9ff] min-h-screen p-6">
@@ -104,32 +134,19 @@ const TransferredDebt = () => {
           {/* Debt helper selection and form */}
           <div className="mt-6">
             <label className="block mb-4 text-sm font-medium">Selected Debt Helper</label>
-            <div className="flex h-10 w-30">
-              <img src="/image 9.png" alt="" />
-              <select
-                name="receiver"
-                className="flex-1 border ml-4 sm:ml-4 px-1 py-1 rounded"
-                value={formData.receiver}
-                onChange={handleInputChange}
-              >
-                <option>CocaineAddict</option>
-                <option>John Doe</option>
-                <option>Jane Smith</option>
-              </select>
-            </div>
 
             {/* Input fields for account number and amount */}
-            <form onSubmit={handleSubmit} className="mb-4 flex flex-col sm:flex-row gap-3 w-full">
-              <div>
-                <p className="mb-2 mt-4">Beneficiary Details</p>
+            <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-3 w-full">
+              <div className="flex h-10">
+                {/* <img src="/image 9.png" alt="" /> */}
                 <input
                   type="text"
-                  name="details"
-                  placeholder="Enter Account number..."
+                  name="payerId"
+                  placeholder="Enter helper account number"
                   required
-                  className="flex-1 sm:w-full border px-3 py-2 rounded w-full"
-                  value={formData.details}
-                  onChange={handleInputChange}
+                  className="flex-1 border px-3 py-2 rounded w-full"
+                  value={formData.payerId}
+                  onChange={handleUserFetch}
                 />
               </div>
               <div>
@@ -149,11 +166,11 @@ const TransferredDebt = () => {
             {/* Text area for additional notes */}
             <p>Request Description</p>
             <textarea
-              name="reason"
+              name="description"
               placeholder="What's on your mind?"
               required
               className="w-full mt-2 border rounded px-3 py-2"
-              value={formData.reason}
+              value={formData.description}
               onChange={handleInputChange}
               rows={3}
             ></textarea>
@@ -161,9 +178,15 @@ const TransferredDebt = () => {
             {/* Send request button */}
             <button
               className="bg-blue-700 text-white mt-4 px-4 py-2 rounded cursor-pointer"
-              onClick={openPopup}
+              onClick={handleSubmit}
+              type="submit"
+              disabled={createDebtMutation.isPending}
             >
-              Send Request
+              {createDebtMutation.isPending ? (
+                <Loader2Icon className="animate-spin" />
+              ) : (
+                'Send Request'
+              )}
             </button>
           </div>
         </div>
@@ -203,8 +226,8 @@ const TransferredDebt = () => {
 
                 <div className="mt-6 text-left space-y-4">
                   <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
-                    <span className="font-semibold text-gray-600">Debt Receiver:</span>
-                    <span>{formData.receiver}</span>
+                    <span className="font-semibold text-gray-600">Debt Receiver Id:</span>
+                    <span>{formData.payerId}</span>
                   </div>
                   <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
                     <span className="font-semibold text-gray-600">Date:</span>
@@ -212,12 +235,12 @@ const TransferredDebt = () => {
                   </div>
                   <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
                     <span className="font-semibold text-gray-600">Request Description:</span>
-                    <span>{formData.reason}</span>
+                    <span>{formData.description}</span>
                   </div>
-                  <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
+                  {/* <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
                     <span className="font-semibold text-gray-600">Details:</span>
-                    <span>{formData.details}</span>
-                  </div>
+                    <span>{formData.amount}</span>
+                  </div> */}
                   <div className="flex justify-between p-0.5 border-b-2 border-b-gray-100">
                     <span className="font-semibold text-gray-600">Outstanding Debt:</span>
 

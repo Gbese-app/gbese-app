@@ -5,6 +5,7 @@ import {
   getTransaction,
   getUserDetails,
   getUserLoans,
+  acceptDebtRequest,
 } from './api'
 import { DebtRequestFilters, LoanFilters } from '../types/debtRequest.type'
 
@@ -37,6 +38,16 @@ export const useDebtRequests = (filters?: DebtRequestFilters) => {
 
   return { debtRequests: data, isDebtRequestsLoading: isLoading, debtRequestsError: error }
 }
+
+export const useAcceptDebtRequest = (id: string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['debt-requests'],
+    queryFn: () => acceptDebtRequest(id),
+  })
+
+  return { debtRequests: data, isDebtRequestsLoading: isLoading, debtRequestsError: error }
+}
+
 
 export const useLoans = (filters?: LoanFilters) => {
   const { data, isLoading, error } = useQuery({

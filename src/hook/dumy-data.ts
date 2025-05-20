@@ -10,8 +10,12 @@ export type DashboardEntry = {
   name: string
   date: string // e.g., "2025/04/25"
   Amount: string // e.g., "$1,200.00"
-  Status: string
+  status: string
   Action: string
+  balanceAfter: number
+  balanceBefore: number
+  category: string
+  createdAt: string
 }
 
 export const DashboardTH = [

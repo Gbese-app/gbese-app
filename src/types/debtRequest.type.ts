@@ -1,3 +1,5 @@
+import { UserData } from './general'
+
 export enum DebtRequestStatus {
   PENDING = 'pending',
   ACCEPTED = 'accepted',
@@ -25,6 +27,13 @@ export interface LoanFilters {
   status?: LoanStatuses | LoanStatuses[]
 }
 
+export interface DebtRequestCreation {
+  loanId: string
+  payerId?: string
+  amount: number | string
+  description: string
+}
+
 export interface Loan {
   _id: number
   description: string
@@ -33,4 +42,18 @@ export interface Loan {
   disbursedAt: string
   interestRate: number
   status: LoanStatuses
+}
+
+export interface DebtRequest {
+  debtorId: string
+  loanId: string
+  payerId?: string
+  amount: string
+  description?: string
+  loan: Loan
+  debtor: UserData
+  payer?: UserData
+  debtPoint: number
+  status: DebtRequestStatus
+  createdAt: string
 }

@@ -42,11 +42,11 @@ const SignUp = () => {
     registerMerchant(formData)
   }
 
-  const baseURL = import.meta.env.BASE_URL
+  // const baseURL = import.meta.env.BASE_URL 
 
   return (
     <div className="min-h-screen flex">
-      <aside className="sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
+      <aside className="hidden md:block sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
         <div className="absolute top-6 left-6 flex items-center space-x-2">
           <img src="/LogoDarkBG.png" alt="gbese" className="h-12 w-25" />
         </div>
@@ -77,7 +77,7 @@ const SignUp = () => {
         </div>
       </aside>
 
-      <main className="flex-1 flex  justify-center bg-[#F9FAFB] min-h-screen">
+      <main className=" p-5 md:p-0 flex-1 flex  justify-center bg-[#F9FAFB] min-h-screen">
         <div className="w-full max-w-xl my-10">
           <h1 className="text-[40px] font-bold text-[#0B0B0B] text-center ">Create an account</h1>
           <p className="text-center text-sm mb-10 text-[#4B5563]">
@@ -89,9 +89,7 @@ const SignUp = () => {
 
           <Link
             to={
-              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=' +
-              { baseURL } +
-              '/dashboard'
+              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=https://gbese-app-xsfo.vercel.app/dashboard'
             }
           >
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">

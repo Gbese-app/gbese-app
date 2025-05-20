@@ -66,6 +66,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
       }))
     }
   }, [isSuccess, data])
+  console.log('Form Data:', formData)
 
   const handleNext = () => setStep((prev: number) => prev + 1)
   const handleBack = () => setStep((prev: number) => prev - 1)
@@ -122,9 +123,9 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
       {/* Sidebar */}
-      <aside className="fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white pt-6 pb-8 pl-4 pr-4 sticky">
-        <img src="./src/assets/Logo Dark BG.png" alt="gbese" className="h-12 w-25" />
-        <div className="mb-8">
+      <aside className="hidden md:block fixed top-0 left-0 h-[100vh] w-full md:w-64 bg-[#021346] text-white pt-6 pb-8 pl-4 pr-4 sticky">
+        <img src="LogoDarkBG.png" alt="gbese" className="h-12 w-25" />
+        <div className="my-8">
           <h2 className="text-xl font-semibold tracking-wide">KYC Verification</h2>
         </div>
         <nav className="flex flex-col space-y-6 w-full">
@@ -213,7 +214,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             data={formData}
           />
         )}
-        {step === 3 && <ReviewInfo onBack={handleBack} onSubmit={handleSubmit} data={formData} />}
+        {step === 3 && <ReviewInfo onBack={handleBack} onSubmit={handleSubmit} data={formData}  />}
       </div>
     </div>
   )

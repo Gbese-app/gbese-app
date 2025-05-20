@@ -31,7 +31,7 @@ const Login = () => {
   console.log(baseURL)
   return (
     <div className="min-h-screen flex">
-      <aside className="sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
+      <aside className="hidden md:block sticky fixed top-0 left-0 h-[100vh] w-1/4 bg-[#021346] text-white p-6 flex flex-col items-center relative">
         <div className="absolute top-6 left-6 flex items-center space-x-2">
           <img src="/LogoDarkBG.png" alt="gbese" className="h-12 w-25" />
         </div>
@@ -74,9 +74,7 @@ const Login = () => {
 
           <Link
             to={
-              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=' +
-              { baseURL } +
-              '/dashboard'
+              'https://gbese-backend.onrender.com/api/v1/auth/google?callbackUrl=https://gbese-app-xsfo.vercel.app/dashboard'
             }
           >
             <button className="w-full border border-gray-300 rounded-lg py-3 mb-4 flex justify-center items-center font-medium cursor-pointer">

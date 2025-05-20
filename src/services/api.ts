@@ -1,13 +1,19 @@
 // This file talks to the backend server
 import axios from 'axios'
 import { FormData, IRegisterUser, IWithdrawFunds, KYCForm } from '../types/general'
-import { DebtRequestFilters, Loan, LoanFilters } from '../types/debtRequest.type'
+import {
+  DebtRequest,
+  DebtRequestCreation,
+  DebtRequestFilters,
+  Loan,
+  LoanFilters,
+} from '../types/debtRequest.type'
 import { normalizeSearchParams } from '../lib/utils'
 
-type FormDataNot = {
-  title: string
-  content: string
-}
+// type FormDataNot = {
+//   title: string
+//   content: string
+// }
 
 const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
 // const BASE_URL = 'http://localhost:4000/api/v1/'
@@ -53,8 +59,13 @@ export const UpdateUserDetails = async (data: KYCForm) => {
 }
 
 // Debt Request
-export const createDebtRequest = async (data: FormDataNot) => {
-  return await axiosInstanceWithToken.post('debt-requests', data)
+export const createDebtRequest = async (data: DebtRequestCreation) => {
+  const response = await axiosInstanceWithToken.post<{
+    data: DebtRequest
+    message: string
+    success: boolean
+  }>('debt-requests', data)
+  return response?.data
 }
 
 export const updateDebtRequest = async (data: any, debtRequestId: string) => {
@@ -95,7 +106,9 @@ export const searchUser = async (search: string) => {
 }
 
 // Debt Request
-export const getUserDebtRequests = async (filters: DebtRequestFilters = {}) => {
+export async function getUserDebtRequests(
+  filters: DebtRequestFilters = {}
+): Promise<DebtRequest[]> {
   const response = await axiosInstanceWithToken.get(
     `debt-requests?${new URLSearchParams(normalizeSearchParams(filters as Record<string, string>)).toString()}`
   )
@@ -111,6 +124,10 @@ export async function getUserLoans(filters: LoanFilters = {}): Promise<Loan[]> {
 
 export const getAllDebtRequests = async () => {
   return await axiosInstanceWithToken.get('debt-requests/all')
+}
+
+export const acceptDebtRequest = async (deptRequestId: string) => {
+  return await axiosInstanceWithToken.get(`debt-requests/accept/${deptRequestId}`)
 }
 
 // Account
