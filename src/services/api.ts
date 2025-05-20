@@ -15,8 +15,8 @@ import { normalizeSearchParams } from '../lib/utils'
 //   content: string
 // }
 
-// const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
-const BASE_URL = 'http://localhost:4000/api/v1/'
+const BASE_URL = 'https://gbese-backend.onrender.com/api/v1/'
+// const BASE_URL = 'http://localhost:4000/api/v1/'
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,

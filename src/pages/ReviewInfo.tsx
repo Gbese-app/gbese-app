@@ -1,10 +1,13 @@
+import { Loader2Icon } from "lucide-react"
+
 interface Props {
   onBack: () => void
   onSubmit: () => void
+  isPending: boolean
   data: any
 }
 
-const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
+const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, isPending, data }) => {
   console.log(data)
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
@@ -84,8 +87,9 @@ const ReviewInfo: React.FC<Props> = ({ onBack, onSubmit, data }) => {
             className="w-full sm:w-auto text-white font-semibold py-2.5 px-6 rounded-md transition-shadow shadow-md"
             style={{ backgroundColor: '#1c2964' }}
             onClick={onSubmit}
+            disabled={isPending}
           >
-            Submit
+            {isPending ? <Loader2Icon className="animate-spin" /> : 'Submit'}
           </button>
         </div>
       </div>
