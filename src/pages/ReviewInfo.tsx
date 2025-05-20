@@ -1,9 +1,6 @@
-import { Loader2Icon } from "lucide-react"
-
 interface Props {
   onBack: () => void
   onSubmit: () => void
-  isPending: boolean
   data: any
 }
 

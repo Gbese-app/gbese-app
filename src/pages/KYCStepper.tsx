@@ -15,7 +15,7 @@ interface KYCStepperProps {
 export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
   const { data, isSuccess } = useGetMyUserDetails()
 
-  const { mutate: UseUpdateUse, isPending } = useUpdateUserMutation()
+  const { mutate: UseUpdateUse } = useUpdateUserMutation()
 
   const [step, setStep] = useState(() => {
     const saved = localStorage.getItem('formData')
@@ -214,7 +214,7 @@ export const KYCStepper: React.FC<KYCStepperProps> = ({ onComplete }) => {
             data={formData}
           />
         )}
-        {step === 3 && <ReviewInfo onBack={handleBack} onSubmit={handleSubmit} isPending={isPending} data={formData}  />}
+        {step === 3 && <ReviewInfo onBack={handleBack} onSubmit={handleSubmit} data={formData}  />}
       </div>
     </div>
   )

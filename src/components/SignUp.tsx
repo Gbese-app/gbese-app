@@ -42,7 +42,7 @@ const SignUp = () => {
     registerMerchant(formData)
   }
 
-  const baseURL = import.meta.env.BASE_URL
+  // const baseURL = import.meta.env.BASE_URL 
 
   return (
     <div className="min-h-screen flex">
